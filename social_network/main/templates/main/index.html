@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}
+    Головна
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block hat %}
+    <div class = "urls-frame">
+        <div class = "urls">
+            <div class = "main url">
+                <img src="{% static 'images/icons/house.png'%}" alt="">
+                <a>Головна</a>
+            </div>
+            <div class = "url">
+                <img src="{% static 'images/icons/post.png' %}" alt="">
+                <a>Мої публікації</a>
+            </div>
+            <div class = "url">
+                <div class = "photo-and-count">
+                    <img src="{% static 'images/icons/friends.png' %}" alt="">
+                    <img src="" alt="">
+                </div>
+                <a>Друзі</a>
+            </div>
+            <div class = "url">
+                <div class = "photo-and-count">
+                    <img src="{% static 'images/icons/chats.png' %}" alt="">
+                    <img src="" alt="">
+                </div>
+                <a>Чати</a>
+            </div>
+            <div class = "url">
+                <img src="{% static 'images/icons/settings.png' %}" alt="">
+                <a>Налаштування</a>
+            </div>
+        </div>
+        <div class = "button-exit">
+            <img src="{% static 'images/icons/exit.png'%}" alt="">
+            <a class = "exit">Вихід</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class = "body">
+        <div class = "profile-frame">
+
+            <div class = "frame profile">
+                <div class = "avatar">
+                    <img class = "my-avatar" src="{% static 'images/icons/avatar.jpg'%}" alt="">
+                    <img class = "online-dot"src="{% static 'images/icons/online.png'%}" alt="">
+                </div>
+                <div class = "nick-and-tag">
+                    <h2 class = "name">Vashchenko Artem</h2>
+                    <h3 class = "tag">@VashchenkoArtem</h3>
+                </div>
+                <div class = "subscribers" >
+                    <div class = "all-posts section">
+                        <h2 class = "number">566</h2>
+                        <h3 class = "info">Дописи</h3>
+                        <div class = "line"></div>
+                    </div>
+                    <div class = "followers section">
+                        <h2 class = "number">12.1K</h2>
+                        <h3 class = "info">Читачі</h3>
+                        <div class = "line"></div>
+                    </div>
+                    <div class = "all-friends section">
+                        <h2 class = "number">222</h2>
+                        <h3 class = "info">Друзі</h3>
+                        <div class = "line"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class = "frame request">
+                <div class = "title-frame">
+                    <div class = "logo-frame">
+                        <div class = "icon">
+                            <img src="{% static 'images/icons/friends.png'%}" alt="">
+                        </div>
+                        <h3 class = "description-block">Запити</h3>
+                    </div>
+                    <div class = "button-frame">
+                        <h3>Дивитись всі</h3>
+                    </div>
+                </div>  
+                <div class = "body-frame">
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = "icon">
+                                <img src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-subscribers">
+                                <h3 class = "friend-name request-block">Yehor Aung</h3>
+                                <h4 class = "subscribe">4.3к підписників</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class = "frame message">
+                <div class = "title-frame">
+                    <div class = "logo-frame">
+                        <div class = "icon">
+                            <img src="{% static 'images/icons/chats.png'%}" alt="">
+                        </div>
+                        <h3 class = "description-block">Повідомлення</h3>
+                    </div>
+                    <div class = "button-frame">
+                        <h3>Дивитись всі</h3>
+                    </div>  
+                </div>
+                <div class = "body-frame">
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon>
+                                <img src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>  
+        <div class = "body-page">
+            <div class = "chat-input">
+                <form action="">
+                    <div class = "inputs">
+                        <input class = "post-message" type="text" placeholder="Про що ти зараз думаєш?">
+                        <div class = "inputs-photo-emoji">
+                            <div>
+                                <input id = "image-to-post" class = "image-to-post" type="file" hidden>
+                                <label for="image-to-post">
+                                    <img class = "image-icon"src="{% static 'images/icons/icon-image.png'%}">
+                                </label>
+                            </div>
+                            <div>
+                                <input id = "image-to-post" class = "image-to-post" type="file" hidden>
+                                <label for="image-to-post">
+                                    <img class = "image-icon" src="{% static 'images/icons/icon-emoji.png'%}">
+                                </label>
+                            </div>
+                            <button class = "button-upload"type = "submit">
+                                <h4 class = "upload-title">Публікація</h4>
+                                <img src="{% static 'images/icons/PlaneR.png'%}" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class = "social-media-post">
+                <div class = "people-information-post">
+                    <div class = "avatar-label">
+                        <div class = "people-logo-and-nick">
+                            <div class = "logo-post">
+                                <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                <img class = "online-dot-post" src="{% static 'images/icons/online.png'%}" alt="">
+                            </div>
+                            <div class = "nick-post">
+                                <h2 class = "nick-friend">X_AE_A-13</h2>
+                            </div>
+                        </div>
+                        <div class = "signature">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class = "dots">
+                        <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+                    </div>
+                </div>
+                <div class = "body-post">
+                    <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
+                            Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
+                        #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
+                    <div class = "photos">
+                            <div>
+                                <img src="" alt="">
+                                <img src="" alt="">
+                            </div>
+                            <div>
+                                <img src="" alt="">
+                                <img src="" alt="">
+                                <img src="" alt="">
+                            </div>
+                    </div>    
+                    <div class = "reviews">
+                        <div class = "review">
+                            <div class = "icon-review">
+                                <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                            </div>
+                            <h2 class = "likes">120 Вподобайок</h2>
+                        </div>
+                        <div class = "review">
+                            <div class = "icon-review">
+                                <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                            </div>
+                            <h2 class = "likes">890 Переглядів</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+{% endblock %}

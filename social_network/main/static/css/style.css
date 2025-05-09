@@ -1,0 +1,403 @@
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Light.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Regular.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+*{
+    font-family: 'GT Walsheim Pro', sans-serif;
+}
+.body{
+    padding-top: 16px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 104px;
+    display: flex;
+    justify-content: center;
+    gap: 5.66px;
+}
+.hat{
+    justify-content: space-between;
+}
+.urls-frame{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+.urls{
+    height: 28px;
+    display: flex;
+    gap: 22px;
+}
+.url{
+    display: flex;
+    padding: 4px 8px 4px 8px;
+    gap: 8px;
+}
+.url:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius:3px ;
+    cursor: pointer;
+}
+a{
+    height: 18px;
+    padding-top: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -1%;
+    color: rgba(7, 10, 28, 1);
+
+    font-weight: 600;
+}
+
+.button-exit{
+    width: 95px;
+    height: 40px;
+    border: 1px rgba(84, 60, 82, 1) solid;
+    border-radius: 1234px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px 10px 16px;
+}
+
+.exit{
+    color: rgba(84, 60, 82, 1);
+}
+.button-exit:hover{
+    background-color: rgba(233, 229, 238, 1);
+    cursor: pointer;
+}
+.main{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius:3px ;
+}
+
+.profile-frame{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.frame{
+    width: 350px;
+    height: 271px;
+    background-color: white;
+    border: 1px rgba(205, 206, 210, 1) solid;
+    border-radius: 10px;
+    padding: 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.avatar{
+    width: 96px;
+    height: 96px;
+
+}
+.my-avatar{
+    width: 96px;
+    height: 96px;
+    border-radius: 60px;
+    z-index: 1;
+}
+.online-dot{
+    position: absolute;
+    margin-right: 100px;
+    margin-top: 20px;
+    transform: translate(-33px, 55px)
+}
+.nick-and-tag{
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.name{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+}
+.tag{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+}
+
+.subscribers{
+    padding-top: 16px;
+    display: flex;
+    width: 350px;
+    height: 48px;
+    justify-content: center;
+}
+
+.section{
+    width: 116px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px rgba(205, 206, 210, 1) solid;
+}
+
+.all-friends{
+    border-right: 0px rgba(205, 206, 210, 1) solid;
+}
+.number{
+    font-size: 20px;
+    line-height: 100%;
+}
+.info{
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+    color: rgba(129, 129, 141, 1)   ;
+}
+.request{
+    height: 249px;
+    padding-top: 18px;
+}
+.title-frame{
+    height: 23px;
+    width: 318px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-frame{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.description-block{
+    color: rgba(129, 129, 141, 1);
+    font-weight: 500;
+    line-height: 100%;
+    font-size: 20px;
+}
+.button-frame{
+    font-size: 16px;
+    line-height: 100%;
+    color: rgba(84, 60, 82, 1);
+    font-weight: 500;
+}
+
+.body-frame{
+    width: 318px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+}
+.people-information{
+    display: flex;
+    padding-top: 24px;
+    gap: 12px;
+}
+.friend-name{
+    font-size: 16px;
+    line-height: 100%;
+}
+.request-block{
+    width: 260px;
+}
+.subscribe{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(129, 129, 141, 1);
+}
+.people-name-and-subscribers{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.message{
+    height:265px;
+    padding-top: 18px;
+}
+.people-name-and-time{
+    width: 260px;
+    display: flex;
+    justify-content: space-between;
+}
+.time{
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(129, 129, 141, 1);
+}
+.people-name-and-message{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.message-friend{
+    font-size: 14px;
+    line-height: 160%;
+    font-weight: 400;
+    color: rgba(7, 10, 28, 1);
+}
+.body-page{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.chat-input{
+    width: 923px;
+    height: 120px;
+    background-color: white;
+    padding: 16px;
+    border: 1px rgba(205, 206, 210, 1) solid;
+    border-radius: 10px;
+    text-align: center;
+}
+.inputs{
+    width: 891px;
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+.post-message{
+    width: 891px;
+    border: none;
+    outline: none;
+}
+
+.image-to-post{
+    width: 40px;
+    height: 40px;   
+    background-color: white;
+}
+
+
+
+.inputs-photo-emoji{
+    display: flex;
+    padding-left: 655px;
+    gap: 13px;
+}
+.image-icon:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius: 123px;
+    cursor: pointer;
+}
+
+.button-upload{
+    display: flex;
+    width: 130px;
+    height: 40px;
+    background-color: rgba(84, 60, 82, 1);
+    border-radius: 1234px;
+    justify-content: center;
+    align-items: center;    
+    gap: 8px;
+}
+.upload-title{
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+.button-upload:hover{
+    cursor: pointer;
+    background-color: rgb(71, 51, 69);
+}
+.social-media-post{
+    background-color: white;
+    width: 923px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.people-information-post{
+    height: 89px;
+    display: flex; 
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.people-logo-and-nick{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.post-friend-avatar{
+    width: 46px;
+    height: 46px;
+}
+.online-dot-post{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    margin-right: 100px;
+    margin-top: 20px;
+    transform: translate(-15px, 15px)
+}
+
+.nick-friend{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(7, 10, 28, 1);
+}
+.dot{
+    padding-bottom: 20px;
+}
+.body-post{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px 20px 16px 20px;
+    flex-direction: column;
+}
+
+.description-post{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.likes{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.reviews{
+    display: flex;
+    gap: 24px;
+}
+.review{
+    display: flex;
+    gap: 8px;
+}
