@@ -26,6 +26,7 @@
 }
 *{
     font-family: 'GT Walsheim Pro', sans-serif;
+    
 }
 .body{
     padding-top: 16px;
@@ -105,7 +106,6 @@ a{
 
 .frame{
     width: 350px;
-    height: 271px;
     background-color: white;
     border: 1px rgba(205, 206, 210, 1) solid;
     border-radius: 10px;
@@ -151,7 +151,6 @@ a{
     font-size: 16px;
     line-height: 100%;
 }
-
 .subscribers{
     padding-top: 16px;
     display: flex;
@@ -183,8 +182,16 @@ a{
     color: rgba(129, 129, 141, 1)   ;
 }
 .request{
-    height: 249px;
+    height: 25vh;
     padding-top: 18px;
+}
+.message{
+    padding-top: 18px;
+    height: 25vh;
+}
+.one-people:hover{
+    background-color: rgba(233, 229, 238, 1);
+    cursor: pointer;
 }
 .title-frame{
     height: 23px;
@@ -192,8 +199,11 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
 }
-
+.one-people{
+    padding:7px 0px 0px 0px ;
+}
 .logo-frame{
     display: flex;
     gap: 8px;
@@ -214,14 +224,17 @@ a{
 
 .body-frame{
     width: 318px;
-    height: 170px;
     display: flex;
     flex-direction: column;
+    height: 20vh;
+    overflow-y: scroll;
+    scrollbar-width: none;  
+    overflow-x: hidden;
 }
 .people-information{
     display: flex;
-    padding-top: 24px;
     gap: 12px;
+    align-items: center;
 }
 .friend-name{
     font-size: 16px;
@@ -241,12 +254,9 @@ a{
     flex-direction: column;
     gap: 4px;
 }
-.message{
-    height:265px;
-    padding-top: 18px;
-}
+
 .people-name-and-time{
-    width: 260px;
+    width: 240px;
     display: flex;
     justify-content: space-between;
 }
@@ -400,4 +410,13 @@ a{
 .review{
     display: flex;
     gap: 8px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 69vh;
+    overflow-y: auto;
+    scrollbar-width: none; 
 }
