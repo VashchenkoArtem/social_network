@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from .forms import RegistrationForm
 from .forms import VerificationForm, AuthorithationForm
 from django.core.mail import send_mail
-from django.contrib.auth.views import LoginView
 import random
 from django.contrib.auth.models import User
 from .models import SpecialCode
@@ -37,14 +36,23 @@ class ConfirmRegistrationView(FormView):
     success_url = reverse_lazy("authorithation")
 
     def form_valid(self, form):
-        code_field = form.cleaned_data['verification_code']
+        input1 = str(form.cleaned_data["input1"])
+        input2 = str(form.cleaned_data["input2"])
+        input3 = str(form.cleaned_data["input3"])
+        input4 = str(form.cleaned_data["input4"])
+        input5 = str(form.cleaned_data["input5"])
+        input6 = str(form.cleaned_data["input6"])
+        
+        code_field = input1 + input2 + input3 + input4 + input5 + input6
+        code_field = int(code_field)
         email= self.request.COOKIES.get("email")
         user_id = User.objects.get(email = email).id
         user_code = SpecialCode.objects.get(user_id = user_id).verification_code
+        
         if user_code == code_field:
             return super().form_valid(form)
         else:
-            form.add_error("verification_code", "Код підтвердження не підходе!")
+            form.add_error(None, "Код підтвердження не підходе!")
             return self.form_invalid(form)
 
 class AuthorizationView(FormView):

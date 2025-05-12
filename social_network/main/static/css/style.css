@@ -1,41 +1,17 @@
-@font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('../fonts/GTWalsheimPro-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('../fonts/GTWalsheimPro-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('../fonts/GTWalsheimPro-Light.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('../fonts/GTWalsheimPro-Regular.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
 *{
-    font-family: 'GT Walsheim Pro', sans-serif;
-    
+    overflow-y: auto;
+    scrollbar-width: none; 
 }
+
 .body{
     padding-top: 16px;
     padding-left: 80px;
     padding-right: 80px;
-    padding-bottom: 104px;
     display: flex;
     justify-content: center;
     gap: 5.66px;
+
 }
 .hat{
     justify-content: space-between;
@@ -181,6 +157,10 @@ a{
     font-weight: 500;
     color: rgba(129, 129, 141, 1)   ;
 }
+.icon-people{
+    width: 44px;
+    height: 44px;
+}
 .request{
     height: 25vh;
     padding-top: 18px;
@@ -191,7 +171,12 @@ a{
 }
 .one-people:hover{
     background-color: rgba(233, 229, 238, 1);
+    border-radius: 10px;
     cursor: pointer;
+}
+.one-people{
+    height: 50px;
+    display: flex;
 }
 .title-frame{
     height: 23px;
@@ -199,11 +184,9 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
-.one-people{
-    padding:7px 0px 0px 0px ;
-}
+
 .logo-frame{
     display: flex;
     gap: 8px;
@@ -416,7 +399,11 @@ a{
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-height: 69vh;
+
+}
+
+.posts-wrapper{
+    max-height: 68vh;
     overflow-y: auto;
     scrollbar-width: none; 
 }

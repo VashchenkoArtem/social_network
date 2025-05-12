@@ -1,7 +1,35 @@
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Light.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/GTWalsheimPro-Regular.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
 *{
+    font-family: 'GT Walsheim Pro', sans-serif;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    
 }
 body{
     background-color:   rgba(233, 229, 238, 1);

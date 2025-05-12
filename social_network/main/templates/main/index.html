@@ -96,8 +96,8 @@
                 <div class = "body-frame">
                     <div class = "one-people">
                         <div class = "people-information">
-                            <div class = "icon">
-                                <img src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                            <div class = "icon-people">
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
                             </div>
                             <div class = "people-name-and-subscribers">
                                 <h3 class = "friend-name request-block">Yehor Aung</h3>
@@ -105,10 +105,10 @@
                             </div>
                         </div>
                     </div>
-                                        <div class = "one-people">
+                    <div class = "one-people">
                         <div class = "people-information">
-                            <div class = "icon">
-                                <img src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                            <div class = "icon-people">
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
                             </div>
                             <div class = "people-name-and-subscribers">
                                 <h3 class = "friend-name request-block">Yehor Aung</h3>
@@ -135,8 +135,8 @@
                 <div class = "body-frame">
                     <div class = "one-people">
                         <div class = "people-information">
-                            <div class = icon>
-                                <img src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
                             </div>
                             <div class = "people-name-and-message">
                                 <div class = "people-name-and-time">
@@ -149,8 +149,8 @@
                     </div>
                     <div class = "one-people">
                         <div class = "people-information">
-                            <div class = icon>
-                                <img src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            <div class = icon-people>
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
                             </div>
                             <div class = "people-name-and-message">
                                 <div class = "people-name-and-time">
@@ -191,203 +191,205 @@
                     </div>
                 </form>
             </div>
-            <div class = "posts">
-                <div class = "social-media-post">
-                    <div class = "people-information-post">
-                        <div class = "avatar-label">
-                            <div class = "people-logo-and-nick">
-                                <div class = "logo-post">
-                                    <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+            <div class = "posts-wrapper">
+                <div class = "posts">
+                    <div class = "social-media-post">
+                        <div class = "people-information-post">
+                            <div class = "avatar-label">
+                                <div class = "people-logo-and-nick">
+                                    <div class = "logo-post">
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                    </div>
+                                    <div class = "nick-post">
+                                        <h2 class = "nick-friend">X_AE_A-13</h2>
+                                    </div>
                                 </div>
-                                <div class = "nick-post">
-                                    <h2 class = "nick-friend">X_AE_A-13</h2>
+                                <div class = "signature">
+                                    <img src="" alt="">
                                 </div>
                             </div>
-                            <div class = "signature">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                        <div class = "dots">
-                            <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class = "body-post">
-                        <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                            #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                        <div class = "photos">
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                        </div>    
-                        <div class = "reviews">
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">120 Вподобайок</h2>
-                            </div>
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">890 Переглядів</h2>
+                            <div class = "dots">
+                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class = "social-media-post">
-                    <div class = "people-information-post">
-                        <div class = "avatar-label">
-                            <div class = "people-logo-and-nick">
-                                <div class = "logo-post">
-                                    <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                        <div class = "body-post">
+                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
+                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
+                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
+                            <div class = "photos">
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                            </div>    
+                            <div class = "reviews">
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">120 Вподобайок</h2>
                                 </div>
-                                <div class = "nick-post">
-                                    <h2 class = "nick-friend">X_AE_A-13</h2>
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">890 Переглядів</h2>
                                 </div>
-                            </div>
-                            <div class = "signature">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                        <div class = "dots">
-                            <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class = "body-post">
-                        <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                            #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                        <div class = "photos">
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                        </div>    
-                        <div class = "reviews">
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">120 Вподобайок</h2>
-                            </div>
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">890 Переглядів</h2>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class = "social-media-post">
-                    <div class = "people-information-post">
-                        <div class = "avatar-label">
-                            <div class = "people-logo-and-nick">
-                                <div class = "logo-post">
-                                    <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                    <div class = "social-media-post">
+                        <div class = "people-information-post">
+                            <div class = "avatar-label">
+                                <div class = "people-logo-and-nick">
+                                    <div class = "logo-post">
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                    </div>
+                                    <div class = "nick-post">
+                                        <h2 class = "nick-friend">X_AE_A-13</h2>
+                                    </div>
                                 </div>
-                                <div class = "nick-post">
-                                    <h2 class = "nick-friend">X_AE_A-13</h2>
+                                <div class = "signature">
+                                    <img src="" alt="">
                                 </div>
                             </div>
-                            <div class = "signature">
-                                <img src="" alt="">
+                            <div class = "dots">
+                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
                             </div>
                         </div>
-                        <div class = "dots">
-                            <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class = "body-post">
-                        <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                            #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                        <div class = "photos">
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
+                        <div class = "body-post">
+                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
+                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
+                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
+                            <div class = "photos">
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                            </div>    
+                            <div class = "reviews">
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">120 Вподобайок</h2>
                                 </div>
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                        </div>    
-                        <div class = "reviews">
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">120 Вподобайок</h2>
-                            </div>
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">890 Переглядів</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class = "social-media-post">
-                    <div class = "people-information-post">
-                        <div class = "avatar-label">
-                            <div class = "people-logo-and-nick">
-                                <div class = "logo-post">
-                                    <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
-                                </div>
-                                <div class = "nick-post">
-                                    <h2 class = "nick-friend">X_AE_A-13</h2>
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">890 Переглядів</h2>
                                 </div>
                             </div>
-                            <div class = "signature">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                        <div class = "dots">
-                            <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
                         </div>
                     </div>
-                    <div class = "body-post">
-                        <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                            #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                        <div class = "photos">
-                                <div>
-                                    <img src="" alt="">
+                    <div class = "social-media-post">
+                        <div class = "people-information-post">
+                            <div class = "avatar-label">
+                                <div class = "people-logo-and-nick">
+                                    <div class = "logo-post">
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                    </div>
+                                    <div class = "nick-post">
+                                        <h2 class = "nick-friend">X_AE_A-13</h2>
+                                    </div>
+                                </div>
+                                <div class = "signature">
                                     <img src="" alt="">
                                 </div>
-                                <div>
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
-                        </div>    
-                        <div class = "reviews">
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                </div>
-                                <h2 class = "likes">120 Вподобайок</h2>
                             </div>
-                            <div class = "review">
-                                <div class = "icon-review">
-                                    <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                            <div class = "dots">
+                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+                            </div>
+                        </div>
+                        <div class = "body-post">
+                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
+                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
+                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
+                            <div class = "photos">
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                            </div>    
+                            <div class = "reviews">
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">120 Вподобайок</h2>
                                 </div>
-                                <h2 class = "likes">890 Переглядів</h2>
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">890 Переглядів</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "social-media-post">
+                        <div class = "people-information-post">
+                            <div class = "avatar-label">
+                                <div class = "people-logo-and-nick">
+                                    <div class = "logo-post">
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                    </div>
+                                    <div class = "nick-post">
+                                        <h2 class = "nick-friend">X_AE_A-13</h2>
+                                    </div>
+                                </div>
+                                <div class = "signature">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class = "dots">
+                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+                            </div>
+                        </div>
+                        <div class = "body-post">
+                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
+                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
+                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
+                            <div class = "photos">
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                            </div>    
+                            <div class = "reviews">
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">120 Вподобайок</h2>
+                                </div>
+                                <div class = "review">
+                                    <div class = "icon-review">
+                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                    </div>
+                                    <h2 class = "likes">890 Переглядів</h2>
+                                </div>
                             </div>
                         </div>
                     </div>

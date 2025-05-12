@@ -1,0 +1,80 @@
+.registration-confirm-form{
+    width: 343px;
+    height: 421px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 44px 16px 44px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 100px 100px;
+    gap: 36px;
+    position: relative;
+    z-index: 2;
+    margin-right: 400px;
+}
+.title{
+    font-size: 24px;
+    line-height: 100%;
+    font-weight: 600;
+}
+
+.description-title{
+    font-size: 14px;
+    line-height: 100%;
+    font-weight: 500;
+}
+.form{
+    display: flex;
+    gap: 8px;
+}
+.input{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+button{
+    width: 311px;
+    height: 52px;
+    border-radius: 1234px;
+    border: none;
+    background-color: rgba(84, 60, 82, 1);
+    font-size: 16px;
+    color: white;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(68, 48, 66);
+    color: rgb(228, 228, 228);
+}
+
+a{
+    text-decoration: none;
+    font-size: 16px;
+    color: rgba(84, 60, 82, 1);
+    line-height: 100%;
+}
+.image{
+    width: 679px;
+    height: 527px;
+}
+.background-image{
+    position: absolute;
+    width: 679px;
+    height: 527px;
+    padding-left: 300px;
+    z-index: 1;
+}
+
+.body-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

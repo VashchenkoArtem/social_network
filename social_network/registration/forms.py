@@ -25,8 +25,28 @@ class AuthorithationForm(forms.Form):
 
 
 
-class VerificationForm(forms.ModelForm):
-    class Meta:
-        model = SpecialCode
-        fields = ["verification_code"]
+class VerificationForm(forms.Form):
+    input1 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input1 input",
+        "inputmode": "numeric"
+    }))
+    input2 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input2 input"
+    }))
+    input3 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input3 input"
+    }))
+    input4 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input4 input"
+    }))
+    input5 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input5 input"
+    }))
+    input6 = forms.IntegerField(max_value = 9, label = "", widget=forms.NumberInput(attrs = {
+        "class": "input6 input"
+    }))
+    # class Meta:
+    #     model = SpecialCode
+    #     fields = ["verification_code"]
+    
     
