@@ -1,9 +1,13 @@
 .registration-frame{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
     width: 437px;
     height: 502px;
     background-color: white;
     border-radius: 20px;
     padding: 44px;
+    margin-left: 450px;
 }
 .body{
     display: flex;
@@ -11,5 +15,16 @@
     width: 100%;
     height: 88%;
 }
-
-
+.reg-or-log-frame{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    gap: 10px;
+}
+.join-worldit{
+    font-size: 15px;
+    margin-left: 85px;
+}
+.registration-form{
+    margin-bottom: 50px;
+}

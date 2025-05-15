@@ -1,8 +1,38 @@
 {% extends "base.html" %}
-{% block content %}
-    <form method="post">
-        {% csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Надіслати</button>
-    </form>
+{% load static %}
+
+{% block title %}
+    Авторизація
 {% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'authorithation/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class ="body">
+        <div class = "authorization-frame">
+            <div class = "auth-log-frame">
+                <h1 class = "registration-title">Реєстрація</h1>
+                <h1 class = "authorization-title">Авторизація</h1>
+             </div>
+             <h2 class = "join-worldit">Приєднуйся до WorldIT</h2>
+             <form method="post">
+            <div class = "authorization-form">
+                {% csrf_token%}
+                {{form.as_p}}
+            </div>
+            <button type="submit">Надіслати</button>
+             </form>
+         </div>
+         <div class = "background-image">
+            <img src="{% static 'registration/images/background/back.png' %}" alt="">  
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
