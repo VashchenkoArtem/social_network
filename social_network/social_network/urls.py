@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import MainView
+from .settings import DEBUG, MEDIA_URL, MEDIA_ROOT
+from django.conf.urls.static import static
+from publications.views import MyPublicationsView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/", include("registration.urls")),
-    path("", MainView.as_view(), name = "main")
+    path("", MainView.as_view(), name = "main"),
+    path("post/", include("main.urls")),
+    path("my_publications/", MyPublicationsView.as_view(), name = "my_pubs")
 ]
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

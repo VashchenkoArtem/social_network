@@ -1,13 +1,17 @@
 .registration-frame{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 36px;
     width: 437px;
     height: 502px;
     background-color: white;
     border-radius: 20px;
     padding: 44px;
-    margin-left: 450px;
+    margin-left: 350px;
+    position: relative;
+    z-index: 2;
 }
 .body{
     display: flex;
@@ -18,13 +22,87 @@
 .reg-or-log-frame{
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
     font-size: 14px;
-    gap: 10px;
+    height: 47px;
 }
 .join-worldit{
-    font-size: 15px;
-    margin-left: 85px;
+    font-size: 24px;
+    font-weight: 500;
 }
 .registration-form{
-    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+.image{
+    width: 679px;
+    height: 527px;
+}
+.background-image{
+    position: absolute;
+    width: 679px;
+    height: 527px;
+    margin-left: 700px;
+    z-index: 1;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+li{
+    color:red
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+button{
+    width: 311px;
+    height: 52px;
+    border-radius: 1234px;
+    border: none;
+    background-color: rgba(84, 60, 82, 1);
+    font-size: 16px;
+    color: white;
+    margin-left: 18px;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(68, 48, 66);
+    color: rgb(228, 228, 228);
+}
+.line{
+    width: 155px;
+    height: 1px;
+    background-color: rgba(84, 60, 82, 1);
+}
+
+.authorithation-title{
+    color: rgba(129, 129, 141, 1);
+    font-weight: 500;
+    font-size: 30px;
+    height: 39px;
+}
+.authorithation-title:hover{
+    color: rgb(104, 104, 112);
+    cursor: pointer;
+}
+.registration-title{
+    font-size: 30px;
+    height: 39px;
+}
+
+input{
+    height: 42px;
+    border-radius: 10px;
+}
+a{
+    all: unset;
+}
+a:hover{
+    cursor: pointer;
 }

@@ -6,13 +6,13 @@ from .models import SpecialCode
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length = 256,label = "", widget = forms.EmailInput(attrs = {
+    email = forms.EmailField(max_length = 256,label = "Електронна пошта", widget = forms.EmailInput(attrs = {
                                                                         "placeholder": "Електронна пошта"
                                                                                 }))
-    password1 = forms.CharField(max_length= 12,label = "", widget = forms.PasswordInput(attrs = {
+    password1 = forms.CharField(max_length= 12,label = "Пароль", widget = forms.PasswordInput(attrs = {
                                                                         "placeholder": "Пароль"
                                                                                 }))
-    password2 = forms.CharField(max_length= 12,label = "", widget = forms.PasswordInput(attrs = {
+    password2 = forms.CharField(max_length= 12,label = "Підтвердити", widget = forms.PasswordInput(attrs = {
                                                                         "placeholder": "Підтвердження пароля"
                                                                                 }))
     class Meta:

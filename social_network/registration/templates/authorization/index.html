@@ -8,29 +8,44 @@
 <link rel="stylesheet" href="{% static 'authorithation/css/style.css' %}">
 {% endblock %}
 
-{% block content %}
-    <div class ="body">
-        <div class = "authorization-frame">
-            <div class = "auth-log-frame">
-                <h1 class = "registration-title">Реєстрація</h1>
-                <h1 class = "authorization-title">Авторизація</h1>
-             </div>
-             <h2 class = "join-worldit">Приєднуйся до WorldIT</h2>
-             <form method="post">
-            <div class = "authorization-form">
-                {% csrf_token%}
-                {{form.as_p}}
+{% block content %} 
+    <div class = "body">
+        <div class = "registration-frame">
+            <div class = "reg-or-log-frame">
+                <a href="{% url 'registration'%}" class = "authorithation-title ">Реєстрація</a>
+                <a href = "{% url 'authorithation'%}" class = "registration-title">Авторизація</a>
+                <div class = "line"></div>
             </div>
-            <button type="submit">Надіслати</button>
-             </form>
-         </div>
-         <div class = "background-image">
-            <img src="{% static 'registration/images/background/back.png' %}" alt="">  
+            <h2 class = "join-worldit">Раді тебе бачити знову!</h2>
+            <form method = "post">
+                <div class = "registration-form">
+                    {% csrf_token%}
+                    <div class = "inputs">
+                        {% for field in form %}
+                            <div class = "input">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type = "submit">Створити акаунт</button>
+                </div>
+            </form>
+            <div class = "qr">
+                <div class = "label-qr">
+                    <div class = "line-qr"></div>
+                    <h2 class = "join-qr">Або увійдіть за допомогою QR-коду</h2>
+                    <div class = "line-qr"></div>
+                </div>
+                <img src="{% static 'images/icons/qr.png' %}" alt = "">
+            </div>
+        </div>
+        <div class = "background-image">
+            <img class = "image"src="{% static 'images/background/back.png' %}" alt="">
         </div>
     </div>
 {% endblock %}
-
-
 
 
 

@@ -14,11 +14,11 @@
         <div class = "urls">
             <div class = "main url">
                 <img src="{% static 'images/icons/house.png'%}" alt="">
-                <a>Головна</a>
+                <a href = "{% url 'main' %}">Головна</a>
             </div>
             <div class = "url">
                 <img src="{% static 'images/icons/post.png' %}" alt="">
-                <a>Мої публікації</a>
+                <a href = "{% url 'my_pubs' %}">Мої публікації</a>
             </div>
             <div class = "url">
                 <div class = "photo-and-count">
@@ -56,24 +56,21 @@
                     <img class = "online-dot"src="{% static 'images/icons/online.png'%}" alt="">
                 </div>
                 <div class = "nick-and-tag">
-                    <h2 class = "name">Vashchenko Artem</h2>
-                    <h3 class = "tag">@VashchenkoArtem</h3>
+                    <h2 class = "name">{{request.user.username}}</h2>
+                    <h3 class = "tag">@{{request.user.username}}</h3>
                 </div>
                 <div class = "subscribers" >
                     <div class = "all-posts section">
                         <h2 class = "number">566</h2>
-                        <h3 class = "info">Дописи</h3>
-                        <div class = "line"></div>
+                        <h3 class = "info">Дописи</h3>  
                     </div>
                     <div class = "followers section">
                         <h2 class = "number">12.1K</h2>
                         <h3 class = "info">Читачі</h3>
-                        <div class = "line"></div>
                     </div>
                     <div class = "all-friends section">
                         <h2 class = "number">222</h2>
                         <h3 class = "info">Друзі</h3>
-                        <div class = "line"></div>
                     </div>
                 </div>
             </div>
@@ -167,7 +164,8 @@
         </div>  
         <div class = "body-page">
             <div class = "chat-input">
-                <form action="">
+                <form method = "post" >
+                    {% csrf_token%}
                     <div class = "inputs">
                         <input class = "post-message" type="text" placeholder="Про що ти зараз думаєш?">
                         <div class = "inputs-photo-emoji">
@@ -193,208 +191,145 @@
             </div>
             <div class = "posts-wrapper">
                 <div class = "posts">
-                    <div class = "social-media-post">
-                        <div class = "people-information-post">
-                            <div class = "avatar-label">
-                                <div class = "people-logo-and-nick">
-                                    <div class = "logo-post">
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
-                                    </div>
-                                    <div class = "nick-post">
-                                        <h2 class = "nick-friend">X_AE_A-13</h2>
-                                    </div>
-                                </div>
-                                <div class = "signature">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                            <div class = "dots">
-                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                            </div>
-                        </div>
-                        <div class = "body-post">
-                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                            <div class = "photos">
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                            </div>    
-                            <div class = "reviews">
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">120 Вподобайок</h2>
-                                </div>
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">890 Переглядів</h2>
-                                </div>
+                    {% for post in posts %}
+                        <div class = "redact-wrapper hidden">
+                            <div class = "redact-post">
+                                <div class = "dots dot-form">
+                                    <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+                                </div>  
+                                <div class = "redacting redacting-button">
+                                    <img src="{% static 'images/icons/redact.png'%}" alt="">
+                                    <form action="">
+                                        <a class = "redacting-title">Редагувати допис</a>
+                                    </form>
+                                </div>      
+                                <div class = "line"></div>  
+                                <div class = "redacting deleting-button">
+                                    
+                                    <img src="{% static 'images/icons/delete.png'%}" alt="">
+                                    <form method = "post" action="{% url 'delete' post.pk%}">
+                                        {% csrf_token %}
+                                        <button type = "submit"  class = "redacting-title">Видалити публікацію</button>
+                                    </form>
+                                </div>      
                             </div>
                         </div>
-                    </div>
-                    <div class = "social-media-post">
-                        <div class = "people-information-post">
-                            <div class = "avatar-label">
-                                <div class = "people-logo-and-nick">
-                                    <div class = "logo-post">
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                        <div class = "social-media-post">
+                            <div class = "people-information-post">
+                                <div class = "avatar-label">
+                                    <div class = "people-logo-and-nick">
+                                        <div class = "logo-post">
+                                            <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                        </div>
+                                        <div class = "nick-post">
+                                            <h2 class = "nick-friend">{{post.user}}</h2>
+                                        </div>
                                     </div>
-                                    <div class = "nick-post">
-                                        <h2 class = "nick-friend">X_AE_A-13</h2>
+                                    <div class = "signature">
+                                            <img src="" alt="">
                                     </div>
                                 </div>
-                                <div class = "signature">
-                                    <img src="" alt="">
+                                <div class = "dots dots-post">
+                                    <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+
+                                           
+
                                 </div>
-                            </div>
-                            <div class = "dots">
-                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                            </div>
-                        </div>
-                        <div class = "body-post">
-                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                            <div class = "photos">
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                            </div>    
-                            <div class = "reviews">
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">120 Вподобайок</h2>
+                                
                                 </div>
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                        
+                            <div class = "body-post">
+                                <h2 class = "title-post">{{post.title}}</h2>
+                                <h3 class = "description-post">{{post.text}}</h3>
+                                {% if post.tags.all %}
+                                    <div class = "hashtags">
+                                        
+                                        {% for tag in post.tags.all %}
+                                            <h1 class = "hashtag">{{tag.tag_name}}</h1>
+                                        {% endfor %}
                                     </div>
-                                    <h2 class = "likes">890 Переглядів</h2>
+                                {% endif %}
+                                <div class = "photos">
+                                        <div>
+                                            <img src="" alt="">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div>
+                                            <img src="" alt="">
+                                            <img src="" alt="">
+                                            <img src="" alt="">
+                                        </div>
+                                </div>    
+                                <div class = "reviews">
+                                    <div class = "review">
+                                        <div class = "icon-review">
+                                            <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                        </div>
+                                        <h2 class = "likes">{{post.like_count}} Вподобайок</h2>
+                                    </div>
+                                    <div class = "review">
+                                        <div class = "icon-review">
+                                            <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                        </div>
+                                        <h2 class = "likes">{{post.view_count}} Переглядів</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class = "social-media-post">
-                        <div class = "people-information-post">
-                            <div class = "avatar-label">
-                                <div class = "people-logo-and-nick">
-                                    <div class = "logo-post">
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
-                                    </div>
-                                    <div class = "nick-post">
-                                        <h2 class = "nick-friend">X_AE_A-13</h2>
-                                    </div>
-                                </div>
-                                <div class = "signature">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                            <div class = "dots">
-                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                            </div>
-                        </div>
-                        <div class = "body-post">
-                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                            <div class = "photos">
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                            </div>    
-                            <div class = "reviews">
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">120 Вподобайок</h2>
-                                </div>
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">890 Переглядів</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "social-media-post">
-                        <div class = "people-information-post">
-                            <div class = "avatar-label">
-                                <div class = "people-logo-and-nick">
-                                    <div class = "logo-post">
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
-                                    </div>
-                                    <div class = "nick-post">
-                                        <h2 class = "nick-friend">X_AE_A-13</h2>
-                                    </div>
-                                </div>
-                                <div class = "signature">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                            <div class = "dots">
-                                <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                            </div>
-                        </div>
-                        <div class = "body-post">
-                            <h3 class = "description-post">Інколи найкращі ідеї народжуються в тиші 🌿<br>
-                                    Природа, книга і спокій — усе, що потрібно, аби перезавантажитись. <br>
-                                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія</h3>
-                            <div class = "photos">
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div>
-                            </div>    
-                            <div class = "reviews">
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">120 Вподобайок</h2>
-                                </div>
-                                <div class = "review">
-                                    <div class = "icon-review">
-                                        <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
-                                    </div>
-                                    <h2 class = "likes">890 Переглядів</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
                 </div>
             </div>
+        </div>
         </div> 
     </div>
+    <div class = "full-screen"></div>
+    <div class="hidden frame-form">
+        <div class="form">
+            <div class="cross-img">
+                <img class="cross" src="{% static 'images/icons/cross.png'%}" alt="">
+            </div>
+
+            <h1 class="title-form">Створення публікації</h1>
+            <form method="post" class = "input-form"enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    {% if field.name == 'picture' %}
+                        <div class="label-tag">
+                            {{ field.label_tag }}
+                            <div class="inputs-photo-emoji-form">
+                                <div class="emojy-and-photo">
+                                    <input type="file" name="picture" id="image-to-post-form" class = "image-to-post-form">
+                                    
+                                    <label for="image-to-post-form" class = "image-icon-form-label">
+                                        <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                    </label>
+
+                                    <img src="{% static 'images/icons/emoji.png' %}" alt="">
+                                    <button class="button-upload-form" type="submit">
+                                        <h4 class="upload-title">Публікація</h4>
+                                        <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-error">{{ field.errors }}</div>
+                    {% else %}
+                        <div class="inputs-form">
+                            <div class="label-tag">{{ field.label_tag }}</div>
+                            <div class="field">{{ field }}</div>
+                            <div class="field-error">{{ field.errors }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src = "{% static 'js/script.js' %}"></script>
 {% endblock %}
