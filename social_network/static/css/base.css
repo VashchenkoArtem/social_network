@@ -46,3 +46,14 @@ body{
 .logo{
     height: 30px;
 }
+
+.hat-wrapper{
+    width: 1536px;
+    height: 88px;
+    max-width: 1536px;
+    max-height: 88px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

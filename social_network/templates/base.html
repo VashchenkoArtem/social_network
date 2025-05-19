@@ -9,11 +9,15 @@
     {% endblock %}
 </head>
 <body>
-    <div class = "hat">
-        <img class = "logo" src="{% static 'images/icons/logo.png'%}" alt="">
-        {% block hat %}
-        {% endblock%}
-    </div>
+    
+        <div class = "hat">
+            <div class="hat-wrapper">
+                <img class = "logo" src="{% static 'images/icons/logo.png'%}" alt="">
+                {% block hat %}
+                {% endblock%}
+            </div>
+        </div>
+
     {% block content %}
     {% endblock %}
     {% block script %}
