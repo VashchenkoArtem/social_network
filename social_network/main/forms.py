@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_Post, Tag
+from .models import User_Post
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -20,8 +20,15 @@ class MultipleField(forms.ImageField):
 
 class PostForm(forms.ModelForm):
     images = MultipleField(required = False)
+    url = forms.URLField(required = False)
 
     class Meta:
         model = User_Post
         fields = ["title", "topic", "tags", "text", "url"]
-    url = forms.URLField(required = False)
+
+
+
+class PostFormEdit(forms.ModelForm):
+    class Meta(PostForm.Meta):
+        fields = ["title", "topic", "tags", "text", "url"]
+

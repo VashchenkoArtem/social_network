@@ -7,7 +7,6 @@ class Tag(models.Model):
         return f"{self.tag_name}"
 
 class User_Post(models.Model):
-
     user = models.ForeignKey(to = User, on_delete = models.CASCADE)
     title = models.CharField(max_length = 256)
     topic = models.CharField(max_length = 128)

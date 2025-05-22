@@ -14,6 +14,7 @@ postObject.addEventListener("click", function(event){
 
 crossObject.addEventListener("click", function(event){
     formObject.classList.toggle("hidden");
+    
     bodyObject.classList.toggle("blur");
 })
 
@@ -34,3 +35,16 @@ for (let count = 0; count < dotsFormList.length; count ++){
     })
 }
 
+
+// let editPostButtons = document.querySelectorAll(".edit-post-button");
+// let formEdit = document.querySelector('.modal-edit-post');
+// let centerEdit = document.querySelector('.center-edit');
+
+// editPostButtons.forEach(event => {
+//     event.addEventListener("click", (e) => {
+//         e.preventDefault();
+//         centerEdit.classList.toggle('hidden')
+//         formEdit.classList.toggle("hidden")
+//         bodyObject.classList.toggle("blur");
+//     });
+// });

@@ -2,7 +2,11 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from .forms import PostForm
 from .models import User_Post, Pictures
+from .forms import PostForm, PostFormEdit
+from .models import User_Post
 from django.urls import reverse_lazy
+from django.views.generic import UpdateView
+
 
 
 class MainView(CreateView):
@@ -28,3 +32,12 @@ class DeleteView(DeleteView):
     template_name = "delete_post/index.html"
     model = User_Post
     success_url = reverse_lazy("main")
+
+class EditView(UpdateView):
+    model = User_Post
+    form_class = PostFormEdit
+    template_name = 'edit/edit_form.html'
+    success_url = '/'
+
+    
+ 
