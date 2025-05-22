@@ -197,12 +197,19 @@
                                 <div class = "dots dot-form">
                                     <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
                                 </div>  
+
+
                                 <div class = "redacting redacting-button">
                                     <img src="{% static 'images/icons/redact.png'%}" alt="">
-                                    <form action="">
-                                        <a class = "redacting-title">Редагувати допис</a>
+
+                                    <form method="post" id="editForm">
+                                        {% csrf_token %}
+
+                                        <a href="{% url 'edit' post.pk %}" class="redacting-title edit-post-button">Редагувати допис</a>
+
                                     </form>
-                                </div>      
+                                </div>    
+                                      
                                 <div class = "line"></div>  
                                 <div class = "redacting deleting-button">
                                     
@@ -283,7 +290,57 @@
         </div>
         </div> 
     </div>
+
+
     <div class = "full-screen"></div>
+<!-- 
+    <div class="hidden center-edit">
+        <div class="hidden modal-edit-post">
+            <div class="cross-img">
+                <img class="cross" src="{% static 'images/icons/cross.png'%}" alt="">
+            </div>
+
+            <h1 class="title-form">Редагування публікації</h1>
+            <form method="post" class = "input-form-edit" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    {% if field.name == 'picture' %}
+                        <div class="label-tag">
+                            {{ field.label_tag }}
+                            <div class="inputs-photo-emoji-form">
+                                <div class="emojy-and-photo">
+                                    <input type="file" name="picture" id="image-to-post-form" class = "image-to-post-form">
+                                    
+                                    <label for="image-to-post-form" class = "image-icon-form-label">
+                                        <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                    </label>
+
+                                    <img src="{% static 'images/icons/emoji.png' %}" alt="">
+                                    <button class="button-upload-form" type="submit">
+                                        <h4 class="upload-title">Публікація</h4>
+                                        <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-error">{{ field.errors }}</div>
+                    {% else %}
+                        <div class="inputs-form">
+                            <div class="label-tag">{{ field.label_tag }}</div>
+                            <div class="field">{{ field }}</div>
+                            <div class="field-error">{{ field.errors }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+
+            </form>
+        </div>
+
+    </div> -->
+    
+
     <div class="hidden frame-form">
         <div class="form">
             <div class="cross-img">
@@ -328,6 +385,10 @@
             </form>
         </div>
     </div>
+
+     
+
+    
 
 {% endblock %}
 {% block script %}

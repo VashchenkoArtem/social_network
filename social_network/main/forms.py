@@ -20,3 +20,8 @@ class PostForm(forms.ModelForm):
     }))
     picture = forms.ImageField(label = "")
     tags = forms.ModelMultipleChoiceField(queryset = Tag.objects.all(), label = "Хештеги")
+
+
+class PostFormEdit(forms.ModelForm):
+    class Meta(PostForm.Meta):
+        fields = ["title", "topic", "tags", "text", "url", "picture"]
