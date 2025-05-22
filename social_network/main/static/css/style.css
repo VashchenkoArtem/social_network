@@ -1,0 +1,593 @@
+*{
+    overflow-y: auto;
+    scrollbar-width: none; 
+}
+
+.body{
+    padding-top: 16px;
+    padding-left: 80px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: center;
+    gap: 5.66px;
+
+}
+.urls-frame{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+.urls{
+    height: 28px;
+    display: flex;
+    gap: 22px;
+    font-weight: 500;
+}
+.url{
+    display: flex;
+    padding: 4px 8px 4px 8px;
+    gap: 8px;
+}
+.url:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius:3px ;
+    cursor: pointer;
+}
+a{
+    height: 18px;
+    padding-top: 2px;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    color: rgba(7, 10, 28, 1);
+    font-weight: 500;
+
+    
+}
+
+.button-exit{
+    width: 95px;
+    height: 40px;
+    border: 1px rgba(84, 60, 82, 1) solid;
+    border-radius: 1234px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px 10px 16px;
+}
+
+.exit{
+    color: rgba(84, 60, 82, 1);
+}
+.button-exit:hover{
+    background-color: rgba(233, 229, 238, 1);
+    cursor: pointer;
+}
+.main{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius:3px ;
+}
+
+.profile-frame{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.frame{
+    width: 350px;
+    background-color: white;
+    border: 1px rgba(205, 206, 210, 1) solid;
+    border-radius: 10px;
+    padding: 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.avatar{
+    width: 96px;
+    height: 96px;
+
+}
+.my-avatar{
+    width: 96px;
+    height: 96px;
+    border-radius: 60px;
+    z-index: 1;
+}
+.online-dot{
+    position: absolute;
+    margin-right: 100px;
+    margin-top: 20px;
+    transform: translate(-33px, 55px)
+}
+.nick-and-tag{
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.name{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+}
+.tag{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+}
+.subscribers{
+    padding-top: 16px;
+    display: flex;
+    width: 350px;
+    height: 48px;
+    justify-content: center;
+}
+
+.section{
+    width: 116px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px rgba(205, 206, 210, 1) solid;
+}
+
+.all-friends{
+    border-right: 0px rgba(205, 206, 210, 1) solid;
+}
+.number{
+    font-size: 20px;
+    line-height: 100%;
+}
+.info{
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+    color: rgba(129, 129, 141, 1)   ;
+}
+.icon-people{
+    width: 44px;
+    height: 44px;
+}
+.request{
+    height: 25vh;
+    padding-top: 18px;
+}
+.message{
+    padding-top: 18px;
+    height: 25vh;
+}
+.one-people:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.one-people{
+    height: 50px;
+    display: flex;
+}
+.title-frame{
+    height: 23px;
+    width: 318px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.logo-frame{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.description-block{
+    color: rgba(129, 129, 141, 1);
+    font-weight: 500;
+    line-height: 100%;
+    font-size: 20px;
+}
+.button-frame{
+    font-size: 16px;
+    line-height: 100%;
+    color: rgba(84, 60, 82, 1);
+    font-weight: 500;
+}
+
+.body-frame{
+    width: 318px;
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    overflow-y: scroll;
+    scrollbar-width: none;  
+    overflow-x: hidden;
+}
+.people-information{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.friend-name{
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+}
+.request-block{
+    width: 260px;
+}
+.subscribe{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(129, 129, 141, 1);
+}
+.people-name-and-subscribers{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.people-name-and-time{
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+}
+.time{
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(129, 129, 141, 1);
+}
+.people-name-and-message{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.message-friend{
+    font-size: 14px;
+    line-height: 160%;
+    font-weight: 400;
+    color: rgba(7, 10, 28, 1);
+}
+.body-page{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.chat-input{
+    width: 923px;
+    height: 120px;
+    background-color: white;
+    padding: 16px;
+    border: 1px rgba(205, 206, 210, 1) solid;
+    border-radius: 10px;
+    text-align: center;
+}
+.inputs{
+    width: 891px;
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+.post-message{
+    width: 891px;
+    border: none;
+    outline: none;
+}
+
+.image-to-post{
+    width: 40px;
+    height: 40px;   
+    background-color: white;
+}
+
+
+
+.inputs-photo-emoji{
+    display: flex;
+    padding-left: 655px;
+    gap: 13px;
+}
+.image-icon:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius: 123px;
+    cursor: pointer;
+}
+
+.button-upload{
+    display: flex;
+    width: 130px;
+    height: 40px;
+    background-color: rgba(84, 60, 82, 1);
+    border-radius: 1234px;
+    justify-content: center;
+    align-items: center;    
+    gap: 8px;
+}
+.upload-title{
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+.button-upload:hover{
+    cursor: pointer;
+    background-color: rgb(71, 51, 69);
+}
+.social-media-post{
+    background-color: white;
+    width: 923px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.people-information-post{
+    height: 89px;
+    display: flex; 
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.people-logo-and-nick{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.post-friend-avatar{
+    width: 46px;
+    height: 46px;
+}
+.online-dot-post{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    margin-right: 100px;
+    margin-top: 20px;
+    transform: translate(-15px, 15px)
+}
+
+.nick-friend{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(7, 10, 28, 1);
+}
+.dot{
+    padding-bottom: 20px;
+}
+.body-post{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px 20px 16px 20px;
+    flex-direction: column;
+}
+
+.description-post{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.likes{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.reviews{
+    display: flex;
+    gap: 24px;
+}
+.review{
+    display: flex;
+    gap: 8px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.posts-wrapper{
+    max-height: 68vh;
+    overflow-y: auto;
+    scrollbar-width: none; 
+}
+
+.title-post{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.hashtags{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 638px;
+}
+.hashtag{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.form{
+    width: 773px;
+    height: 587px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 20px;
+    padding: 24px 44px 44px 44px;
+}
+
+.cross-img{
+    margin-left: 665px;
+}
+
+.title-form{
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 16px;
+    gap: 16px;
+}
+
+.inputs-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+input{
+    height: 38px;
+    width: 343px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+.label-tag{
+    font-size: 16px;
+}
+.field-error{
+    font-size: 16px;
+    color: red;
+}
+.post-message{
+    height: 22px;
+}
+textarea{
+    height: 82px;
+    width: 680px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+.inputs-photo-emoji-form{
+    display: flex;
+    margin-left: 452px;
+    gap: 10px;
+}
+
+.emojy-and-photo{
+    display: flex;
+    gap: 13px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+.show{
+    visibility: visible;
+}
+.button-upload-form{
+    display: flex;
+    width: 130px;
+    height: 40px;
+    background-color: rgba(84, 60, 82, 1);
+    border-radius: 1234px;
+    justify-content: center;
+    align-items: center;    
+    gap: 8px;
+}
+
+.image-to-post-form{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+}
+.image-icon-form-label{
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    width: 41px;
+    height: 41px;
+}
+
+.cross-img:hover{
+    cursor: pointer;
+}
+.redact-wrapper{
+    position: relative;
+}
+
+.redact-post{
+    width: 343px;
+    height: 140px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    position: fixed;
+    margin-left: 575px;
+    margin-top: 15.5px;
+    border: 1px rgba(129, 129, 141, 1) solid;
+}
+.redacting-title{
+    all: unset;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+.redacting{
+    display: flex;
+    gap: 10px;
+}
+.redacting:hover{
+    color: rgba(129, 129, 141, 1);
+    cursor: pointer;
+}
+.line{
+    width:311px;
+    height: 1px;
+    background-color: rgba(205, 206, 210, 1);
+}
+
+.dot-form{
+    width: 311px;
+    text-align: end;
+}
+.dots:hover{
+    cursor: pointer;
+}
+.full-screen{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+.blur{
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+}
+.input-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+a{
+    text-decoration: none;
+}

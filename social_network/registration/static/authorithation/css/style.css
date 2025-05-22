@@ -1,0 +1,138 @@
+.registration-frame{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: calc(1.25vw + 1.75vh);
+    width: calc(15vw + 21vh);
+    height: calc(20vw + 29vh);
+    background-color: white;
+    border-radius: calc(0.69vw + 0.97vh);
+    padding: calc(1.52vw + 2.14vh);
+    margin-left: calc(12.1vw + 17.2vh);
+    position: relative;
+    z-index: 2;
+}
+.body{
+    display: flex;
+    align-items: center;
+    width: calc(14vw + 20vh);
+    height: calc(22.8vw + 32vh)
+}
+.reg-or-log-frame{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: calc(0.69vw + 0.97vh);
+    height: calc(0.69vw + 0.97vh);
+}
+.join-worldit{
+    font-size: calc(0.83vw + 1.17vh);
+    font-weight: calc(17.3vw + 24.4vh);
+}
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.9vw + 1.2vh)
+}
+.image{
+    width: calc(23vw + 33vh);
+    height: calc(18.2vw + 26.2vh);
+}
+.background-image{
+    position: absolute;
+    width: calc(23.5vw + 33.5vh);
+    height: calc(18.2vw + 26.2vh);
+    margin-left: calc(24.3vw + 32vh);
+    z-index: 1;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.5vw + 0.7vh)
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+button{
+    width: calc(10.7vw + 15.3vh);
+    height: calc(1.8vw + 2.6vh);
+    border-radius:calc(42vw + 60vh);
+    border: none;
+    background-color: rgba(84, 60, 82, 1);
+    font-size:calc(0.55vw + 0.78vh);
+    color: white;
+    margin-left: calc(0.6vw + 0.8vh);
+    font-weight: 500;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(68, 48, 66);
+    color: rgb(228, 228, 228);
+}
+.line{
+    margin-left: calc(6.3vw + 8.8vh);
+    width: calc(5.7vw + 8.1vh);
+    height: calc(0.03vw + 0.04vh);
+    background-color: rgba(84, 60, 82, 1);
+}
+
+.authorithation-title{
+    color: rgba(129, 129, 141, 1);
+    font-weight: 700;
+    font-size: calc(0.5vw + 0.7vh);
+    height: calc(1.3vw + 1.8vh);
+}
+.authorithation-title:hover{
+    color: rgb(104, 104, 112);
+    cursor: pointer;
+}
+.registration-title{
+    font-size: calc(1vw + 1.4vh);
+    height: calc(1.3vw + 1.8vh);
+    font-weight: 500;
+}
+
+input{
+    height: calc(1.4vw + 2vh);
+    border-radius: calc(0.3vw + 0.4vh);
+}
+a{
+    all: unset;
+}
+a:hover{
+    cursor: pointer;
+}
+.join-qr{
+    font-size: calc(0.5vw + 0.7vh);
+    font-weight: 400;
+    height: calc(0.6vw + 0.8vh);
+}
+.qr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(0.8vw + 1.7vh);
+}
+.label-qr{
+    width: calc(13vw + 18vh);
+    height: calc(0.6vw + 0.8vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(0.5vw + 0.7vh)
+}
+.line-qr{
+    width: calc(1.9vw + 2.7vh);
+    height: calc(0.06vw + 0.08vh);
+    background-color: rgba(129, 129, 141, 1);
+}
+li{
+    color: red;
+}
+.id_email{
+    font-weight: 500;
+}
