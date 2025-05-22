@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from .forms import PostForm
-from .models import User_Post
+from .models import User_Post, Pictures
 from django.urls import reverse_lazy
 
 
@@ -12,6 +12,10 @@ class MainView(CreateView):
     def form_valid(self, form):
         if self.request.user.is_authenticated:
             form.instance.user = self.request.user
+            post = form.save()
+            files = self.request.FILES.getlist('images')
+            for file in files:
+                Pictures.objects.create(post = post, image = file)
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):

@@ -21,17 +21,11 @@
                 <a href = "{% url 'my_pubs' %}">Мої публікації</a>
             </div>
             <div class = "url">
-                <div class = "photo-and-count">
-                    <img src="{% static 'images/icons/friends.png' %}" alt="">
-                    <img src="" alt="">
-                </div>
+                <img src="{% static 'images/icons/friends.png' %}" alt="">
                 <a>Друзі</a>
             </div>
             <div class = "url">
-                <div class = "photo-and-count">
-                    <img src="{% static 'images/icons/chats.png' %}" alt="">
-                    <img src="" alt="">
-                </div>
+                <img src="{% static 'images/icons/chats.png' %}" alt="">
                 <a>Чати</a>
             </div>
             <div class = "url">
@@ -53,7 +47,6 @@
             <div class = "frame profile">
                 <div class = "avatar">
                     <img class = "my-avatar" src="{% static 'images/icons/avatar.jpg'%}" alt="">
-                    <img class = "online-dot"src="{% static 'images/icons/online.png'%}" alt="">
                 </div>
                 <div class = "nick-and-tag">
                     <h2 class = "name">{{request.user.username}}</h2>
@@ -81,7 +74,7 @@
                 <div class = "title-frame">
                     <div class = "logo-frame">
                         <div class = "icon">
-                            <img src="{% static 'images/icons/friends.png'%}" alt="">
+                            <img class = "icon-people-request" src="{% static 'images/icons/friends.png'%}" alt="">
                         </div>
                         <h3 class = "description-block">Запити</h3>
                     </div>
@@ -113,6 +106,28 @@
                             </div>
                         </div>
                     </div>
+                                        <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = "icon-people">
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-subscribers">
+                                <h3 class = "friend-name request-block">Yehor Aung</h3>
+                                <h4 class = "subscribe">4.3к підписників</h4>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = "icon-people">
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-subscribers">
+                                <h3 class = "friend-name request-block">Yehor Aung</h3>
+                                <h4 class = "subscribe">4.3к підписників</h4>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
             
@@ -121,7 +136,7 @@
                 <div class = "title-frame">
                     <div class = "logo-frame">
                         <div class = "icon">
-                            <img src="{% static 'images/icons/chats.png'%}" alt="">
+                            <img class = "icon-people-request" src="{% static 'images/icons/chats.png'%}" alt="">
                         </div>
                         <h3 class = "description-block">Повідомлення</h3>
                     </div>
@@ -130,6 +145,34 @@
                     </div>  
                 </div>
                 <div class = "body-frame">
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
                     <div class = "one-people">
                         <div class = "people-information">
                             <div class = icon-people>
@@ -169,21 +212,20 @@
                     <div class = "inputs">
                         <input class = "post-message" type="text" placeholder="Про що ти зараз думаєш?">
                         <div class = "inputs-photo-emoji">
-                            <div>
+                            <div class = "hidden-input">
                                 <input id = "image-to-post" class = "image-to-post" type="file" hidden>
                                 <label for="image-to-post">
                                     <img class = "image-icon"src="{% static 'images/icons/icon-image.png'%}">
                                 </label>
                             </div>
-                            <div>
+                            <div class = "hidden-input">
                                 <input id = "image-to-post" class = "image-to-post" type="file" hidden>
                                 <label for="image-to-post">
                                     <img class = "image-icon" src="{% static 'images/icons/icon-emoji.png'%}">
                                 </label>
                             </div>
                             <button class = "button-upload"type = "submit">
-                                <h4 class = "upload-title">Публікація</h4>
-                                <img src="{% static 'images/icons/PlaneR.png'%}" alt="">
+                                <h4 class = "upload-title">Перейти до оформлення</h4>
                             </button>
                         </div>
                     </div>
@@ -248,18 +290,17 @@
                                             <h1 class = "hashtag">{{tag.tag_name}}</h1>
                                         {% endfor %}
                                     </div>
+
                                 {% endif %}
-                                <div class = "photos">
-                                        <div>
-                                            <img src="" alt="">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="" alt="">
-                                            <img src="" alt="">
-                                            <img src="" alt="">
-                                        </div>
-                                </div>    
+                                <div class = "url-post">
+                                    <a href = "{{ post.url }}" class = "url-post" target="_blank">{{ post.url }} </a>
+                                </div>
+                                <div class="photos ">
+                                    {% for img in post.pictures_set.all %}
+                                        <img src="{{ img.image.url }}" class="image photos-{{ post.pictures_set.all|length }} number-{{forloop.counter}}"   >
+                                    {% endfor %}
+                                </div>
+
                                 <div class = "reviews">
                                     <div class = "review">
                                         <div class = "icon-review">
@@ -280,7 +321,6 @@
                     
                 </div>
             </div>
-        </div>
         </div> 
     </div>
     <div class = "full-screen"></div>
@@ -323,7 +363,7 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
+                <button type = "submit">Створити</button>
 
             </form>
         </div>
