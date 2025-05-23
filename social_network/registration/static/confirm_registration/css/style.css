@@ -1,52 +1,59 @@
 .registration-confirm-form{
-    width: 343px;
-    height: 421px;
+    width: calc(11.9vw + 16.8vh);
+    height: calc(20.6vh + 14.6vw);
     background-color: white;
-    border-radius: 20px;
+    border-radius: calc(1.3vw + 1.9vh);
     padding: 44px 16px 44px 16px;
+
+    padding-top: calc(2.1vh + 1.5vw);
+    padding-right: calc(0.7vh + 0.5vw);
+    padding-bottom: calc(2.1vh + 1.5vw);
+    padding-left: calc(0.7vh + 0.5vw);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 100px 100px;
-    gap: 36px;
+    margin-top: calc(4.9vh + 3.4vw);
+    margin-right: calc(19.6vh + 13.8vw);
+    gap: calc(1.7vh + 1.2vw);
     position: relative;
     z-index: 2;
-    margin-right: 400px;
+    
 }
 .title{
-    font-size: 24px;
+    font-size: calc(0.8vw + 1.17vh);
     line-height: 100%;
     font-weight: 600;
 }
 
 .description-title{
-    font-size: 14px;
+    font-size: calc(0.4vw + 0.6vh);
     line-height: 100%;
     font-weight: 500;
 }
 .form{
     display: flex;
-    gap: 8px;
+    gap: calc(0.2vw + 0.3vh);
 }
 .input{
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: calc(1.3vw + 1.9vh);
+    height: calc(1.9vh + 1.3vw);
+    border-radius: calc(0.3vw + 0.4vh);
     text-align: center;
 }
 .buttons{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: calc(0.5vw + 0.7vh);
 }
 button{
-    width: 311px;
-    height: 52px;
+    width: calc(10.7vw + 15.2vh);
+    height: calc(2.5vh + 1.8vw);
     border-radius: 1234px;
     border: none;
     background-color: rgba(84, 60, 82, 1);
-    font-size: 16px;
+    font-size: calc(0.5vw + 0.7vh);
     color: white;
     
 }
@@ -58,19 +65,19 @@ button:hover{
 
 a{
     text-decoration: none;
-    font-size: 16px;
+    font-size: calc(0.5vw + 0.7vh);
     color: rgba(84, 60, 82, 1);
     line-height: 100%;
 }
 .image{
-    width: 679px;
-    height: 527px;
+    width: calc(23.5vw+ 33.2vh);
+    height: calc(25.8vh + 18.2vw);
 }
 .background-image{
     position: absolute;
-    width: 679px;
-    height: 527px;
-    padding-left: 300px;
+    width: calc(23.5vw + 33.2vh);
+    height: calc(25.8vh + 18.2vw);
+    padding-left: calc(14.7vh + 10.4vw);
     z-index: 1;
 }
 
@@ -78,7 +85,15 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: fit-content;
+    padding-top: 4.5%;
 }
 li{
     color: red;
+}
+
+
+input{
+    border: calc(0.03vw + 0.05vh) black solid;
 }

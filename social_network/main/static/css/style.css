@@ -597,7 +597,7 @@ textarea{
     position: relative;
     z-index: 2;
     background-color: white;
-    width: calc(2.8vw + );
+    width: calc(2.8vw + 1vh);
     height: 41px;
 }
 .cross-img:hover{
