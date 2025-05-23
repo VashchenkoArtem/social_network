@@ -33,10 +33,13 @@
                 <a>Налаштування</a>
             </div>
         </div>
-        <div class = "button-exit">
-            <img src="{% static 'images/icons/exit.png'%}" alt="">
-            <a class = "exit">Вихід</a>
-        </div>
+        <form action="{% url 'logout' %}" method = "post">
+            {% csrf_token%}
+            <button class = "button-exit">
+                <img class = "image-exit"src="{% static 'images/icons/exit.png'%}" alt="">
+                <h1 type="submit" class = "exit">Вихід</h1>
+            </button>
+        </form>
     </div>
 {% endblock %}
 
@@ -203,8 +206,9 @@
                     </div>
                 </div>
             </div>
-
+            
         </div>  
+        <div class = "full-screen"></div>
         <div class = "body-page">
             <div class = "chat-input">
                 <form method = "post" >
@@ -234,36 +238,76 @@
             <div class = "posts-wrapper">
                 <div class = "posts">
                     {% for post in posts %}
-                        <div class = "redact-wrapper hidden">
-                            <div class = "redact-post">
-                                <div class = "dots dot-form">
-                                    <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
-                                </div>  
+                        
+                        <div class = "redact-post-function hidden">
+                            <div class="redact-form">
+                                <div class="cross-img cross-redact">
+                                    <img class="cross-redact" src="{% static 'images/icons/cross.png'%}" alt="">
+                                </div>
 
+                                <h1 class="title-form">Створення публікації</h1>
+                                <form method="post" action = "{% url 'edit' post.pk %}" class = "input-form"enctype="multipart/form-data">
+                                    {% csrf_token %}
 
-                                <div class = "redacting redacting-button">
-                                    <img class = "image-redact" src="{% static 'images/icons/redact.png'%}" alt="">
+                                    {% for field in form %}
+                                        {% if field.name == 'images' %}
+                                            <div class="label-tag">
+                                                {{ field.label_tag }}
+                                                <div class="inputs-photo-emoji-form">
+                                                    <div class="emojy-and-photo">
+                                                        <input type="file" name="picture" id="image-to-post-form" class = "image-to-post-form">
+                                                        
+                                                        <label for="image-to-post-form" class = "image-icon-form-label">
+                                                            <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                                        </label>
 
-                                    <form method="post" id="editForm">
-                                        {% csrf_token %}
+                                                        <img src="{% static 'images/icons/emoji.png' %}" alt="">
+                                                        <button  class="button-upload-form">
+                                                            <h4 class="upload-title">Публікація</h4>
+                                                            <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field-error">{{ field.errors }}</div>
+                                        {% else %}
+                                            <div class="inputs-form">
+                                                <div class="label-tag">{{ field.label_tag }}</div>
+                                                <div class="field">{{ field }}</div>
+                                                <div class="field-error">{{ field.errors }}</div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
 
-                                        <a href="{% url 'edit' post.pk %}" class="redacting-title edit-post-button">Редагувати допис</a>
-
-                                    </form>
-                                </div>    
-                                      
-                                <div class = "line"></div>  
-                                <div class = "redacting deleting-button">
-                                    
-                                    <img class = "image-redact" src="{% static 'images/icons/delete.png'%}" alt="">
-                                    <form method = "post" action="{% url 'delete' post.pk%}">
-                                        {% csrf_token %}
-                                        <button type = "submit"  class = "redacting-title">Видалити публікацію</button>
-                                    </form>
-                                </div>      
+                                </form>
                             </div>
                         </div>
                         <div class = "social-media-post">
+                            <div class = "redact-wrapper hidden">
+                                <div class = "redact-post">
+                                    <div class = "dots dot-form">
+                                        <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
+                                    </div>  
+
+                                    <div class = "redacting redacting-button">
+                                        <img class = "image-redact" src="{% static 'images/icons/redact.png'%}" alt="">
+
+
+                                        <h1 class="redacting-title redacting-title-redact">Редагувати допис</h1>
+                                    </div>    
+                                    
+                                        
+                                    <div class = "line"></div>  
+                                    <div class = "redacting deleting-button">
+                                        
+                                        <img class = "image-redact" src="{% static 'images/icons/delete.png'%}" alt="">
+                                        <form method = "post" action="{% url 'delete' post.pk%}">
+                                            {% csrf_token %}
+                                            <button type = "submit"  class = "redacting-title">Видалити публікацію</button>
+                                        </form>
+                                    </div>      
+                                </div>
+                            </div>
                             <div class = "people-information-post">
                                 <div class = "avatar-label">
                                     <div class = "people-logo-and-nick">
@@ -332,53 +376,6 @@
     </div>
 
 
-    <div class = "full-screen"></div>
-<!-- 
-    <div class="hidden center-edit">
-        <div class="hidden modal-edit-post">
-            <div class="cross-img">
-                <img class="cross" src="{% static 'images/icons/cross.png'%}" alt="">
-            </div>
-
-            <h1 class="title-form">Редагування публікації</h1>
-            <form method="post" class = "input-form-edit" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                {% for field in form %}
-                    {% if field.name == 'picture' %}
-                        <div class="label-tag">
-                            {{ field.label_tag }}
-                            <div class="inputs-photo-emoji-form">
-                                <div class="emojy-and-photo">
-                                    <input type="file" name="picture" id="image-to-post-form" class = "image-to-post-form">
-                                    
-                                    <label for="image-to-post-form" class = "image-icon-form-label">
-                                        <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
-                                    </label>
-
-                                    <img src="{% static 'images/icons/emoji.png' %}" alt="">
-                                    <button class="button-upload-form" type="submit">
-                                        <h4 class="upload-title">Публікація</h4>
-                                        <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field-error">{{ field.errors }}</div>
-                    {% else %}
-                        <div class="inputs-form">
-                            <div class="label-tag">{{ field.label_tag }}</div>
-                            <div class="field">{{ field }}</div>
-                            <div class="field-error">{{ field.errors }}</div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-
-
-            </form>
-        </div>
-
-    </div> -->
     
 
     <div class="hidden frame-form">
@@ -392,12 +389,13 @@
                 {% csrf_token %}
 
                 {% for field in form %}
-                    {% if field.name == 'picture' %}
+                    {% if field.name == 'images' %}
+                        <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
                         <div class="label-tag">
                             {{ field.label_tag }}
                             <div class="inputs-photo-emoji-form">
                                 <div class="emojy-and-photo">
-                                    <input type="file" name="picture" id="image-to-post-form" class = "image-to-post-form">
+                                    {{field}}
                                     
                                     <label for="image-to-post-form" class = "image-icon-form-label">
                                         <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">

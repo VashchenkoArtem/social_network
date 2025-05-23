@@ -5,6 +5,12 @@ const dotsList = document.querySelectorAll(".dots-post");
 const dotsFormList = document.querySelectorAll(".dot-form");
 const wrapperList = document.querySelectorAll(".redact-wrapper");
 const bodyObject = document.querySelector(".full-screen");
+const bodyObjectRedact = document.querySelector(".full-screen-redact");
+const crossesRedact = document.querySelectorAll(".cross-redact")
+const formsRedact = document.querySelectorAll(".redact-post-function")
+const redactButtons = document.querySelectorAll(".redacting-title-redact")
+const imageToPost = document.querySelector(".image-to-post-form")
+
 
 postObject.addEventListener("click", function(event){
     event.preventDefault();
@@ -34,17 +40,55 @@ for (let count = 0; count < dotsFormList.length; count ++){
         wrapperObject.classList.toggle("hidden")
     })
 }
+for (let count = 0; count < redactButtons.length; count ++){
+    let buttonRedact = redactButtons[count];
+    let formRedact = formsRedact[count];
+    buttonRedact.addEventListener("click", 
+        ()=>{
+            formRedact.classList.toggle("hidden")
+            bodyObject.classList.toggle("blur");
+        }
+    )
+}
 
+for (let count = 0; count < crossesRedact.length; count ++){
+    let crossRedact = crossesRedact[count];
+    let formRedact = formsRedact[count];
+    crossRedact.addEventListener("click", ()=>{
+        formRedact.classList.toggle("hidden");
+        bodyObject.classList.toggle("blur")
+    })
+}
+document.addEventListener("DOMContentLoaded", function() {
+        const input = document.querySelector("#image-to-post-form");
+        const previewDiv = document.querySelector("#image-preview-container");
 
-// let editPostButtons = document.querySelectorAll(".edit-post-button");
-// let formEdit = document.querySelector('.modal-edit-post');
-// let centerEdit = document.querySelector('.center-edit');
-
-// editPostButtons.forEach(event => {
-//     event.addEventListener("click", (e) => {
-//         e.preventDefault();
-//         centerEdit.classList.toggle('hidden')
-//         formEdit.classList.toggle("hidden")
-//         bodyObject.classList.toggle("blur");
-//     });
-// });
+        input.addEventListener("change", function() {
+            previewDiv.innerHTML = "";
+            const files = Array.from(input.files);
+            files.forEach( file =>{
+                if (!file.type.startsWith("image/")) {
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(event){
+                    const img = document.createElement("img");
+                    img.src = event.target.result;
+                    previewDiv.append(img);
+                }
+            reader.readAsDataURL(file);
+            })
+            // if (file) {
+            //     const reader = new FileReader();
+            //     reader.onload = function(event) {
+            //         preview.src = event.target.result;
+            //         preview.style.display = "block";
+            //     };
+            //     reader.readAsDataURL(file);
+            // } else {
+            //     preview.src = "#";
+            //     preview.style.display = "none";
+            // }
+        });
+    }
+);

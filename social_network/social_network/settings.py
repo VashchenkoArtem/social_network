@@ -145,3 +145,5 @@ AUTHENTICATION_BACKENDS = [
 ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+LOGIN_REDIRECT_URL = reverse_lazy("authorithation")

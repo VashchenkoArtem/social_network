@@ -49,12 +49,21 @@ a{
     border-radius: 1234px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: calc(0.3vw + 0.4vh);
-    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.8vh);
+    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.8vh);   
+    background-color: white;
 }
 
 .exit{
     color: rgba(84, 60, 82, 1);
+    all: unset;
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-size: calc(0.5vw + 0.8vh);
+}
+.image-exit{
+    width: calc(0.7vw + 0.8vh);
+    height: calc(0.7vw + 0.8vh);
 }
 .button-exit:hover{
     background-color: rgba(233, 229, 238, 1);
@@ -181,6 +190,7 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(0.8vw + 1.1vh);
     width: calc(11vw + 16vh);
     display: flex;
+
     justify-content: space-between;
     align-items: center;
     margin-bottom: calc(0.5vw + 0.8vh);
@@ -331,12 +341,14 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: calc(0.3vw + 0.5vh);
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
 }
 
 .people-information-post{
     height: calc(3.1vw + 4.4vh);
     display: flex; 
     padding: calc(0.7vw + 1vh);
+    gap: calc(25.6vw + 37.5vh);
     justify-content: space-between;
     align-items: center;
 }
@@ -491,9 +503,9 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(11.4vw + 16vh);  
 }
 
-.form{
+.form,
+ .redact-form{
     width: calc(26.8vw + 37.8vh);
-    height: calc(28.7vh + 20.3vw);
     display: flex;
     flex-direction: column;
     padding-top: calc(0.8vw + 1.2vh);
@@ -517,7 +529,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .title-form{
-    font-size: calc(2.3vw + 3.3vh);
+    font-size: calc(1.2vw + 1.7vh);
     font-weight: 500;
 }
 
@@ -597,14 +609,13 @@ textarea{
     position: relative;
     z-index: 2;
     background-color: white;
-    width: calc(2.8vw + );
     height: 41px;
 }
 .cross-img:hover{
     cursor: pointer;
 }
 .redact-wrapper{
-    position: relative;
+    position: fixed;
 }
 .field.tags{
     height: calc(2.1vw + 3.8vh);
@@ -622,7 +633,6 @@ textarea{
     flex-direction: column;
     gap: calc(0.3vw + 0.5vh);
     align-items: flex-start;
-    position: fixed;
     margin-left: calc(20vw + 28.2vh);
     margin-top: calc(0.5vw + 0.8vh);
     border: calc(0.03vw + 0.05vh) rgba(129, 129, 141, 1) solid;
@@ -749,4 +759,12 @@ a{
 .image-redact{
     width: calc(0.7vw + 1vh);
     height:  calc(0.7vw + 1vh);
+}
+.redact-post-fucntion{
+    padding: calc(0.8vw + 1.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh);
+}
+.full-screen-redact{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

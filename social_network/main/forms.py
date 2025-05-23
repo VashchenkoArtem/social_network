@@ -19,7 +19,12 @@ class MultipleField(forms.ImageField):
         return result
 
 class PostForm(forms.ModelForm):
-    images = MultipleField(required = False)
+    images = MultipleField(required = False, widget = MultipleFileInput(attrs = {""
+    "type": "file",
+    "name": "picture",
+    "id": "image-to-post-form",
+    "class": "image-to-post-form"
+    }))
     url = forms.URLField(required = False)
 
     class Meta:
@@ -29,6 +34,8 @@ class PostForm(forms.ModelForm):
 
 
 class PostFormEdit(forms.ModelForm):
+    images = MultipleField(required = False)
+    url = forms.URLField(required = False)
     class Meta(PostForm.Meta):
         fields = ["title", "topic", "tags", "text", "url"]
 
