@@ -348,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(3.1vw + 4.4vh);
     display: flex; 
     padding: calc(0.7vw + 1vh);
-    gap: calc(25.6vw + 37.5vh);
+    gap: calc(27.6vw + 38.5vh);
     justify-content: space-between;
     align-items: center;
 }
@@ -506,10 +506,9 @@ h1, h2, h3, h4, h5, h6 {
 .form,
  .redact-form{
     width: calc(26.8vw + 37.8vh);
+    max-height: calc(33vw + 46.5vh);
     display: flex;
     flex-direction: column;
-    padding-top: calc(0.8vw + 1.2vh);
-    padding-bottom: calc(0.7vh + 0.5vw);
     gap: calc(0.7vh + 0.5vw);
     position: fixed;
     top: 50%;
@@ -520,14 +519,17 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: calc(0.7vw + 1vh);
     padding-top: calc(1.1vh + 0.8vw);
     padding-right: calc(2.1vh + 1.5vw);
-    padding-bottom: calc(2.1vh + 1.5vw);
+    padding-bottom: calc(1.5vh + 1vw);
     padding-left: calc(2.1vh + 1.5vw);
 }
 
 .cross-img{
     margin-left: calc(23.1vw + 32.6vh);
 }
-
+.cross{
+    width: calc(0.7vw + 1vh);    
+    height: calc(0.7vw + 1vh);
+}
 .title-form{
     font-size: calc(1.2vw + 1.7vh);
     font-weight: 500;
@@ -565,15 +567,17 @@ textarea{
 }
 .inputs-photo-emoji-form{
     display: flex;
-    margin-left: calc(15.7vw + 22.2);
+    margin-left: calc(15.7vw + 22.2vh);
     gap: calc(0.3vw + 0.5vh);
 }
 
 .emojy-and-photo{
     display: flex;
-    gap: calc(0.5vw + 0.6);
+    gap: calc(0.5vw + 0.6vh);
 }
-
+.merge-image{
+    display: flex;
+}
 .hidden{
     visibility: hidden;
 }
@@ -601,9 +605,25 @@ textarea{
 }
 .image-to-post-form{
     position: absolute;
-    width: calc(2.7vw + 3.9vh);
-    height: calc(2.7vw + 3.9vh);
+    width: calc(1.4vw + 2vh);
     z-index: 1;
+    border-radius: 1234px;
+}
+.image-icon-form{
+    width: calc(1.4vw + 2vh);    
+    height: calc(1.4vw + 2vh);
+}
+.image-emoji-form{
+    width: calc(1.4vw + 2vh);    
+    height: calc(1.4vw + 2vh);
+}
+#id_tags{
+    height: calc(1vw + 1.5vh);
+    border: calc(0.03vw + 0.05vh) black solid;
+}
+.image-planer{
+    width: calc(0.7vw + 1vh);    
+    height: calc(0.7vw + 1vh);
 }
 .image-icon-form-label{
     position: relative;
@@ -768,4 +788,17 @@ a{
     position: absolute;
     width: 100%;
     height: 100%;
+}
+#image-preview-container{
+    display: flex;
+    max-width: calc(23.8vw + 33.6vh);
+    flex-wrap: wrap ;
+    gap: calc(0.5vw + 0.8vh);
+    max-height: calc(8vw + 11vh);
+    overflow-y: auto;
+}
+.post-images-form{
+    width: calc(7.5vw + 10.6vh);
+    height: calc(8vw + 11vh);
+    border-radius: calc(0.5vw + 0.7vh);
 }

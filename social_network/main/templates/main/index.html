@@ -390,21 +390,24 @@
 
                 {% for field in form %}
                     {% if field.name == 'images' %}
-                        <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                        <div id="image-preview-container">
+
+                        </div>
                         <div class="label-tag">
                             {{ field.label_tag }}
                             <div class="inputs-photo-emoji-form">
                                 <div class="emojy-and-photo">
                                     {{field}}
-                                    
-                                    <label for="image-to-post-form" class = "image-icon-form-label">
-                                        <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
-                                    </label>
+                                    <div class = "merge-image">
+                                        <label for="image-to-post-form" class = "image-icon-form-label">
+                                            <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                        </label>
 
-                                    <img src="{% static 'images/icons/emoji.png' %}" alt="">
+                                        <img class = "image-emoji-form" src="{% static 'images/icons/emoji.png' %}" alt="">
+                                    </div>
                                     <button class="button-upload-form" type="submit">
                                         <h4 class="upload-title">Публікація</h4>
-                                        <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                        <img class = "image-planer" src="{% static 'images/icons/PlaneR.png' %}" alt="">
                                     </button>
                                 </div>
                             </div>
@@ -418,15 +421,10 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                <button type = "submit">Створити</button>
 
             </form>
         </div>
     </div>
-
-     
-
-    
 
 {% endblock %}
 {% block script %}

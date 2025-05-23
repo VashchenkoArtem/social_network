@@ -19,18 +19,28 @@ class MultipleField(forms.ImageField):
         return result
 
 class PostForm(forms.ModelForm):
-    images = MultipleField(required = False, widget = MultipleFileInput(attrs = {""
+
+    class Meta:
+        model = User_Post
+        fields = ["title", "topic", "tags", "text", "url"]
+    images = MultipleField(required = False,label = "", widget = MultipleFileInput(attrs = {""
     "type": "file",
     "name": "picture",
     "id": "image-to-post-form",
     "class": "image-to-post-form"
     }))
-    url = forms.URLField(required = False)
-
-    class Meta:
-        model = User_Post
-        fields = ["title", "topic", "tags", "text", "url"]
-
+    url = forms.URLField(required = False, label = "Посилання", widget= forms.URLInput(
+        {"placeholder": "Вкажіть посилання до публікації"}
+    ))
+    title = forms.CharField(max_length= 255,label = "Назва публікації", widget= forms.TextInput(
+        {"placeholder": "Напишіть назву публікації"}
+    ))
+    topic = forms.CharField(max_length= 255, required = False,label = "Тема публікації", widget= forms.TextInput(
+        {"placeholder": "Напишіть тему публікації"}
+    ))
+    text = forms.CharField(widget= forms.Textarea(
+        {"placeholder": "Напишіть текст публікації"}
+    ))
 
 
 class PostFormEdit(forms.ModelForm):
