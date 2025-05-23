@@ -20,10 +20,8 @@ postObject.addEventListener("click", function(event){
 
 crossObject.addEventListener("click", function(event){
     formObject.classList.toggle("hidden");
-    
-    bodyObject.classList.toggle("blur");
-})
 
+    bodyObject.classList.toggle("blur");
 for (let count = 0; count < dotsList.length; count ++){
     let dotsObject = dotsList[count];
     let wrapperObject = wrapperList[count]
@@ -40,6 +38,7 @@ for (let count = 0; count < dotsFormList.length; count ++){
         wrapperObject.classList.toggle("hidden")
     })
 }
+
 for (let count = 0; count < redactButtons.length; count ++){
     let buttonRedact = redactButtons[count];
     let formRedact = formsRedact[count];
@@ -47,8 +46,7 @@ for (let count = 0; count < redactButtons.length; count ++){
         ()=>{
             formRedact.classList.toggle("hidden")
             bodyObject.classList.toggle("blur");
-        }
-    )
+        })
 }
 
 for (let count = 0; count < crossesRedact.length; count ++){
@@ -78,17 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             reader.readAsDataURL(file);
             })
-            // if (file) {
-            //     const reader = new FileReader();
-            //     reader.onload = function(event) {
-            //         preview.src = event.target.result;
-            //         preview.style.display = "block";
-            //     };
-            //     reader.readAsDataURL(file);
-            // } else {
-            //     preview.src = "#";
-            //     preview.style.display = "none";
-            // }
+
         });
     }
 );
+})

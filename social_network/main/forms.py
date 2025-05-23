@@ -38,4 +38,3 @@ class PostFormEdit(forms.ModelForm):
     url = forms.URLField(required = False)
     class Meta(PostForm.Meta):
         fields = ["title", "topic", "tags", "text", "url"]
-
