@@ -1,0 +1,676 @@
+.frame-text{
+    display: flex;
+    justify-content: center; 
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+    
+    width: calc(8.8vw+12.5vh);
+    height: calc(2.4vw+3.3vh);
+
+    left: calc(2.8vw+3.9vh);
+    top:    calc(3.6vw+5.1vh);
+}
+
+.personal-information-text-frame{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(5.9vw+8.4vh);
+    height: calc(0.9vw+1.3vh);
+}
+
+.personal-information-text{
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.6vw+0.9vh);
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+
+    align-items: stretch;
+}
+
+.personal-information-img{
+    width: calc(5.9vw+8.4vh);
+    height: 0px;
+
+    border: 2px solid #583B53;
+    border: 2px solid color(display-p3 0.329 0.235 0.322);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.alboms-text-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(2.3vw+3.2vh);
+    height: calc(0.9vw+1.3vh);
+
+    order: 1;
+}
+
+.alboms-text{
+    width: calc(2.3vw+3.2vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #81818E;
+    color: color(display-p3 0.506 0.506 0.553);
+
+    align-self: stretch;
+}
+
+.personal-information-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:  calc(0.3vw+0.4vh);
+
+    width: calc(32.1vw+45.3vh);
+    height: calc(36vw+50.8vh);
+    left: calc(15.1vw+21.4vh);
+    top: calc(3.6vw+5.1vh);
+
+}
+
+.all-profile-card-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh);
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(32.1vw+45.3vh);
+    height: calc(9.2vw+12.9vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.7vw+0.9vh);
+}
+
+.profile-card-heared-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(1.4vw+2vh);
+
+    align-self: stretch;
+}
+
+.profile-card-heared{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(1.4vw+2vh);
+
+    align-self: stretch;
+}
+
+.profile-card-text{
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.profile-editing-frame{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: calc(0.7vw+1vh);
+
+    width: calc(8.3vw+11.9vh);
+    height: calc(1.4vw+2vh);
+
+    order: 1;
+    flex-grow: 1;
+}
+
+.profile-frames-button{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: calc(0.7vw+1vh);
+    gap: calc(0.7vw+1vh);
+
+    width: calc(7.1+10vh);
+    height: calc(1.4vw+2vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #583B53;
+    border: 1px solid color(display-p3 0.329 0.235 0.322);
+    border-radius: calc(13.2vw+18.6vh);
+}
+
+.profile-editing-image-frame{
+    width: calc(0.7vw+1vh);
+    height: calc(0.7vw+1vh);
+}
+
+.profile-editing-image{
+    left: 12.5%;
+    right: 12.5%;
+    top: 12.5%;
+    bottom: 12.5%;
+
+    background: #583B53;
+    background: color(display-p3 0.329 0.235 0.322);
+}
+
+.profile-editing-text{
+    display: flex;
+    align-items: center;
+    width: calc(6.3vw+0.9vh);
+    height: calc(0.7vw+1vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.5vw+0.7vh);
+    line-height: calc(1.4vw+2vh);
+    letter-spacing: -0.006em;
+
+    color: #583B53;
+    color: color(display-p3 0.329 0.235 0.322);
+
+    order: 1;
+}
+
+.profile-information-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.8vw+1.2vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(6.1vw+8.6vh);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.profile-image-frame{
+    width: calc(3.5vw+4.9vh);
+    height: calc(3.5vw+4.9vh);
+}
+
+.profile-image{
+    display: flex;
+    align-items: center;
+}
+
+.email-and-name-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.7vw+1vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(1.9vw+2.7vh);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.profile-name{
+    width: calc(2.6vw+3.6vh);
+    height: calc(1vw+1.4vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.8vw+1.2vh);
+    line-height: calc(0.9vw+1.3vh);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.profile-email{
+    width: calc(1.9vw+2.6vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.6vw+0.9vh);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+
+    order: 2;
+}
+
+.all-information-frame{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh);
+    gap:  calc(0.8vw+1.2vh);
+
+    width: calc(32.1vw+4.6vh);
+    height: calc(17vw+24vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.7vw+1vh);
+
+    order: 1;
+}
+
+.all-information-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(31.2vw+44vh);
+    height: calc(1.4vw+2vh);
+
+    align-self: stretch;
+}
+
+.all-information-text{
+    margin: 0 auto;
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.all-information-form-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap:  calc(0.6vw+0.8vh);
+
+    width: calc(11.9vw+16.8vh);
+    height: calc(13.7vw+19.3vh);
+
+    order: 1;
+}
+
+.all-information-input-frame-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap:  calc(0.2vw+0.3vh);
+
+    width: calc(11.9vw+16.8vh);
+    height: calc(2.3vw+3.3vh);
+
+    opacity: 0.5;
+
+    order: 1;
+}
+
+.all-information-label-1{
+    width: calc(2.4vw+3.4vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+    letter-spacing: -0.007em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.input-and-img-frame-1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.7vw+1vh);
+
+    width: calc(11.9vw+16.8vh);
+    height: calc(1.5vw+2.1vh);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.all-information-input-1{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh);
+    gap: calc(0.7vw+1vh);
+
+    width: calc(10.9vw+15.4vh);
+    height: calc(1.5vw+2.1vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #81818E;
+    border: 1px solid color(display-p3 0.506 0.506 0.553);
+    border-radius: calc(0.7vw+1vh);
+
+    order: 0;
+    flex-grow: 1;
+}
+
+input::placeholder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(9.8vw+13.8vh);
+    height: calc(0.8vw+1.1vh);
+
+    flex-grow: 1;
+}
+
+.all-information-img-frame-1{
+    width: calc(0.7vw+1vh);
+    height: calc(0.7vw+1vh);
+
+    order: 1;
+}
+
+.all-information-img-1{
+    display: flex;
+    align-items: center;
+    border: 2px solid #81818E;
+    border: 2px solid color(display-p3 0.506 0.506 0.553);
+}
+
+.all-information-password-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap:  calc(0.2vw+0.3vh);
+
+    width: calc(11.9vw+16.8vh);
+    height: calc(2.3vw+3.3vh);
+
+    order: 4;
+
+}
+
+.all-information-input-password{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh);
+    gap: calc(0.7vw+1vh);
+
+    width: calc(11.9vw+16.8vh);
+    height: calc(2.9vw+4.1vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.7vw+1vh);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.all-signature-options-frame{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh);
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(32.1vw+45.3vh);
+    height: calc(9.3vw+13.1vh);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.7vw+1vh);
+
+    order: 2;
+
+}
+
+.all-signature-options-header-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(1.4vw+2vh);
+
+    align-self: stretch;
+}
+
+.all-signature-options-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(31vw+43.8vh);
+    height: calc(1.4vw+2vh);
+
+    align-self: stretch;
+}
+
+.all-signature-options-header-text{
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size:  calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.all-signature-options-content-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.9vw+1.2vh);
+
+    width: calc(22.2vw+31.3vh);
+    height: calc(6.2vw+8.8vh);
+
+    order: 1;
+}
+
+.first-signature-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(22.2vw+31.3vh);
+    height: calc(1.9vw+2.7vh);
+}
+
+.first-signature-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(5.2vw+7.3vh);
+    height: calc(0.7vw+1vh);
+
+    opacity: 0.5;
+}
+
+.first-signature-text{
+    width: calc(4.2vw+6vh);
+    height: calc(0.7+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+    text-align: center;
+
+    color: #583B53;
+    color: color(display-p3 0.329 0.235 0.322);
+
+    order: 2;
+}
+
+.first-signature{
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.7vw+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+
+    order: 1;
+}
+
+.second-signature-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(7.6vw+10.8vh);
+    height: calc(3.5vw+5vh);
+
+    order: 1;
+}
+
+.second-signature-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(7.2vw+10.2vh);
+    height: calc(0.7vw+1vh);
+
+    opacity: 0.5;
+}
+
+.second-signature-text{
+    width: calc(6.2vw+8.6vh);
+    height: calc(0.7+0.9vh);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height:  calc(0.6vw+0.9vh);
+    text-align: center;
+
+    color: #583B53;
+    color: color(display-p3 0.329 0.235 0.322);
+
+    order: 2;
+}
+
+.all-signature-options-img-frame-2{
+    box-sizing: border-box;
+
+    width: calc(7.6vw+10.8vh);
+    height: calc(2.3vw+3.2vh);
+
+    border-radius:  calc(0.2vw+0.3vh);
+
+    order: 1;
+}
+
+.all-signature-options-img-2{
+    width: calc(4.6vw+6.4vh);
+    height: calc(1.8vw+2.5vh);
+}

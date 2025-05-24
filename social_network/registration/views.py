@@ -71,3 +71,8 @@ class AuthorizationView(FormView):
         else:
             form.add_error(None, "Невірна пошта або пароль")
             return self.form_invalid(form)
+        
+        
+class PersonalInformationView(TemplateView):
+    template_name="personal_information/index.html"
+    

@@ -20,6 +20,7 @@ from main.views import MainView
 from .settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
 from publications.views import MyPublicationsView
+from registration.views import PersonalInformationView
 
 
 urlpatterns = [
@@ -27,7 +28,8 @@ urlpatterns = [
     path("user/", include("registration.urls")),
     path("", MainView.as_view(), name = "main"),
     path("post/", include("main.urls")),
-    path("my_publications/", MyPublicationsView.as_view(), name = "my_pubs")
+    path("my_publications/", MyPublicationsView.as_view(), name = "my_pubs"),
+    #path("personal_information/", PersonalInformationView.as_view(), name = "personal_information")
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

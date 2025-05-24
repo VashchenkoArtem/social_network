@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'personal_information/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="frame-text">
+    <div class="personal-information-text-frame">
+        <h1 class="personal-information-text">Особиста інформація</h1>
+        <img class="personal-information-img" src="{% static 'images/personal_information/line.jpg'%}"></img>
+    </div>
+    <div class="alboms-text-frame">
+        <h2 class="alboms-text">Альбоми</h2>
+    </div>
+</div>
+<div class = "personal-information-frame">
+    <div class = "all-profile-card-frame">
+        <div class = "profile-card-heared-frame">
+            <div class = "profile-card-heared">
+                <h1 class = "profile-card-text"></h1>
+                <div class = "profile-editing-frame">
+                    <button class = "profile-frames-button">
+                        <div class = "profile-editing-image-frame">
+                            <img class = "profile-editing-image" src="{% static 'images/personal_information/Vector.jpg'%}">
+                        </div>
+                        <h2 class = "profile-editing-text">Редагувати інформацію</h2>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class = "profile-information-frame">
+            <div class = "profile-image-frame">
+                <img class = "profile-image" src="{% static 'images/personal_information/linolium.jpg'%}">
+            </div>
+            <div class = "email-and-name-frame">
+                <h1 class = "profile-name">Lina Li</h1>
+                <h2 class = "profile-email">@thelili</h2>
+            </div>
+        </div>
+    </div>
+    <div class="all-information-frame">
+        <div class="all-information-header">
+            <h1 class="all-information-text">Особиста інформація</h1>
+            <button class = "profile-frames-button">
+                <div class = "profile-editing-image-frame">
+                    <img class = "profile-editing-image" src="{% static 'images/personal_information/Vector.jpg'%}">
+                </div>
+                <h2 class = "profile-editing-text">Редагувати інформацію</h2>
+            </button>
+        </div>
+        <div class="all-information-form-frame">
+            <div class="all-information-input-frame-1">
+                <label class="all-information-label-1">Ім'я</label>
+                <div class="input-and-img-frame-1">
+                    <input class="all-information-input-1" placeholder="Lina">
+                    <div class="all-information-img-frame-1">
+                        <img class="all-information-img-1" src="{% static 'images/personal_information/eye_open.jpg'%}">
+                    </div>
+                </div>
+            </div>
+            <div class="all-information-input-frame-1">
+                <label class="all-information-label-1">Прізвище</label>
+                <div class="input-and-img-frame-1">
+                    <input class="all-information-input-1" placeholder="Li">
+                    <div class="all-information-img-frame-1">
+                        <img class="all-information-img-1" src="{% static 'images/personal_information/eye_close.jpg'%}">
+                    </div>
+                </div>
+            </div>
+            <div class="all-information-input-frame-1">
+                <label class="all-information-label-1">Дата народження</label>
+                <div class="input-and-img-frame-1">
+                    <input class="all-information-input-1" placeholder="21.01.2000">
+                    <div class="all-information-img-frame-1">
+                        <img class="all-information-img-1" src="{% static 'images/personal_information/eye_open.jpg'%}">
+                    </div>
+                </div>
+            </div>
+            <div class="all-information-input-frame-1">
+                <label class="all-information-label-1">Електронна адреса</label>
+                <div class="input-and-img-frame-1">
+                    <input class="all-information-input-1" placeholder="example@gmail.com">
+                    <div class="all-information-img-frame-1">
+                        <img class="all-information-img-1" src="{% static 'images/personal_information/eye_close.jpg'%}">
+                    </div>
+                </div>
+            </div>
+            <div class="all-information-password-frame">
+                <label class="all-information-label-2">Пароль</label>
+                <div class="input-and-img-frame-1">
+                    <input class="all-information-input-password" placeholder="********">
+                    <div class="all-information-img-frame-1">
+                        <img class="all-information-img-1" src="{% static 'images/personal_information/eye_close.jpg'%}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all-signature-options-frame">
+        <div class="all-signature-options-header-frame">
+            <div class="all-signature-options-header">
+                <h1 class="all-signature-options-header-text"></h1>
+                <button class = "profile-frames-button">
+                    <div class = "profile-editing-image-frame">
+                        <img class = "profile-editing-image" src="{% static 'images/personal_information/Vector.jpg'%}">
+                    </div>
+                    <h2 class = "profile-editing-text">Редагувати інформацію</h2>
+                </button>
+            </div>
+        </div>
+        <div class="all-signature-options-content-frame">
+            <div class="first-signature-frame">
+                <div class="first-signature-form">
+
+                    <h3 class="first-signature-text"></h3>
+                </div> 
+                <h4 class="first-signature">Lina Li</h4>
+            </div>
+            <div class="second-signature-frame">
+                <div class="second-signature-form">
+
+                    <h5 class="second-signature-text"></h5>
+                </div>
+                <div class="all-signature-options-img-frame-2">
+                    <img class="all-signature-options-img-2" src="{% static 'images/personal_information/signature.jpg'%}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
