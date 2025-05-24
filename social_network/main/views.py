@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import PostForm
-from .models import User_Post, Pictures
+from .models import User_Post, Pictures, Tag
 from .forms import PostForm, PostFormEdit
 from .models import User_Post
 from django.urls import reverse_lazy
@@ -28,6 +28,7 @@ class MainView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data(**kwargs)
         context["posts"] = User_Post.objects.all()
+        context["tags"] = Tag.objects.all()
             
         return context 
     

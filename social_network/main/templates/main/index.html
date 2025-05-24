@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                                        <div class = "one-people">
+                    <div class = "one-people">
                         <div class = "people-information">
                             <div class = "icon-people">
                                 <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
@@ -323,7 +323,6 @@
                                     </div>
                                 </div>
                                 <div class = "dots dots-post">
-                                    <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
 
                                            
 
@@ -413,6 +412,15 @@
                             </div>
                         </div>
                         <div class="field-error">{{ field.errors }}</div>
+                    {% elif field.name == "tags" %}
+                        <div class = "all_tags">
+                            {% for tag in tags %}
+                                <button class = "tag-form">{{tag.tag_name}}</button>
+                            {% endfor %}
+                            <button class = "button-hashtag">
+                                <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
+                            </button>
+                        </div>
                     {% else %}
                         <div class="inputs-form">
                             <div class="label-tag">{{ field.label_tag }}</div>

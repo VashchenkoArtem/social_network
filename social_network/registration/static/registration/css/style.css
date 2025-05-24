@@ -3,13 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 36px;
-    width: 437px;
-    height: 502px;
+    gap: calc(1.2vw + 1.7vh);
+    width: calc(15.1vw + 21.4vh);
+    height: calc(17.4vw + 24.6vh);
     background-color: white;
-    border-radius: 20px;
-    padding: 44px;
-    margin-left: 350px;
+    border-radius: calc(0.6vw + 0.9vh);
+    padding: calc(1.5vw + 2.1vh);
+    margin-left: calc(12.1vw + 17.1vh);
     position: relative;
     z-index: 2;
 }
@@ -24,33 +24,33 @@
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    font-size: 14px;
-    height: 47px;
+    font-size: calc(0.4vw + 0.6vh);
+    height: calc(1.6vw + 2.3vh);
 }
 .join-worldit{
-    font-size: 24px;
+    font-size: calc(0.8vw + 1.1vh);
     font-weight: 500;
 }
 .registration-form{
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: calc(0.9vw + 1.2vh);
 }
 .image{
-    width: 679px;
-    height: 527px;
+    width: calc(23.5vw + 33.2vh);
+    height: calc(18.2vw + 25.8vh);
 }
 .background-image{
     position: absolute;
-    width: 679px;
-    height: 527px;
-    margin-left: 700px;
+    width: calc(23.5vw + 33.2vh);
+    height: calc(18.2vw + 25.8vh);
+    margin-left: calc(24.3vw + 34.1vh);
     z-index: 1;
 }
 .inputs{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: calc(0.5vw + 0.7vh);
 }
 li{
     color:red
@@ -58,17 +58,17 @@ li{
 .input{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: calc(0.2vw + 0.2vh);
 }
 button{
-    width: 311px;
-    height: 52px;
+    width: calc(10.7vw + 15.2vh);
+    height: calc(1.8vw + 2.5vh);
     border-radius: 1234px;
     border: none;
     background-color: rgba(84, 60, 82, 1);
-    font-size: 16px;
+    font-size: calc(0.5vw + 0.7vh);
     color: white;
-    margin-left: 18px;
+    margin-left: calc(0.6vw + 0.8vh);
 }
 button:hover{
     cursor: pointer;
@@ -76,33 +76,48 @@ button:hover{
     color: rgb(228, 228, 228);
 }
 .line{
-    width: 155px;
-    height: 1px;
+    width: calc(5.3vw + 7.5vh);
+    height: calc(0.06vw + 0.09vh);
     background-color: rgba(84, 60, 82, 1);
 }
 
 .authorithation-title{
     color: rgba(129, 129, 141, 1);
     font-weight: 500;
-    font-size: 30px;
-    height: 39px;
+    font-size: calc(1vw + 1.4vh);
+    height: calc(1.3vw + 1.9vh);
 }
 .authorithation-title:hover{
     color: rgb(104, 104, 112);
     cursor: pointer;
 }
 .registration-title{
-    font-size: 30px;
-    height: 39px;
+    font-size: calc(1vw + 1.4vh);
+    height: calc(1.3vw + 1.9vh);
 }
 
 input{
-    height: 42px;
-    border-radius: 10px;
+    height: calc(1.4vw + 2vh);
+    border-radius: calc(0.3vw + 0.4vh);
 }
 a{
     all: unset;
 }
 a:hover{
     cursor: pointer;
+}
+
+label{
+    font-size: calc(0.5vw + 0.7vh);
+    font-weight: 400;
+}
+
+input{
+    font-size: calc(0.5vw + 0.7vh);
+    border: calc(0.03vw + 0.05vh) black solid;
+    
+}
+
+::placeholder{
+    font-size: calc(0.5vw + 0.7vh);
 }

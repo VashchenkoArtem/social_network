@@ -38,9 +38,12 @@ class PostForm(forms.ModelForm):
     topic = forms.CharField(max_length= 255, required = False,label = "Тема публікації", widget= forms.TextInput(
         {"placeholder": "Напишіть тему публікації"}
     ))
-    text = forms.CharField(widget= forms.Textarea(
+    text = forms.CharField(label = "", widget= forms.Textarea(
+        
         {"placeholder": "Напишіть текст публікації"}
     ))
+    tags = forms.MultipleChoiceField(required = False)
+    
 
 
 class PostFormEdit(forms.ModelForm):
