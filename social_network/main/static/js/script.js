@@ -42,9 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let count = 0; count < redactButtons.length; count++) {
         let buttonRedact = redactButtons[count];
         let formRedact = formsRedact[count];
+        let wrapperObject = wrapperList[count];
         buttonRedact.addEventListener("click", () => {
             formRedact.classList.toggle("hidden");
             bodyObject.classList.toggle("blur");
+            wrapperObject.classList.toggle("hidden");
         });
     }
 
@@ -62,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (input && previewDiv) {
         input.addEventListener("change", function () {
+            console.log(input)
             previewDiv.innerHTML = "";
             const files = Array.from(input.files);
             files.forEach(file => {
@@ -70,8 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const reader = new FileReader();
                 reader.onload = function (event) {
                     const img = document.createElement("img");
-                    const bin = document.createElement("img");
-                    bin.src = "/../images/"
+
                     img.src = event.target.result;
                     img.classList.add("post-images-form")
                     previewDiv.appendChild(img);
@@ -79,5 +81,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.readAsDataURL(file);
             });
         });
-    }
+    };
 });

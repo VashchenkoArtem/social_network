@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_Post
+from .models import User_Post, Tag
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -23,11 +23,12 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = User_Post
         fields = ["title", "topic", "tags", "text", "url"]
-    images = MultipleField(required = False,label = "", widget = MultipleFileInput(attrs = {""
-    "type": "file",
-    "name": "picture",
-    "id": "image-to-post-form",
-    "class": "image-to-post-form"
+
+    images = MultipleField(required=False, label="", widget=MultipleFileInput(attrs={
+        "name": "images",
+        "id": "image-to-post-form-images",
+        "class": "image-to-post-form",
+        "multiple": True 
     }))
     url = forms.URLField(required = False, label = "Посилання", widget= forms.URLInput(
         {"placeholder": "Вкажіть посилання до публікації"}
@@ -42,12 +43,38 @@ class PostForm(forms.ModelForm):
         
         {"placeholder": "Напишіть текст публікації"}
     ))
-    tags = forms.MultipleChoiceField(required = False)
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+)
     
 
-
 class PostFormEdit(forms.ModelForm):
-    images = MultipleField(required = False)
-    url = forms.URLField(required = False)
     class Meta(PostForm.Meta):
         fields = ["title", "topic", "tags", "text", "url"]
+
+    images = MultipleField(required = False,label = "", widget = MultipleFileInput(attrs = {
+    "id": "image-to-post-form",
+    "class": "image-to-post-form",
+    "multiple": True
+    }))
+    url = forms.URLField(required = False, label = "Посилання", widget= forms.URLInput(
+        {"placeholder": "Вкажіть посилання до публікації"}
+    ))
+    title = forms.CharField(max_length= 255,label = "Назва публікації", widget= forms.TextInput(
+        {"placeholder": "Напишіть назву публікації"}
+    ))
+    topic = forms.CharField(max_length= 255, required = False,label = "Тема публікації", widget= forms.TextInput(
+        {"placeholder": "Напишіть тему публікації"}
+    ))
+    text = forms.CharField(label = "", widget= forms.Textarea(
+        
+        {"placeholder": "Напишіть текст публікації"}
+    ))
+    # tags = forms.MultipleChoiceField(required = False)
+    # tags = forms.ModelMultipleChoiceField(
+    #     queryset=Tag.objects.all(),
+    #     widget=forms.CheckboxSelectMultiple,
+    #     required=False
+    # )
