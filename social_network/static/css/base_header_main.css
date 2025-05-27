@@ -78,6 +78,17 @@ body{
     padding: calc(0.1vw + 0.2vw) calc(0.3vw + 0.4vh);
     gap: calc(0.3vw + 0.4vh);
 }
+
+.image-header{
+    width: calc(0.7vw + 0.9vh);
+    height: calc(0.9vh + 0.7vw);
+}
+
+img.image-header.friend{
+    width: calc(0.9vw + 1.1vh);
+    height: calc(0.8vh + 0.6vw);
+}
+
 .url:hover{
     background-color: rgba(233, 229, 238, 1);
     border-radius: calc(0.1vw + 0.15vw);

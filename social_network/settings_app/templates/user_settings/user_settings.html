@@ -11,6 +11,113 @@
 
 
 {% block content %}
-    <p>s</p>
+    <div class="center">
+        <div class="settings-links">
+            <a href="{% url 'user_settings' %}" class="link one">Особиста інформація</a>
+            <p class="link two">Альбоми</p>
+        </div>
+
+        <div class="main-card">
+            <div class="profile-card">
+                <div class="header-card">
+                    <p>Картка профілю</p>
+                    <button class="edit-info-button">
+                        <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                        Редагувати інформацію
+                    </button>
+                </div>
+
+                <div class="main-profile">
+                    <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img">
+                    <p class="user-text">Lina Li</p>
+                    <p>@theliiii</p>
+                </div> 
+                
+            </div>
+
+            <div class="personal-information-card">
+                <div class="header-card">
+                    <p>Особиста інформація</p>
+                    <button class="edit-info-button">
+                        <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                        Редагувати інформацію
+                    </button>
+                </div>
+                <div class="edit-info-main">
+                    <div class="little-div-edit">
+                        <p class="edit-text">Ім'я</p>
+                        <div class="input-div-edit">
+                            <input type="text" class="input-edit">
+                            <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
+                        </div>
+                    </div>
+                    <div class="little-div-edit">
+                        <p class="edit-text">Прізвище</p>
+                        <div class="input-div-edit">
+                            <input type="text" class="input-edit">
+                            <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
+                        </div>
+                    </div>
+
+                    <div class="little-div-edit">
+                        <p class="edit-text">Дата народження</p>
+                        <div class="input-div-edit">
+                            <input type="text" class="input-edit">
+                            <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
+                        </div>
+                    </div>
+                    <div class="little-div-edit">
+                        <p class="edit-text">Електронна адреса</p>
+                        <div class="input-div-edit">
+                            <input type="text" class="input-edit">
+                            <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
+                        </div>
+                    </div>
+                    <div class="little-div-edit">
+                        <p class="edit-text">Пароль</p>
+                        <div class="input-div-edit-password">
+                            <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕">
+                            <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" class="eye-img password">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="signature-option-card">
+                <div class="header-card">
+                    <p>Варіанти підпису</p>
+                    <button class="edit-info-button">
+                        <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                        Редагувати інформацію
+                    </button>
+                </div>
+
+                <div class="signature-options">
+                    <div class="first-signature-one">
+                        <input type="checkbox" name="" id="check1" class="checkbox" checked>
+                        <p class="name-surname">Ім'я та прізвище</p>
+                    </div>
+                    <p style="margin-top: calc(0.4vw + 0.6vh);">Lina Li</p>
+
+                    <div class="second-signature-two">
+                        <input type="checkbox" name="" id="" class="checkbox" checked>
+                        <p class="name-surname">Мій електронний підпис</p>
+                    </div>
+                    <div class="signature-img-div">
+                        <img src="{% static 'user_settings/images/signature.png' %}" alt="" class="signature-img">
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    
 {% endblock %}
 
