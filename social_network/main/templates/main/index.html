@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static%}
+{% load static %}
 
 {% block title %}
     Головна
@@ -212,7 +212,7 @@
         <div class = "body-page">
             <div class = "chat-input">
                 <form method = "post" >
-                    {% csrf_token%}
+                    {% csrf_token %}
                     <div class = "inputs">
                         <input class = "post-message" type="text" placeholder="Про що ти зараз думаєш?">
                         <div class = "inputs-photo-emoji">
@@ -372,8 +372,6 @@
     </div>
 
 
-    
-
     <div class="hidden frame-form">
         <div class="form">
             <div class="cross-img">
@@ -432,9 +430,43 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
             </form>
-        </div>
+        </div>    
+    </div>
+
+
+    <div class="form-overlay" >
+        <form  method = "post" action="{% url 'update_user' %}">
+            {% csrf_token %}
+            <div class = "entrance">
+                
+                <div class = "text">
+                    <p>Додай деталі про себе</p>
+                </div>
+                <div class = "information">
+
+                    <div class = "names">
+                        <p>Ім’я</p>
+                        <input type="text"  name="first_name" class = "input-name" placeholder = "Введіть Ваше ім’я" value="{{ user.first_name }}">
+                    </div>
+                    <div class = "surname">
+                        <p>Прізвище</p>
+                        <input type="text"  name="last_name"  class = "input-name" placeholder = "Введіть Ваше прізвище" value="{{ user.last_name }}">
+                    </div>
+                    <div class = "name-user">
+                        <p>Ім’я користувача</p>
+                        <input type="text"  name="username" class = "input-name" placeholder = "@" value="{{ user.username }}">
+                        <p class="options">
+                            <span class="select-text">Або оберіть:</span>
+                            <span class="suggestion">Запропоновані варіанти відповідно до Ім’я та Прізвища</span>
+                        </p>
+                    </div>    
+                </div>
+                <div class = "button">
+                    <button type = "submit" class = "button-options">Продовжити</button>
+                </div>
+            </div>
+        </form>
     </div>
 
 {% endblock %}

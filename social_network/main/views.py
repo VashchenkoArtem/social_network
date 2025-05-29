@@ -5,6 +5,9 @@ from .forms import PostForm, PostFormEdit
 from .models import User_Post
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import UserUpdateForm
 
 
 class MainView(CreateView):
@@ -49,3 +52,17 @@ class EditView(UpdateView):
 class MyLogoutView(LogoutView):
     next_page = reverse_lazy('authorithation')
  
+
+
+class UserUpdateView( UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'main/index.html'
+    success_url = reverse_lazy("main")  
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
