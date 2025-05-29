@@ -15,8 +15,6 @@ class User_Post(models.Model):
     url = models.URLField(null = True, blank = False)
     view_count = models.IntegerField(default = 0)
     like_count = models.IntegerField(default = 0)
-    def __str__(self):
-        return f'{self.user}: {self.title}'
 
 class Pictures(models.Model):
     post = models.ForeignKey(User_Post, on_delete = models.CASCADE)

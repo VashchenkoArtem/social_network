@@ -1,10 +1,14 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import View
 from .forms import PostForm
 from .models import User_Post, Pictures, Tag
 from .forms import PostForm, PostFormEdit
 from .models import User_Post
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.core import serializers
 
 
 class MainView(CreateView):
@@ -49,3 +53,7 @@ class EditView(UpdateView):
 class MyLogoutView(LogoutView):
     next_page = reverse_lazy('authorithation')
  
+class PostDataView(View):
+    def post(self, request, post_pk):
+        user_post = [User_Post.objects.get(pk = post_pk)]
+        return JsonResponse(serializers.serialize("json", user_post), safe=False)
