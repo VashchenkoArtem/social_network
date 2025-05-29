@@ -187,7 +187,9 @@ p{
 input::placeholder{
     color: #81818D;
 }
-
+input{
+    font-size: calc(0.5vw + 0.8vh);
+}
 img.eye-img{
     width: calc(0.7vw + 1vh);
     height: calc(0.7vw + 1vh);
