@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base_header_main.css'%}">
+    {% block link %}
+    {% endblock %}
+</head>
+    <body>
+        <div class = "hat">
+            <div class="hat-wrapper">
+                {% block hat %}
+                    <img class = "logo" src="{% static 'images/icons/logo.png'%}" alt="" class="image-header">
+                    <div class = "urls-frame">
+                        <div class = "urls">
+                            <div class = "main url">
+                                <img src="{% static 'images/icons/house.png'%}" alt="" class="image-header">
+                                <a href = "{% url 'main' %}">Головна</a>
+                            </div>
+                            <div class = "url">
+                                <img src="{% static 'images/icons/post.png' %}" alt="" class="image-header">
+                                <a href = "{% url 'my_pubs' %}">Мої публікації</a>
+                            </div>
+                            <div class = "url">
+                                <img src="{% static 'images/friends.png' %}" alt="" class="image-header friend">
+                                <a>Друзі</a>
+                            </div>
+                            <div class = "url">
+                                <img src="{% static 'images/icons/chats.png' %}" alt="" class="image-header">
+                                <a>Чати</a>
+                            </div>
+                            <div class = "url">
+                                <img src="{% static 'images/icons/settings.png' %}" alt="" class="image-header">
+                                <a href="{% url 'user_settings' %}">Налаштування</a>
+                            </div>
+                        </div>
+                        <form action="{% url 'logout' %}" method = "post">
+                            {% csrf_token%}
+                            <button class = "button-exit">
+                                <img class = "image-exit"src="{% static 'images/icons/exit.png'%}" alt="">
+                                <h1 type="submit" class = "exit">Вихід</h1>
+                            </button>
+                        </form>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+        {% block script %}
+        {% endblock %}
+    </body>
+</html>
