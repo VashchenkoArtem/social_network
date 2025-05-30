@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const formsRedact = document.querySelectorAll(".redact-post-function");
     const redactButtons = document.querySelectorAll(".redacting-title-redact");
 
+ 
+
+
     postObject.addEventListener("click", function (event) {
         event.preventDefault();
         formObject.classList.toggle("hidden");
@@ -83,3 +86,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const formOverlay = document.querySelector(".form-overlay");
+    const form = document.querySelector(".form-overlay form");
+
+    if (formOverlay && form) {
+        form.addEventListener("submit", function () {
+            localStorage.setItem("formSubmitted", "true");  
+            formOverlay.classList.add("hidden");             
+        });
+    }
+});
+
+

@@ -1,6 +1,6 @@
 from django import forms
 from .models import User_Post, Tag
-
+from django.contrib.auth.models import User
 
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
@@ -78,3 +78,13 @@ class PostFormEdit(forms.ModelForm):
     #     widget=forms.CheckboxSelectMultiple,
     #     required=False
     # )
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'input-name', 'placeholder': "Введіть Ваше ім’я"}),
+            'last_name': forms.TextInput(attrs={'class': 'input-name', 'placeholder': "Введіть Ваше прізвище"}),
+            'username': forms.TextInput(attrs={'class': 'input-name', 'placeholder': "@"}),
+        }
