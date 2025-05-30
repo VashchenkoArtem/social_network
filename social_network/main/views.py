@@ -9,6 +9,9 @@ from django.contrib.auth.views import LogoutView
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import UserUpdateForm
 
 
 class MainView(CreateView):
@@ -57,3 +60,17 @@ class PostDataView(View):
     def post(self, request, post_pk):
         user_post = [User_Post.objects.get(pk = post_pk)]
         return JsonResponse(serializers.serialize("json", user_post), safe=False)
+
+
+class UserUpdateView( UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'main/index.html'
+    success_url = reverse_lazy("main")  
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response

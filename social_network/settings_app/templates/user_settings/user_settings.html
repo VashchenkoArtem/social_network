@@ -14,7 +14,7 @@
     <div class="center">
         <div class="settings-links">
             <a href="{% url 'user_settings' %}" class="link one">Особиста інформація</a>
-            <p class="link two">Альбоми</p>
+            <a href="{% url 'albums' %}" class="link two">Альбоми</a>
         </div>
 
         <div class="main-card">
@@ -29,8 +29,8 @@
 
                 <div class="main-profile">
                     <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img">
-                    <p class="user-text">Lina Li</p>
-                    <p>@theliiii</p>
+                    <p class="user-text">{{request.user.username}}</p>
+                    <p>@{{request.user.username}}</p>
                 </div> 
                 
             </div>
@@ -47,14 +47,14 @@
                     <div class="little-div-edit">
                         <p class="edit-text">Ім'я</p>
                         <div class="input-div-edit">
-                            <input type="text" class="input-edit">
+                            <input type="text" class="input-edit" value="{{request.user.first_name}}">
                             <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
                         </div>
                     </div>
                     <div class="little-div-edit">
                         <p class="edit-text">Прізвище</p>
                         <div class="input-div-edit">
-                            <input type="text" class="input-edit">
+                            <input type="text" class="input-edit" value="{{request.user.last_name}}">
                             <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
                         </div>
                     </div>
@@ -62,14 +62,14 @@
                     <div class="little-div-edit">
                         <p class="edit-text">Дата народження</p>
                         <div class="input-div-edit">
-                            <input type="text" class="input-edit">
+                            <input type="text" class="input-edit" placeholder="add your date">
                             <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
                         </div>
                     </div>
                     <div class="little-div-edit">
                         <p class="edit-text">Електронна адреса</p>
                         <div class="input-div-edit">
-                            <input type="text" class="input-edit">
+                            <input type="text" class="input-edit" value="{{request.user.email}}">
                             <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
                         </div>
                     </div>

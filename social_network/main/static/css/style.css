@@ -851,3 +851,124 @@ option:hover{
     background-color: rgb(194, 192, 196);
     color:rgb(101, 84, 100);
 }
+
+.hidden {
+    display: none;
+}
+
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.entrance{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: white;
+    border-radius: calc(0.7vw + 1vh);
+    padding-top: calc(1.8vh + 0.9vw);
+    padding-right: calc(2.1vh + 1.5vw);
+    padding-bottom: calc(1.5vh + 1vw);
+    padding-left: calc(2.1vh + 1.5vw);
+    width: calc(17vw + 24vh);
+    height: calc(16vw + 20vh); 
+   
+}
+
+.text{
+    font-size: calc(1.2vw + 1.6vh);
+    color: #070A1C;
+    font-family: "GT Walsheim Pro";
+    font-weight: 700;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.information{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #070A1C;
+    font-family: "GT Walsheim Pro";
+    gap: calc(0.6vw + 0.8vh);
+    padding-top: calc(1.1vh + 0.8vw);
+}
+
+.names{
+    font-size: calc(0.7vw + 0.8vh);
+    font-weight: 400;
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+    
+}
+.surname{
+    font-size: calc(0.7vw + 0.8vh);
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+   
+}
+.name-user{
+    font-size: calc(0.7vw + 0.8vh);
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+}
+
+
+.options {
+    font-size: calc(0.4vw + 0.6vh);
+    margin: calc(0.17vw + 0.24vh);
+    color: #333;
+}
+
+.select-text {
+    color: #333;
+}
+
+.suggestion {
+    color: #3aa85f; 
+ 
+}
+
+.input-name{
+    font-size: calc(0.6vw + 0.8vh);
+    width: calc(15vw + 18vh);
+    border: calc(0.03vw + 0.04vh) #CDCEC2 solid;
+    padding-left: calc(0.1vh + 0.6vw);
+}
+
+
+
+.button-options{
+    width: calc(4.5vw + 6.5vh);
+    height: calc(1.9vh + 1.5vw);
+    background-color: rgba(84, 60, 82, 1);
+    border-radius: 1234px; 
+    color: white;
+    font-family: "GT Walsheim Pro";
+    font-size: calc(0.6vw + 0.8vh);
+   
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;  
+    padding-top: calc(1.1vh + 0.8vw);
+}

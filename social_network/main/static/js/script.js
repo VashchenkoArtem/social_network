@@ -74,7 +74,6 @@ const input = document.querySelector("#image-to-post-form");
 const previewDiv = document.querySelector("#image-preview-container");
 if (input && previewDiv) {
     input.addEventListener("change", function () {
-        console.log(input)
         previewDiv.innerHTML = "";
         const files = Array.from(input.files);
         files.forEach(file => {
