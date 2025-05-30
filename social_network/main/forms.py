@@ -88,3 +88,5 @@ class UserUpdateForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'input-name', 'placeholder': "Введіть Ваше прізвище"}),
             'username': forms.TextInput(attrs={'class': 'input-name', 'placeholder': "@"}),
         }
+
+        

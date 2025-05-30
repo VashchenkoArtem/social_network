@@ -18,17 +18,17 @@ body{
     height: 100%; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: calc(4.3vw + 5.7vh);
+    align-items: flex-start;
+    margin-top: calc(0.2vw + 1.6vh);
 }
 
 .settings-links{
     width: calc(8.8vw + 12.4vh);
-    height: calc(37.4vw + 46vh);
+    height: calc(2.3vw + 3.3vh);
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
     padding-right: calc(13.7vw + 13.9vh);
+    align-items: flex-start;
 }
 
 /* font-size - 16px */
