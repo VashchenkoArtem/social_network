@@ -1,0 +1,175 @@
+{% extends "base_header_main.html" %}
+{% load static %}
+
+{% block title %}
+    Друзі
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'friends/css/friends.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="center">
+        <div class="settings-links">
+            <a href="{% url 'user_settings' %}" class="link two">Головна</a>
+            <a href="{% url 'albums' %}" class="link two">Альбоми</a>   
+            <a href="{% url 'friends' %}" class = "link one">Друзі</a>
+        </div>
+        <div class = "all-frames">
+            <div class = "request-card">
+                <div class = "title-card">
+                    <h1 class = "title-h1 h1">Запити</h1>
+                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                </div>
+                <div class = "all-cards request">
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "request-card">
+                <div class = "title-card">
+                    <h1 class = "title-h1 h1">Рекомендації</h1>
+                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                </div>
+                <div class = "all-cards request">
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "request-card">
+                <div class = "title-card">
+                    <h1 class = "title-h1 h1">Всі друзі</h1>
+                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                </div>
+                <div class = "all-cards request">
+                    <div class = "card">
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                        </div>
+                        <div class = "card-info">
+                            <h1 class = "name">Yehor Aung</h1>
+                            <h1 class = "tag-name">@YehorAung</h1>
+                        </div>
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+

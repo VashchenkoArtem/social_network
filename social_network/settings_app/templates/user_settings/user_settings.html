@@ -13,8 +13,9 @@
 {% block content %}
     <div class="center">
         <div class="settings-links">
-            <a href="{% url 'user_settings' %}" class="link one">Особиста інформація</a>
-            <a href="{% url 'albums' %}" class="link two">Альбоми</a>
+            <a href="{% url 'user_settings' %}" class="link one">Головна</a>
+            <a href="{% url 'albums' %}" class="link two">Альбоми</a>   
+            <a href="{% url 'friends' %}" class = "link two">Друзі</a>
         </div>
 
         <div class="main-card">
@@ -29,7 +30,7 @@
 
                 <div class="main-profile">
                     <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img">
-                    <p class="user-text">{{request.user.username}}</p>
+                    <p class="user-text">{{request.user.first_name}} {{request.user.last_name}}</p>
                     <p>@{{request.user.username}}</p>
                 </div> 
                 

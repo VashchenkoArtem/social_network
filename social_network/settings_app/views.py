@@ -15,11 +15,5 @@ class UserSettingsView(TemplateView):
 class UserAlbums(TemplateView):
     template_name = 'albums/albums.html'
 
-# class UserSettingsView(UpdateView):
-#     model = ProfileModel
-#     form_class = ProfileForm
-#     template_name = 'user_settings/user_settings.html'
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user  
-#         return super().form_valid(form)
+class FriendsView(TemplateView):
+    template_name = "friends/friends.html"

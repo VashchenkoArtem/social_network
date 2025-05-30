@@ -34,6 +34,7 @@ body{
 /* font-size - 16px */
 .link{
     font-size: calc(0.5vw + 0.7vh);
+    margin-top: calc(0.4vw + 0.6vh); 
 }
 
 a.link.one{
@@ -304,8 +305,6 @@ input.input-edit.password::placeholder{
     height: calc(1.7vw + 2.4vh);
     margin-top: calc(0.8vw + 1vh);
 }
-<<<<<<< HEAD
-=======
 
 button:hover{
     background-color: #E9E5EE;
@@ -315,4 +314,3 @@ div.url.settings{
     background-color: #E9E5EE;
     border-radius: calc(0.12vw + 0.14vh);
 }
->>>>>>> origin/julia_ovcharenko
