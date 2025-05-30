@@ -1,0 +1,48 @@
+{% extends "base_header_main.html" %}
+{% load static %}
+
+{% block title %}
+    Альбоми
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'albums/css/albums.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <div class="settings-links">
+            <a href="{% url 'user_settings' %}" class="link one">Особиста інформація</a>
+            <a href="{% url 'albums' %}" class="link two">Альбоми</a>
+        </div>
+
+        <div class="main-card">
+            <div class="albums">
+                <div class="header-card">
+                    <p>Мої фото</p>
+                    <button class="add-photo-button"><img src="{% static 'albums/images/photo.png' %}" alt="" class="photo-add">Додати фото</button>
+                </div>
+                <div class="content-photos">
+                    <div class="photo">
+                        <img src="{% static 'albums/images/cat1.jpg' %}" alt="" class="img-card">
+                        <div class="edit-image">
+                            <button class="mini-buttons"><img src="{% static 'albums/images/eye.png' %}" alt="" class="mini-icons"></button>
+                            <button class="mini-buttons"><img src="{% static 'albums/images/delete.png' %}" alt="" class="mini-icons"></button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="albums">
+                <div class="header-card">
+                    <p>Немає ще жодного альбому</p>
+                    <button class="add-photo-button two"><img src="{% static 'albums/images/add.png' %}" alt="" class="photo-add">Створити альбом</button>
+                </div>
+            </div>  
+
+        </div>
+        
+    </div>
+    
+    
+{% endblock %}

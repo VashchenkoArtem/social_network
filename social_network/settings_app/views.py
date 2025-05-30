@@ -13,7 +13,7 @@ class UserSettingsView(TemplateView):
 
 
 class UserAlbums(TemplateView):
-    template_name = 'user_settings/albums.html'
+    template_name = 'albums/albums.html'
 
 # class UserSettingsView(UpdateView):
 #     model = ProfileModel
