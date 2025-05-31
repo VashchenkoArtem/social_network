@@ -64,8 +64,7 @@ a.link.two{
     width: calc(32vw + 45.2vh);
     height: calc(11.4vw + 16.1vh);
     max-height: calc(20.8vw + 29.4vh);
-    overflow-y: auto;
-    scrollbar-width: none;  
+
     background-color: white;
     border-radius: calc(0.3vw + 0.5vh);
     display: flex;
@@ -91,6 +90,8 @@ a.link.two{
     display: flex;
     flex-wrap: wrap;
     gap: calc(0.3vw + 0.5vh);
+    overflow-y: auto;
+    scrollbar-width: none;  
 }
 .card{
     display: flex;
