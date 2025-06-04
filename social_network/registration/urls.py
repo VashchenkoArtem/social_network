@@ -8,8 +8,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("registration/", RegistrationView.as_view(), name = "registration"),
     path("confirm/", ConfirmRegistrationView.as_view(), name = "confirm"),
-    path("authorithation/", AuthorizationView.as_view(), name = "authorithation"),
-    path("personal_information/", PersonalInformationView.as_view(), name = "personal_information")
+    path("personal_information/", PersonalInformationView.as_view(), name = "personal_information"),
+    path("authorithation/", AuthorizationView.as_view(), name = "authorithation")
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

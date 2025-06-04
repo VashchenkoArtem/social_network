@@ -1,0 +1,485 @@
+*{
+    overflow-y: auto;
+    scrollbar-width: none; 
+}
+
+.body{
+    width: fit-content;
+    padding-top: 16px;
+    padding-left: 80px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: center;
+    gap: 5.66px;
+
+}
+
+.urls-frame{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+.urls{
+    height: 28px;
+    display: flex;
+    gap: 22px;
+}
+.url{
+    display: flex;
+    padding: 4px 8px 4px 8px;
+    gap: 8px;
+}
+.url:hover{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius:3px ;
+    cursor: pointer;
+}
+a{
+    height: 18px;
+    padding-top: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -1%;
+    color: rgba(7, 10, 28, 1);
+
+    font-weight: 600;
+}
+
+.button-exit{
+    width: 95px;
+    height: 40px;
+    border: 1px rgba(84, 60, 82, 1) solid;
+    border-radius: 1234px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px 10px 16px;
+}
+
+.exit{
+    color: rgba(84, 60, 82, 1);
+}
+
+
+.friend-action-selection-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    position: absolute;
+    width: calc(8.8vw+12.5vh);
+    height: calc(7.5vh+5.3vw);
+    left: calc(2.8vw+3.9vh);
+    top: calc(3.7vw+5.1vh);
+
+
+}
+
+.main-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(2.2vw+3.1vh);
+    height: calc(1.3vh+0.9vw);
+}
+
+.main-text{
+    width: calc(2.2vw+3.1vh);
+    height: calc(0.9vh+0.6vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+
+    align-self: stretch;
+}
+
+.main-img{
+    width: calc(2.2vw+3.1vh);
+    height: 0px;
+
+    border: 2px solid #583B53;
+    border: 2px solid color(display-p3 0.329 0.235 0.322);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.requests-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: calc(0.3vw+0.8vh);
+
+    width: calc(1.8vw+2.6vh);
+    height: calc(1.3vh+0.9vw);
+
+    order: 1;
+}
+
+.requests-text{
+    width: calc(1.8vw+2.6vh);
+    height: calc(0.9vh+0.6vw);
+    
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+    text-align: center;
+    letter-spacing: -0.01em;
+    
+    color: #81818E;
+    color: color(display-p3 0.506 0.506 0.553);
+    
+    align-self: stretch; 
+}
+
+.recomendations-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(3.4vw+4.8vh);
+    height: calc(1.3vh+0.9vw);
+
+    order: 2;
+}
+
+.recomendations-text{
+    width: calc(3.4vw+4.8vh);
+    height: calc(0.9vh+0.6vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #81818E;
+    color: color(display-p3 0.506 0.506 0.553);
+
+    align-self: stretch;
+}
+
+.all-friends-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(2.2vw+3.1vh);
+    height: calc(1.3vh+0.9vw);
+
+    order: 3;
+}
+
+.all-friends-text{
+    width: calc(2.2vw+3.1vh);
+    height: calc(0.9vh+0.6vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #81818E;
+    color: color(display-p3 0.506 0.506 0.553);
+
+    align-self: stretch;
+}
+
+.friend-content-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(32.1vw+45.3vh);
+    height: calc(75.7vh+53.7vw);
+    right: calc(2,8vw+3.9vh);
+    top: calc(11.4vw+16.1vh);
+    overflow-y: scroll;
+}
+
+.requests-content-frame{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    width: calc(32.1vw+45.3vh);
+    height:calc(16.1vh+11.4vw);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.4vw+0.5vh);
+
+    align-self: stretch;
+}
+
+.requests-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: calc(0.6vw+0.8vh) calc(0.8vw+1vh);
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(32.1vw+45.3vh);
+    height: calc(16.1vh+11.4vw);
+
+    align-self: stretch;
+}
+
+.header-requests-frame{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(30.7vw+43.3vh);
+    height: calc(0.9vh+0.6vw);
+
+    align-self: stretch;
+}
+
+.header-requests{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    margin: 0 auto;
+    width: calc(30.7vw+43.3vh);
+    height: calc(0.9vh+0.6vw);
+
+    align-self: stretch;
+}
+
+.requests-all-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.4vw+0.5vh);
+
+    margin: 0 auto;
+    width: calc(3.3vw+4.6vh);
+    height: calc(0.9vh+0.6vw);
+
+    order: 1;
+}
+
+.requests-text{
+    margin: 0 auto;
+    width: calc(22.2vw+31.3vh);
+    height: calc(0.9vh+0.6vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+
+.requests-frames{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(20.4vw+28.3vh);
+    height: calc(12.9vh+9.2vw);
+
+    order: 1;
+}
+
+.request-frame{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(0.6vw+0.8vh) 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(10vw+14.2vh);
+    height: calc(12.9vh+9.2vw);
+
+    background: #FFFFFF;
+    background: color(display-p3 1.000 1.000 1.000);
+    border: 1px solid #CDCED2;
+    border: 1px solid color(display-p3 0.804 0.808 0.824);
+    border-radius: calc(0.4vw+0.5vh);
+}
+
+.request-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.8vw+1.2vh);
+
+    width: calc(10vw+14.2vh);
+    height: calc(8.6vh+6.1vw);
+
+    align-self: stretch;
+}
+
+.image-request-frame{
+    width: calc(3.3vw+4.7vh);
+    height: calc(4.7vh+3.3vw);
+}
+
+.image-request-avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(0.6vw+0.9vh);
+    height: calc(0.9vh+0.6vw);
+
+
+    background: #CDCED2;
+    background: color(display-p3 0.804 0.808 0.824);
+}
+
+.image-request-status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.4vw+0.5vh);
+
+    width: calc(10vw+14.2vh);
+    height: calc(2.7vh+1.9vw);
+
+    order: 1;
+    align-self: stretch;
+}
+
+.nickname{
+    width: calc(4.4vw+6.3vh);
+    height: calc(1.3vh+0.9vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.8vw+1.2vh);
+    line-height: calc(1.3vh+0.9vw);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+}
+
+.email{
+    width: calc(1.8vw+2.6vh);
+    height: calc(0.9vh+0.6vw);
+
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(0.6vw+0.8vh);
+    line-height: calc(0.9vh+0.6vw);
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #060A1D;
+    color: color(display-p3 0.027 0.039 0.110);
+
+    order: 1;
+}
+
+.request-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: calc(0.6vw+0.8vh);
+
+    width: calc(7.7vw+10.9vh);
+    height: calc(2vh+1.4vw);
+
+    order: 1;
+}
+.accept-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: calc(0.4vw+0.5vh) calc(0.6vw+0.8vh);
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(3.9vw+5.4vh);
+    height: calc(2vh+1.4vw);
+
+    background: #583B53;
+    background: color(display-p3 0.329 0.235 0.322);
+    border-radius: calc(42.9vw+60.5vh);
+}
+
+.decline-button{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: calc(0.4vw+0.5vh) calc(0.6vw+0.8vh);
+    gap: calc(0.3vw+0.4vh);
+
+    width: calc(3.3vw+4.6vh);
+    height: calc(2vh+1.4vw);
+
+    border: 1px solid #583B53;
+    border: 1px solid color(display-p3 0.329 0.235 0.322);
+    border-radius: calc(42.9vw+60.5vh);
+
+    order: 1;
+}

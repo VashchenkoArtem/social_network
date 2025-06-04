@@ -7,7 +7,6 @@ class Tag(models.Model):
         return f"{self.tag_name}"
 
 class User_Post(models.Model):
-
     user = models.ForeignKey(to = User, on_delete = models.CASCADE)
     title = models.CharField(max_length = 256)
     topic = models.CharField(max_length = 128)
@@ -16,8 +15,9 @@ class User_Post(models.Model):
     url = models.URLField(null = True, blank = False)
     view_count = models.IntegerField(default = 0)
     like_count = models.IntegerField(default = 0)
-    picture = models.ImageField(upload_to="images/post_images", null = True, blank = True)
     def __str__(self):
         return f'{self.user}: {self.title}'
 
-    
+class Pictures(models.Model):
+    post = models.ForeignKey(User_Post, on_delete = models.CASCADE)
+    image = models.ImageField(upload_to= "images/post_images/", null= True)

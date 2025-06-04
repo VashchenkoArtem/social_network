@@ -30,6 +30,8 @@ urlpatterns = [
     path("post/", include("main.urls")),
     path("my_publications/", MyPublicationsView.as_view(), name = "my_pubs"),
     #path("personal_information/", PersonalInformationView.as_view(), name = "personal_information")
+    path("settings/", include('settings_app.urls')),
+    path("friends/", include('settings_app.urls'))
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

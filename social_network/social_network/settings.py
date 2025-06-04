@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration',
     'main',
-    'publications'
+    'publications',
+    'settings_app'
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,5 @@ AUTHENTICATION_BACKENDS = [
 ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+LOGIN_REDIRECT_URL = reverse_lazy("authorithation")

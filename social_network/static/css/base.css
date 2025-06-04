@@ -36,24 +36,24 @@ body{
 }
 .hat{
     width: 100%;
-    height: 88px;    
+    height: calc(3.1vw + 4.3vh);    
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px 80px 24px 80px;
+    padding: calc(0.8vw + 1.2vh) calc(2.8vw + 3.9vh);
+    overflow: visible;
+    white-space: nowrap;
 }
 .logo{
-    height: 30px;
+    height: calc(1vw + 1.5vh);
 }
 
 .hat-wrapper{
-    width: 1536px;
-    height: 88px;
-    max-width: 1536px;
-    max-height: 88px;
+    height: calc(3.1vw + 4.3vh);  
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: calc(12.5vw + 17.6vh);
 }
