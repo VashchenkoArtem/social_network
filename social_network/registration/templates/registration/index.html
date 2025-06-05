@@ -25,7 +25,10 @@
                         {% for field in form %}
                             <div class = "input">
                                 {{ field.label_tag }}
-                                {{ field }}
+                                <div class = "field-container">
+                                    {{ field }}
+                                    <img class = "eye-img"src="{% static 'images/icons/eye.png'%}" id = "{{ field.auto_id }}" alt="">
+                                </div>
                                 {{ field.errors }}
                             </div>
                         {% endfor %}
@@ -38,4 +41,7 @@
             <img class = "image"src="{% static 'images/background/back.png' %}" alt="">
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src = "{% static 'registration/js/script.js'%}"></script>
 {% endblock %}

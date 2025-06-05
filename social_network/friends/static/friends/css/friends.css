@@ -39,17 +39,19 @@ body{
 }
 
 a.link.one{
-    width: calc(5.4vw + 7.8vh);
     font-weight: 700;
     border-bottom: 0.3vh #070A1C solid
 }
 
 a.link.two{
-
     color: #81818D;
     font-weight: 500;
 }
-
+.two-friend{
+    width: calc(2.2vw + 3.1vh);
+    color: #81818D;
+    font-weight: 500;
+}
 .all-frames{
     width: calc(32vw + 45.2vh);
     height: fit-content;
@@ -153,4 +155,8 @@ a.link.two{
 }
 .button:hover{
     cursor: pointer;
+}
+.friends{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius: calc(0.1vw + 0.15vw);
 }

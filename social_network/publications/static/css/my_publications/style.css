@@ -1,6 +1,8 @@
-
 *{
     scrollbar-width: none;  
+}
+body{
+    overflow-y: hidden;
 }
 .body{
     padding-top: calc(0.5vw + 0.8vh);
@@ -9,7 +11,7 @@
     display: flex;
     justify-content: center;
     gap: calc(0.2vw + 0.3vh);
-
+    padding-bottom: calc(0.5vw + 0.8vh);
 }
 .urls-frame{
     width: calc(27.9vw + 38vh);
@@ -50,18 +52,27 @@ a{
     border-radius: 1234px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: calc(0.3vw + 0.4vh);
-    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.8vh);
+    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.8vh);   
+    background-color: white;
 }
 
 .exit{
     color: rgba(84, 60, 82, 1);
+    all: unset;
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-size: calc(0.5vw + 0.8vh);
+}
+.image-exit{
+    width: calc(0.7vw + 0.8vh);
+    height: calc(0.7vw + 0.8vh);
 }
 .button-exit:hover{
     background-color: rgba(233, 229, 238, 1);
     cursor: pointer;
 }
-.main{
+.posts-url{
     background-color: rgba(233, 229, 238, 1);
     border-radius: calc(0.1vw + 0.15vw);
 }
@@ -182,6 +193,7 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(0.8vw + 1.1vh);
     width: calc(11vw + 16vh);
     display: flex;
+
     justify-content: space-between;
     align-items: center;
     margin-bottom: calc(0.5vw + 0.8vh);
@@ -332,6 +344,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: calc(0.3vw + 0.5vh);
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
 }
 
 .people-information-post{
@@ -339,13 +352,16 @@ h1, h2, h3, h4, h5, h6 {
     display: flex; 
     padding: calc(0.7vw + 1vh);
     justify-content: space-between;
+    width: calc(32vw + 45.2vh);
     align-items: center;
 }
+
 .people-logo-and-nick{
     display: flex;
     align-items: center;
     gap: calc(0.7vw + 1vh);
 }
+
 .post-friend-avatar{
     width: calc(1.6vw + 2.6vh);
     height: calc(1.6vw + 2.6vh);
@@ -491,34 +507,37 @@ h1, h2, h3, h4, h5, h6 {
     width: calc(9.8vw + 13.9vh);
     height: calc(11.4vw + 16vh);  
 }
-.form{
-    width: 773px;
-    height: 587px;
+
+.form,
+ .redact-form{
+    width: calc(26.8vw + 37.8vh);
+    max-height: calc(33vw + 46.5vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.7vh + 0.5vw);
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
     background-color: white;
-    border: 1px black solid;
-    border-radius: 20px;
-    padding: 24px 44px 44px 44px;
+    border: calc(0.03vw + 0.05vh) black solid;
+    border-radius: calc(0.7vw + 1vh);
+    padding-top: calc(1.1vh + 0.8vw);
+    padding-right: calc(2.1vh + 1.5vw);
+    padding-bottom: calc(1.5vh + 1vw);
+    padding-left: calc(2.1vh + 1.5vw);
 }
 
 .cross-img{
-    margin-left: 665px;
+    margin-left: calc(23.1vw + 32.6vh);
 }
-
+.cross{
+    width: calc(0.7vw + 1vh);    
+    height: calc(0.7vw + 1vh);
+}
 .title-form{
-    font-size: 34px;
+    font-size: calc(1.2vw + 1.7vh);
     font-weight: 500;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    padding-top: 24px;
-    padding-bottom: 16px;
-    gap: 16px;
 }
 
 .inputs-form{
@@ -527,38 +546,43 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: flex-start;
 }
 input{
-    height: 38px;
-    width: 343px;
-    border-radius: 10px;
-    border: 1px black solid;
+    height: calc(1.3vw + 1.9vh);
+    width: calc(12vw + 16.8vh);
+    border-radius: calc(0.3vw + 0.5vh);
+    border: calc(0.03vw + 0.05vh) black solid;
+    font-size: calc(0.5vw + 0.8vh);
 }
+
 .label-tag{
-    font-size: 16px;
+    font-size: calc(0.6vw + 0.8vh);
 }
 .field-error{
-    font-size: 16px;
+    font-size: calc(0.6vw + 0.8vh);
     color: red;
 }
 .post-message{
     height: calc(0.8vw + 1.1vh);
 }
 textarea{
-    height: 82px;
-    width: 680px;
-    border-radius: 10px;
-    border: 1px black solid;
+    height: calc(2.8vw + 4vh);
+    width: calc(23.6vw + 33.3vh);
+    border-radius: calc(0.3vw + 0.5vh);
+    border: calc(0.03vw + 0.05vh) black solid;
+    font-size: calc(0.5vw + 0.8vh);
 }
 .inputs-photo-emoji-form{
     display: flex;
-    margin-left: 452px;
-    gap: 10px;
+    margin-left: calc(15.7vw + 22.2vh);
+    gap: calc(0.3vw + 0.5vh);
 }
 
 .emojy-and-photo{
     display: flex;
-    gap: 13px;
+    gap: calc(0.5vw + 0.6vh);
 }
-
+.merge-image{
+    display: flex;
+}
 .hidden{
     visibility: hidden;
 }
@@ -567,73 +591,104 @@ textarea{
 }
 .button-upload-form{
     display: flex;
-    width: 130px;
-    height: 40px;
+    width: calc(4.5vw + 6.3vh);
+    height: calc(1.9vh + 1.3vw);
     background-color: rgba(84, 60, 82, 1);
     border-radius: 1234px;
     justify-content: center;
     align-items: center;    
-    gap: 8px;
+    border: calc(0.03vw + 0.05vh) black solid;
+    gap: calc(0.3vh + 0.2vw);
 }
-
+.button-upload-form:hover{
+    background-color: rgb(69, 49, 67);
+    cursor: pointer;
+}
+.planer-image{
+    width: calc(0.7vw + 1vh);
+    height: calc(0.7vw + 1vh);
+}
 .image-to-post-form{
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: calc(1.4vw + 2vh);
     z-index: 1;
+    border-radius: 1234px;
+}
+.image-icon-form{
+    width: calc(1.4vw + 2vh);    
+    height: calc(1.4vw + 2vh);
+}
+.image-emoji-form{
+    width: calc(1.4vw + 2vh);    
+    height: calc(1.4vw + 2vh);
+}
+#id_tags{
+    height: calc(1vw + 1.5vh);
+    border: calc(0.03vw + 0.05vh) black solid;
+}
+.image-planer{
+    width: calc(0.7vw + 1vh);    
+    height: calc(0.7vw + 1vh);
 }
 .image-icon-form-label{
     position: relative;
     z-index: 2;
     background-color: white;
-    width: 41px;
-    height: 41px;
+    width: calc(2.8vw + 1vh);
+    height: calc(1.4vw + 2vh);
 }
-
 .cross-img:hover{
     cursor: pointer;
 }
 .redact-wrapper{
-    position: relative;
+    position: fixed;
 }
-
+.field.tags{
+    height: calc(2.1vw + 3.8vh);
+}
+.field.url{
+    all: unset;
+}
 .redact-post{
-    width: 343px;
-    height: 140px;
+    width: calc(11.9vw + 16.8vh);
+    height: calc(4.8vw + 6.9vh);
     background-color: white;
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: calc(0.3vw + 0.5vh);
+    padding: calc(0.7vh + 0.5vw);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: calc(0.3vw + 0.5vh);
     align-items: flex-start;
-    position: fixed;
-    margin-left: 575px;
-    margin-top: 15.5px;
-    border: 1px rgba(129, 129, 141, 1) solid;
+    margin-left: calc(20vw + 28.2vh);
+    margin-top: calc(0.5vw + 0.8vh);
+    border: calc(0.03vw + 0.05vh) rgba(129, 129, 141, 1) solid;
 }
 .redacting-title{
     all: unset;
-    font-size: 16px;
+    font-size: calc(1.2vw + 1.6vh);
     font-weight: 500;
 
 }
 .redacting{
     display: flex;
-    gap: 10px;
+    gap: calc(0.4vh + 0.3vw);
 }
 .redacting:hover{
     color: rgba(129, 129, 141, 1);
     cursor: pointer;
 }
+.title-redact{
+    font-weight: 500;
+    font-size: calc(1.2vw + 1.6vh);
+}
 .line{
-    width:311px;
-    height: 1px;
+    width: calc(10.7vw + 15.2vh);
+    height: calc(0.03vw + 0.04vw);
     background-color: rgba(205, 206, 210, 1);
 }
 
 .dot-form{
-    width: 311px;
+    width: calc(10.7vw + 15.1vh);
     text-align: end;
 }
 .dots:hover{
@@ -651,10 +706,11 @@ textarea{
     background-color: rgba(0, 0, 0, 0.5);
     visibility: visible;
 }
+
 .input-form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: calc(0.3vw + 0.5vh);
 }
 a{
     text-decoration: none;
@@ -666,4 +722,256 @@ a{
 }
 .url-post:hover{
     text-decoration: underline;
+}
+
+.modal-edit-post{
+    z-index: 1;
+    width: calc(26.8vw + 37.9vh);
+    height: calc(20.4vw +  28.8vh);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: white;
+    border: calc(0.03vw + 0.05vh) black solid;
+    border-radius: calc(0.69vw + 0.97vh);
+    padding:calc(0.83vw + 1.17vh) calc(1.52vw + 2.14vh) calc(1.52vw + 2.14vh)   calc(1.52vw + 2.14vh);
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(0.83vw + 1.17vh);
+    padding-bottom: calc(0.5vw + 0.7vh);
+    gap: calc(0.5vw + 0.7vh);
+}
+
+.center-edit{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dop-form-edit{
+    width: calc(26.8vw + 37.8vh);
+    height: calc(28.7vh + 20.3vw);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: white;
+    border: calc(0.03vw + 0.05vh) black solid;
+    border-radius: calc(0.7vw + 1vh);
+    padding-top: calc(1.1vh + 0.8vw);
+    padding-right: calc(2.1vh + 1.5vw);
+    padding-bottom: calc(2.1vh + 1.5vw);
+    padding-left: calc(2.1vh + 1.5vw);
+}
+
+.redacting-title{
+    font-size: calc(0.5vw + 0.8vh);  
+    font-weight: 500;
+}
+.image-redact{
+    width: calc(0.7vw + 1vh);
+    height:  calc(0.7vw + 1vh);
+}
+.redact-post-fucntion{
+    padding: calc(0.8vw + 1.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh);
+}
+.full-screen-redact{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#image-preview-container{
+    display: flex;
+    max-width: calc(23.8vw + 33.6vh);
+    flex-wrap: wrap ;
+    gap: calc(0.5vw + 0.8vh);
+    max-height: calc(8vw + 11vh);
+    overflow-y: auto;
+}
+.post-images-form{
+    width: calc(7.5vw + 10.6vh);
+    height: calc(8vw + 11vh);
+    border-radius: calc(0.5vw + 0.7vh);
+}
+.tag-container{
+    border: 0px white;
+    display: flex;
+    width: calc(23.8vw + 33.6vh);
+    flex-wrap: wrap;
+    gap: calc(0.3vw + 0.5vh);
+    
+}
+.tag-object{
+    width: min-content;
+    padding: calc(0.2vw + 0.3vh);
+    background-color: rgba(233, 229, 238, 1);
+    border: 0px black solid;
+    border-radius: calc(0.2vw + 0.3vh);
+    gap: calc(0.3vw + 0.5vh);
+    height:calc(0.9vw + 1.3vh);
+    color: rgba(84, 60, 82, 1);
+    font-size: calc(0.4vw + 0.6vh);
+    font-family: "GT Walsheim Pro";
+    background: #f0f0f0;
+    cursor: pointer;
+}
+option:hover{
+    background-color:#d3cbdd;
+    cursor: pointer;
+}
+.image-hashtag{
+    width: calc(0.7vw + 0.9vh);
+    height: calc(0.7vw + 0.9vh);
+}
+
+.button-hashtag{
+    all: unset;
+    width: calc(0.7vw+1vh);
+    height: calc(0.77vw+1vh);
+}
+
+.tag-object input {
+    display: none;
+}
+.tag-object:hover{
+    background-color: rgb(194, 192, 196);
+    color:rgb(101, 84, 100);
+}
+
+.hidden {
+    display: none;
+}
+
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.entrance{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: white;
+    border-radius: calc(0.7vw + 1vh);
+    padding-top: calc(1.8vh + 0.9vw);
+    padding-right: calc(2.1vh + 1.5vw);
+    padding-bottom: calc(1.5vh + 1vw);
+    padding-left: calc(2.1vh + 1.5vw);
+    width: calc(17vw + 24vh);
+    height: calc(16vw + 20vh); 
+   
+}
+
+.text{
+    font-size: calc(1.2vw + 1.6vh);
+    color: #070A1C;
+    font-family: "GT Walsheim Pro";
+    font-weight: 700;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.information{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #070A1C;
+    font-family: "GT Walsheim Pro";
+    gap: calc(0.6vw + 0.8vh);
+    padding-top: calc(1.1vh + 0.8vw);
+}
+
+.names{
+    font-size: calc(0.7vw + 0.8vh);
+    font-weight: 400;
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+    
+}
+.surname{
+    font-size: calc(0.7vw + 0.8vh);
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+   
+}
+.name-user{
+    font-size: calc(0.7vw + 0.8vh);
+    gap: calc(0.2vw + 0.3vh);
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.2vw + 0.3vh);
+}
+
+
+.options {
+    font-size: calc(0.4vw + 0.6vh);
+    margin: calc(0.17vw + 0.24vh);
+    color: #333;
+}
+
+.select-text {
+    color: #333;
+}
+
+.suggestion {
+    color: #3aa85f; 
+ 
+}
+
+.input-name{
+    font-size: calc(0.6vw + 0.8vh);
+    width: calc(15vw + 18vh);
+    border: calc(0.03vw + 0.04vh) #CDCEC2 solid;
+    padding-left: calc(0.1vh + 0.6vw);
+}
+
+
+
+.button-options{
+    width: calc(4.5vw + 6.5vh);
+    height: calc(1.9vh + 1.5vw);
+    background-color: rgba(84, 60, 82, 1);
+    border-radius: 1234px; 
+    color: white;
+    font-family: "GT Walsheim Pro";
+    font-size: calc(0.6vw + 0.8vh);
+   
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;  
+    padding-top: calc(1.1vh + 0.8vw);
+}
+button{
+    border: calc(0.03vw + 0.05vh) black solid;
 }

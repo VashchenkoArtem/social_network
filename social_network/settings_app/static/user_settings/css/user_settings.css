@@ -38,7 +38,6 @@ body{
 }
 
 a.link.one{
-    width: calc(5.4vw + 7.8vh);
     font-weight: 700;
     border-bottom: 0.3vh #070A1C solid
 }

@@ -4,10 +4,7 @@
     justify-content: center;
     align-items: center;
     gap: calc(1.2vw + 1.7vh);
-    /* width: calc(16.9vw + 23.9vh); */
-    /* width: calc(15.1vw + 21.4vh);
-    height: calc(22.4vw + 31.8vh); */
-
+    width: calc(15.1vw + 21.4vh);
     background-color: white;
     border-radius: calc(0.6vw + 0.9vh);
     padding: calc(1.1vw + 1.7vh);
@@ -32,7 +29,6 @@
 }
 
 .button-login{
-    width: calc(13.8vw + 19.6vh);
     height: calc(1.8vw + 2.5vh);
 }
 
@@ -60,16 +56,41 @@
 .inputs{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: calc(0.5vw + 0.7vh);
 }
 
-.input{
+input{
     display: flex;
     flex-direction: column;
-    /* gap: calc(0.2vw + 0.2vh); */
+    width: calc(9.5vw + 19.6vh);
+    height: calc(1.4vw + 2vh);
+    border-radius: calc(0.3vw + 0.4vh);
+    color: rgba(129, 129, 141, 1);
+    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.8vh);
+    font-size: calc(0.5vw + 0.8vh);
+}
+input:focus{
+    border-radius: calc(0.3vw + 0.4vh); 
+}
+.field-container{
+    display: flex;
+}
+.eye-img{
+    width: calc(0.7vw + 1vh);
+    height: calc(0.7vw + 1vh);
+    position: absolute;
+    left: calc(12vw + 17.5vh);
+    margin-top: calc(0.4vw + 0.5vh);
+}
+.eye-img:hover{
+    cursor: pointer;
+}
+input::placeholder{
+    color: rgba(129, 129, 141, 1);
 }
 button{
-    width: calc(10.7vw + 15.2vh);
+    width: calc(9.5vw + 19.6vh);
     height: calc(1.8vw + 2.5vh);
     border-radius: 1234px;
     border: none;
@@ -106,10 +127,6 @@ button:hover{
     border-bottom: 0.3vh #070A1C solid
 }
 
-input{
-    height: calc(1.4vw + 2vh);
-    border-radius: calc(0.3vw + 0.4vh);
-}
 
 a{
     all: unset;

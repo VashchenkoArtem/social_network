@@ -7,21 +7,25 @@ from .models import SpecialCode
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length = 256,label = "Електронна пошта", widget = forms.EmailInput(attrs = {
-                                                                        "placeholder": "Електронна пошта"
+                                                                        "placeholder": "you@example.com"
                                                                                 }))
     password1 = forms.CharField(max_length= 12,label = "Пароль", widget = forms.PasswordInput(attrs = {
-                                                                        "placeholder": "Пароль"
+                                                                        "placeholder": "Введи пароль"
                                                                                 }))
     password2 = forms.CharField(max_length= 12,label = "Підтвердити", widget = forms.PasswordInput(attrs = {
-                                                                        "placeholder": "Підтвердження пароля"
+                                                                        "placeholder": "Повтори пароль"
                                                                                 }))
     class Meta:
         model = User
         fields = ["email"] 
 
 class AuthorithationForm(forms.Form):
-    email = forms.EmailField(max_length= 256,label = "Пошта")
-    password = forms.CharField(widget = forms.PasswordInput)
+    email = forms.EmailField(max_length= 256,label = "Пошта", widget=forms.EmailInput(attrs ={
+        "placeholder": "you@example.com"
+    }))
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {
+        "placeholder": "Введи пароль"
+    }), label = "Пароль")
 
 
 

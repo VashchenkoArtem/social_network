@@ -19,15 +19,15 @@
                                 <img src="{% static 'images/icons/house.png'%}" alt="" class="image-header">
                                 <a href = "{% url 'main' %}">Головна</a>
                             </div>
-                            <div class = "url">
+                            <div class = "url posts-url">
                                 <img src="{% static 'images/icons/post.png' %}" alt="" class="image-header">
                                 <a href = "{% url 'my_pubs' %}">Мої публікації</a>
                             </div>
-                            <div class = "url">
+                            <div class = "url friends">
                                 <img src="{% static 'images/friends.png' %}" alt="" class="image-header friend">
-                                <a>Друзі</a>
+                                <a href = "{% url 'main_friends'%}" >Друзі</a>
                             </div>
-                            <div class = "url">
+                            <div class = "url chats">
                                 <img src="{% static 'images/icons/chats.png' %}" alt="" class="image-header">
                                 <a>Чати</a>
                             </div>

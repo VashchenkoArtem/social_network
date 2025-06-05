@@ -972,3 +972,6 @@ option:hover{
     align-items: end;  
     padding-top: calc(1.1vh + 0.8vw);
 }
+button{
+    border: calc(0.03vw + 0.05vh) black solid;
+}

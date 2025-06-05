@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_header_main.html' %}
 {% load static %}
 
 {% block title %}
@@ -7,40 +7,6 @@
 
 {% block link %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
-
-{% block hat %}
-    <div class = "urls-frame">
-        <div class = "urls">
-            <div class = "main url">
-                <img src="{% static 'images/icons/house.png'%}" alt="">
-                <a href = "{% url 'main' %}">Головна</a>
-            </div>
-            <div class = "url">
-                <img src="{% static 'images/icons/post.png' %}" alt="">
-                <a href = "{% url 'my_pubs' %}">Мої публікації</a>
-            </div>
-            <div class = "url">
-                <img src="{% static 'images/icons/friends.png' %}" alt="">
-                <a>Друзі</a>
-            </div>
-            <div class = "url">
-                <img src="{% static 'images/icons/chats.png' %}" alt="">
-                <a>Чати</a>
-            </div>
-            <div class = "url">
-                <img src="{% static 'images/icons/settings.png' %}" alt="">
-                <a href="{% url 'user_settings' %}">Налаштування</a>
-            </div>
-        </div>
-        <form action="{% url 'logout' %}" method = "post">
-            {% csrf_token%}
-            <button class = "button-exit">
-                <img class = "image-exit"src="{% static 'images/icons/exit.png'%}" alt="">
-                <h1 type="submit" class = "exit">Вихід</h1>
-            </button>
-        </form>
-    </div>
 {% endblock %}
 
 {% block content %}
@@ -52,7 +18,7 @@
                     <img class = "my-avatar" src="{% static 'images/icons/account.png'%}" alt="">
                 </div>
                 <div class = "nick-and-tag">
-                    <h2 class = "name">{{request.user.username}}</h2>
+                    <h2 class = "name">{{request.user.first_name}} {{request.user.last_name}}</h2>
                     <h3 class = "tag">@{{request.user.username}}</h3>
                 </div>
                 <div class = "subscribers" >
@@ -435,7 +401,7 @@
         </div>    
     </div>
 
-    {% if request.user.first_name == None %}
+    {% if request.user.first_name == "" %}
         <div class="form-overlay" >
             <form  method = "post" action="{% url 'update_user' %}">
                 {% csrf_token %}

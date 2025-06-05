@@ -22,13 +22,15 @@ from django.conf.urls.static import static
 from publications.views import MyPublicationsView
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/", include("registration.urls")),
     path("", MainView.as_view(), name = "main"),
     path("post/", include("main.urls")),
     path("my_publications/", MyPublicationsView.as_view(), name = "my_pubs"),
-    path("settings/", include('settings_app.urls'))
+    path("settings/", include('settings_app.urls')),
+    path("friends/", include('friends.urls'))
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
