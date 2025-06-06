@@ -1,0 +1,231 @@
+{% extends 'base_header_main.html' %}
+{% load static %}
+
+{% block title %}
+    Чати
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/all_chats/style.css'%}">
+{% endblock %}
+{% block content %}
+    <div class = "body">
+        <div class = "all-contacts">
+            <button class = "add-chat">
+                <img src="{% static 'images/plus.png' %}" class = "icon-image" alt="">
+                <span class = "button-title" >Створити груповий чат</span>        
+            </button>
+            <div class = "contacts">
+                <div class = "title-contacts">
+                    <img src="{% static 'images/contact.png' %}" class = "icon-image" alt="">
+                    <span class = "contact-span">Контакти</span>
+                </div>
+                <div class = "field-container">
+                    <img src="{% static 'images/seacrh.png' %}" class = "search-image icon-image" alt="">
+                    <input type="text" class = "seacrh-input" placeholder="Пошук">
+                </div>
+                <div class = "people-contacts">
+                    <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+                                        <div class = "contact">
+                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
+                        <span class = "people-name">People Name</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class = "people-chat">
+            <div class = "new-chat">
+                <span class = "title-chat">Почніть нове спілкування</span>
+                <span class = "pretitle-chat">Оберіть контакт зі списку ліворуч<br>або створіть групу, щоб почати спілкування</span>
+            </div>
+        </div>
+        <div class = "frames">
+            <div class = "frame message">
+                <div class = "title-frame">
+                    <div class = "logo-frame">
+                        <div class = "icon">
+                            <img class = "icon-image" src="{% static 'images/icons/chats.png'%}" alt="">
+                        </div>
+                        <h3 class = "description-block">Повідомлення</h3>
+                    </div>
+                    <div class = "button-frame">
+                        <h3>Дивитись всі</h3>
+                    </div>  
+                </div>
+                <div class = "body-frame">
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "frame message">
+                <div class = "title-frame">
+                    <div class = "logo-frame">
+                        <div class = "icon">
+                            <img class = "icon-image" src="{% static 'images/icons/chats.png'%}" alt="">
+                        </div>
+                        <h3 class = "description-block">Групові чати</h3>
+                    </div>
+                    <div class = "button-frame">
+                        <h3>Дивитись всі</h3>
+                    </div>  
+                </div>
+                <div class = "body-frame">
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "one-people">
+                        <div class = "people-information">
+                            <div class = icon-people>
+                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                            </div>
+                            <div class = "people-name-and-message">
+                                <div class = "people-name-and-time">
+                                    <h3 class = "friend-name">Mona Lisa</h3>
+                                    <h3 class = "time">09:41</h3>
+                                </div>
+                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

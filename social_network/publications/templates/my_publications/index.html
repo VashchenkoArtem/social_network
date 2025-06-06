@@ -174,6 +174,7 @@
             </div>
 
         </div>  
+        
         <div class = "body-page">
             <div class = "chat-input">
                 <form method = "post" >
@@ -201,6 +202,7 @@
                 </form>
             </div>
             <div class = "posts-wrapper">
+                <div class = "full-screen"></div>
                 <div class = "posts">
                     {% for post in posts %}
                         <div class = "redact-wrapper hidden">
@@ -211,7 +213,7 @@
                                 <div class = "redacting redacting-button">
                                     <img class = "image-redact" src="{% static 'images/icons/redact.png'%}" alt="">
                                     <form action="">
-                                        <a class = "redacting-title">Редагувати допис</a>
+                                        <a class = "redacting-title" id = "{{post.pk}}">Редагувати допис</a>
                                     </form>
                                 </div>      
                                 <div class = "line"></div>  
@@ -224,6 +226,67 @@
                                     </form>
                                 </div>      
                             </div>
+                        </div>
+                        <div class="hidden redact-post-function">
+                            <div class="form">
+                                <div class="cross-img">
+                                    <img class="cross-redact" src="{% static 'images/icons/cross.png'%}" alt="">
+                                </div>
+
+                                <h1 class="title-form">Створення публікації</h1>
+                                <form method="post" class = "input-form"enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    {% for field in form %}
+                                        {% if field.name == 'images' %}
+                                            <div id="image-preview-container">
+
+                                            </div>
+                                            <div class="label-tag">
+                                                {{ field.label_tag }}
+                                                <div class="inputs-photo-emoji-form">
+                                                    <div class="emojy-and-photo">
+                                                        {{ field }}
+                                                        <div class = "merge-image">
+                                                            <label for="image-to-post-form" class = "image-icon-form-label">
+                                                                <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                                                
+                                                            </label>
+
+                                                            <img class = "image-emoji-form" src="{% static 'images/icons/emoji.png' %}" alt="">
+                                                        </div>
+                                                        <button class="button-upload-form" type="submit">
+                                                            <h4 class="upload-title">Публікація</h4>
+                                                            <img class = "image-planer" src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field-error">{{ field.errors }}</div>
+                                        {% elif field.name == "tags" %}
+                                            <div class = "all_tags">    
+                                                <div class = "tag-container">
+                                                    {% for tag in tags %}
+                                                    <label class="tag-object" data-id="{{ tag.id }}">
+                                                        {{ tag.tag_name}}
+                                                        <input type="checkbox" name="tags" value="{{ tag.id }}">
+                                                    </label>
+                                                    {% endfor %}
+                                                    <button class = "button-hashtag">
+                                                        <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="inputs-form">
+                                                <div class="label-tag">{{ field.label_tag }}</div>
+                                                <div class="field">{{ field }}</div>
+                                                <div class="field-error">{{ field.errors }}</div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </form>
+                            </div>    
                         </div>
                         <div class = "social-media-post">
                             <div class = "people-information-post">
@@ -290,7 +353,7 @@
             </div>
         </div> 
     </div>
-    <div class = "full-screen"></div>
+    
     <div class="hidden frame-form">
         <div class="form">
             <div class="cross-img">
@@ -339,5 +402,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src = "{% static 'js/script.js' %}"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'js/my_publications/script.js' %}"></script>
 {% endblock %}

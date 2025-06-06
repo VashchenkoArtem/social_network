@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'main',
     'publications',
     'settings_app',
-    'friends'
+    'friends',
+    'chats'
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,8 @@ STATICFILES_DIRS = [BASE_DIR / "static",
                     BASE_DIR / "main/static",
                     BASE_DIR / "registration/static",
                     BASE_DIR / "publications/static",
-                    BASE_DIR / "friends/static"]
+                    BASE_DIR / "friends/static",
+                    BASE_DIR / "chats/static"]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

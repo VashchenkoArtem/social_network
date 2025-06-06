@@ -26,7 +26,7 @@
                         Редагувати інформацію
                     </button>
                 </div>
-
+                
                 <div class="main-profile">
                     <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img">
                     <p class="user-text">{{request.user.first_name}} {{request.user.last_name}}</p>
@@ -34,57 +34,63 @@
                 </div> 
                 
             </div>
+            <form action="{% url 'check_info' request.user.pk %}" method = "post">
+                <div class = "screen"></div>
+                {% csrf_token %}
+                <div class="personal-information-card">
+                    
+                    <div class="header-card">
+                        <p>Особиста інформація</p>
+                        <button class="edit-info-button edit-2" type="button">
+                            <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                            Редагувати інформацію
+                        </button>
+                        <button class="save-info-button hidden" type = "submit">
+                            <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                            Зберегти
+                        </button>
+                    </div>
+                    <div class="edit-info-main">
+                        
+                        <div class="little-div-edit">
+                            <p class="edit-text">Ім'я</p>
+                            <div class="input-div-edit">
+                                <input type="text" class="input-edit" value="{{request.user.first_name}}" name = "first_name" id = "0">
+                                <img src="{% static 'user_settings/images/eye.png' %}" alt="" id = "0" class="eye-img all">
+                            </div>
+                        </div>
+                        <div class="little-div-edit">
+                            <p class="edit-text">Прізвище</p>
+                            <div class="input-div-edit">
+                                <input type="text" class="input-edit" value="{{request.user.last_name}}" name = "last_name" id = "1">
+                                <img src="{% static 'user_settings/images/eye.png' %}" alt="" id = "1" class="eye-img all">
+                            </div>
+                        </div>
 
-            <div class="personal-information-card">
-                <div class="header-card">
-                    <p>Особиста інформація</p>
-                    <button class="edit-info-button">
-                        <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
-                        Редагувати інформацію
-                    </button>
+                        <div class="little-div-edit">
+                            <p class="edit-text">Дата народження</p>
+                            <div class="input-div-edit">
+                                <input type="text" class="input-edit" placeholder="add your date" name = "birthday" id = "2">
+                                <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" id = "2" class="eye-img all">
+                            </div>
+                        </div>
+                        <div class="little-div-edit">
+                            <p class="edit-text">Електронна адреса</p>
+                            <div class="input-div-edit">
+                                <input type="text" class="input-edit" value="{{request.user.email}}" name = "email" id = "3">
+                                <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" id = "3" class="eye-img all">
+                            </div>
+                        </div>
+                        <div class="little-div-edit">
+                            <p class="edit-text">Пароль</p>
+                            <div class="input-div-edit-password">
+                                <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
+                                <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="edit-info-main">
-                    <div class="little-div-edit">
-                        <p class="edit-text">Ім'я</p>
-                        <div class="input-div-edit">
-                            <input type="text" class="input-edit" value="{{request.user.first_name}}">
-                            <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
-                        </div>
-                    </div>
-                    <div class="little-div-edit">
-                        <p class="edit-text">Прізвище</p>
-                        <div class="input-div-edit">
-                            <input type="text" class="input-edit" value="{{request.user.last_name}}">
-                            <img src="{% static 'user_settings/images/eye.png' %}" alt="" class="eye-img all">
-                        </div>
-                    </div>
-
-                    <div class="little-div-edit">
-                        <p class="edit-text">Дата народження</p>
-                        <div class="input-div-edit">
-                            <input type="text" class="input-edit" placeholder="add your date">
-                            <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
-                        </div>
-                    </div>
-                    <div class="little-div-edit">
-                        <p class="edit-text">Електронна адреса</p>
-                        <div class="input-div-edit">
-                            <input type="text" class="input-edit" value="{{request.user.email}}">
-                            <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" class="eye-img all">
-                        </div>
-                    </div>
-                    <div class="little-div-edit">
-                        <p class="edit-text">Пароль</p>
-                        <div class="input-div-edit-password">
-                            <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕">
-                            <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" class="eye-img password">
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
+            </form>
 
             <div class="signature-option-card">
                 <div class="header-card">
@@ -120,4 +126,6 @@
     </div>
     
 {% endblock %}
-
+{% block script %}
+    <script src = "{% static 'user_settings/js/scripts.js'%}"></script>
+{% endblock %}

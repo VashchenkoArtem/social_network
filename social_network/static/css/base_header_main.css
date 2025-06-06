@@ -77,6 +77,8 @@ body{
     display: flex;
     padding: calc(0.1vw + 0.2vw) calc(0.3vw + 0.4vh);
     gap: calc(0.3vw + 0.4vh);
+    height: calc(1vw + 1.4vh);
+    align-items: center;
 }
 
 .image-header{
