@@ -1,0 +1,58 @@
+{% extends "base_header_main.html" %}
+{% load static %}
+
+{% block title %}
+    Друзі
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'friends/css/friends.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="center">
+        <div class="settings-links">
+            <a href="{% url 'main_friends' %}" class="link tw">Головна</a>
+            <a class="link two">Запити</a>   
+            <a class = "link two">Рекомендації</a>
+            <a class = "link one-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
+        </div>
+        <div class = "all-frames">
+            <div class = "request-card">
+                <div class = "title-card">
+                    <h1 class = "title-h1 h1">Всі друзі</h1>
+                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                </div>
+                <div class = "all-cards request">
+                    {% for friend in all_friends %}
+                    <div class = "card">
+                        
+                        <div class = "profile-card">
+                            <img class = "avatar" src="{{ friend.profile_image.url }}" alt="">
+                            <h1>{{friend.user.profile_image.url}}</h1>
+                        </div>
+                        
+                            <div class = "card-info">
+                                <h1 class = "name">{{ friend.user.first_name }} {{ friend.user.last_name }}</h1>
+                                <h1 class = "tag-name">@{{ friend.user.username }}</h1>
+                            </div>
+                        
+                    
+                        <div class = "card-buttons">
+                            <button class = "button button-confirm">
+                                Підтвердити
+                            </button>
+                            <button class = "button button-delete">
+                                Видалити
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+

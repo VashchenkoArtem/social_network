@@ -6,6 +6,7 @@ from .forms import VerificationForm, AuthorithationForm
 from django.core.mail import send_mail
 import random
 from django.contrib.auth.models import User
+from settings_app.models import ProfileModel
 from .models import SpecialCode
 from django.contrib.auth import authenticate, login
 
@@ -20,6 +21,10 @@ class RegistrationView(CreateView):
         response.set_cookie('email', form.cleaned_data['email'], max_age=3600)
         special_code = random.randint(99999, 999999)
         user_id = User.objects.get(email = form.cleaned_data['email']).id
+        user = form.save()
+        user.username = f"user-{user.pk}"
+        user.save()
+        ProfileModel.objects.create(user = user)
         SpecialCode.objects.create(verification_code = special_code, user_id = user_id)
         send_mail(
             subject = "Код для підтвердження",

@@ -1,3 +1,5 @@
+from django import setup
+
 from django.apps import AppConfig
 
 

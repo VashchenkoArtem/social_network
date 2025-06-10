@@ -37,9 +37,9 @@ for (let count = 0; count < dotsFormList.length; count++) {
     });
 }
 redactButtons.forEach(element => {
-    let formRedact = formsRedact[element.id ];
-    let wrapperObject = wrapperRedact[element.id];
-
+    let formRedact = formsRedact[element.id - 1];
+    let wrapperObject = wrapperRedact[element.id - 1];
+    console.log(wrapperObject)
     element.addEventListener("click", () => {
         formRedact.classList.toggle("hidden");
         bodyObject.classList.toggle("blur");

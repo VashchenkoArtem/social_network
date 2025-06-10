@@ -16,7 +16,7 @@
             <a href="{% url 'main_friends' %}" class="link one">Головна</a>
             <a class="link two">Запити</a>   
             <a class = "link two">Рекомендації</a>
-            <a class = "link two-friend">Всі друзі</a>
+            <a class = "link one-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
         </div>
         <div class = "all-frames">
             <div class = "request-card">
@@ -24,16 +24,18 @@
                     <h1 class = "title-h1 h1">Запити</h1>
                     <h1 class = "title-watch h1">Дивитись усі</h1>
                 </div>
+                    
+                
                 <div class = "all-cards request">
                     <div class = "card">
                         <div class = "profile-card">
                             <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
                         </div>
                         <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
+                            <h1 class = "name">Name Name</h1>
+                            <h1 class = "tag-name">@thelili</h1>
                         </div>
-                    
+              
                         <div class = "card-buttons">
                             <button class = "button button-confirm">
                                 Підтвердити
@@ -51,7 +53,6 @@
                             <h1 class = "name">Yehor Aung</h1>
                             <h1 class = "tag-name">@YehorAung</h1>
                         </div>
-                    
                         <div class = "card-buttons">
                             <button class = "button button-confirm">
                                 Підтвердити
@@ -133,8 +134,8 @@
                         </div>
                     
                         <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
+                            <button class = "button button-confirm recomended">
+                                Додати
                             </button>
                             <button class = "button button-delete">
                                 Видалити
@@ -149,24 +150,30 @@
                     <h1 class = "title-watch h1">Дивитись усі</h1>
                 </div>
                 <div class = "all-cards request">
+                    {% for friend in all_friends %}
                     <div class = "card">
+                        
                         <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                            <img class = "avatar" src="{{ friend.profile_image.url }}" alt="">
+                            <h1>{{friend.user.profile_image.url}}</h1>
                         </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
+                        
+                            <div class = "card-info">
+                                <h1 class = "name">{{ friend.user.first_name }} {{ friend.user.last_name }}</h1>
+                                <h1 class = "tag-name">@{{ friend.user.username }}</h1>
+                            </div>
+                        
                     
                         <div class = "card-buttons">
                             <button class = "button button-confirm">
-                                Підтвердити
+                                Повідомлення
                             </button>
                             <button class = "button button-delete">
                                 Видалити
                             </button>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
