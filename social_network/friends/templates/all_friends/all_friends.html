@@ -13,9 +13,9 @@
 {% block content %}
     <div class="center">
         <div class="settings-links">
-            <a href="{% url 'main_friends' %}" class="link tw">Головна</a>
-            <a class="link two">Запити</a>   
-            <a class = "link two">Рекомендації</a>
+            <a href="{% url 'main_friends' %}" class="link two">Головна</a>
+            <a class="link two" href = "{% url 'all_requests' %}">Запити</a>   
+            <a class = "link two" href = "{% url 'recommended' %}">Рекомендації</a>
             <a class = "link one-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
         </div>
         <div class = "all-frames">

@@ -1,0 +1,54 @@
+{% extends "base_header_main.html" %}
+{% load static %}
+
+{% block title %}
+    Друзі
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'friends/css/friends.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="center">
+        <div class="settings-links">
+            <a href="{% url 'main_friends' %}" class="link two">Головна</a>
+            <a class="link one" href = "{% url 'all_requests' %}">Запити</a> 
+            <a class = "link two" href = "{% url 'recommended' %}">Рекомендації</a>
+            <a class = "link two-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
+        </div>
+        <div class = "all-frames">
+            <div class = "request-card">
+                <div class = "title-card">
+                    <h1 class = "title-h1 h1">Запити</h1>
+                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                </div>
+                    
+                
+                <div class = "all-cards request">
+                    {% for request in all_requests %}
+                        
+                    
+                        <div class = "card">
+                            <div class = "profile-card">
+                                <img class = "avatar" src="{{request.sent_user.profile.profile_image.url}}" alt="">
+                            </div>
+                            <div class = "card-info">
+                                <h1 class = "name">{{request.sent_user.first_name}} {{request.sent_user.last_name}}</h1>
+                                <h1 class = "tag-name">@{{request.sent_user.username}}</h1>
+                            </div>
+                
+                            <div class = "card-buttons">
+                                <button class = "button button-confirm">
+                                    Підтвердити
+                                </button>
+                                <button class = "button button-delete">
+                                    Видалити
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+{% endblock %}

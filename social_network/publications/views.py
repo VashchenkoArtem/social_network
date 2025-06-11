@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView
 from main.forms import PostForm
-from main.models import User_Post
+from main.models import User_Post, Tag
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.core import serializers
@@ -10,7 +10,7 @@ from django.views.generic import TemplateView
 class MyPublicationsView(CreateView):
     template_name = "my_publications/index.html"
     form_class = PostForm
-    success_url = reverse_lazy("main")
+    success_url = reverse_lazy("my_pubs")
 
     def form_valid(self, form):
         if self.request.user.is_authenticated:
@@ -20,6 +20,7 @@ class MyPublicationsView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(MyPublicationsView, self).get_context_data(**kwargs)
         context["posts"] = User_Post.objects.all()
+        context["tags"] = Tag.objects.all()
             
         return context 
     

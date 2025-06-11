@@ -42,7 +42,10 @@ a.link.one{
     font-weight: 700;
     border-bottom: 0.3vh #070A1C solid
 }
-
+.two-requests{
+    font-weight: 700;
+    border-bottom: 0.3vh #070A1C solid
+}
 a.link.two{
     color: #81818D;
     font-weight: 500;
@@ -128,6 +131,7 @@ a.link.two{
 }
 .name{
     font-size: calc(0.8vw + 1.2vh);
+    height: calc(0.9vw + 1.3vh);
 }
 .tag-name{
     font-size: calc(0.5vw + 0.8vh);

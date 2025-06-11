@@ -14,9 +14,9 @@
     <div class="center">
         <div class="settings-links">
             <a href="{% url 'main_friends' %}" class="link one">Головна</a>
-            <a class="link two">Запити</a>   
-            <a class = "link two">Рекомендації</a>
-            <a class = "link one-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
+            <a class="link two" href = "{% url 'all_requests' %}">Запити</a> 
+            <a class = "link two" href = "{% url 'recommended' %}">Рекомендації</a>
+            <a class = "link two-friend" href = "{% url 'all_friends' %}">Всі друзі</a>
         </div>
         <div class = "all-frames">
             <div class = "request-card">
@@ -27,95 +27,28 @@
                     
                 
                 <div class = "all-cards request">
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
-                        </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Name Name</h1>
-                            <h1 class = "tag-name">@thelili</h1>
-                        </div>
-              
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
-                        </div>
-                    </div>
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
-                        </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
-                        </div>
-                    </div>
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
-                        </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
+                    {% for request in all_requests %}
+                        
                     
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
+                        <div class = "card">
+                            <div class = "profile-card">
+                                <img class = "avatar" src="{{request.sent_user.profile.profile_image.url}}" alt="">
+                            </div>
+                            <div class = "card-info">
+                                <h1 class = "name">{{request.sent_user.first_name}} {{request.sent_user.last_name}}</h1>
+                                <h1 class = "tag-name">@{{request.sent_user.username}}</h1>
+                            </div>
+                
+                            <div class = "card-buttons">
+                                <button class = "button button-confirm">
+                                    Підтвердити
+                                </button>
+                                <button class = "button button-delete">
+                                    Видалити
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
-                        </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
-                    
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
-                        </div>
-                    </div>
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
-                        </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
-                    
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class = "request-card">
@@ -124,24 +57,26 @@
                     <h1 class = "title-watch h1">Дивитись усі</h1>
                 </div>
                 <div class = "all-cards request">
-                    <div class = "card">
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{% static 'friends/images/account.png'%}" alt="">
+                    {% for recommended in all_recommended %}
+                        <div class = "card">
+                            <div class = "profile-card">
+                                <img class = "avatar" src="{{ recommended.profile_image.url }}" alt="">
+                            </div>
+                            <div class = "card-info">
+                                <h1 class = "name">{{recommended.user.first_name}} {{ recommended.user.last_name }}</h1>
+                                <h1 class = "tag-name">@{{ recommended.user.username }}</h1>
+                            </div>
+                        
+                            <div class = "card-buttons">
+                                <button class = "button button-confirm recomended">
+                                    Додати
+                                </button>
+                                <button class = "button button-delete">
+                                    Видалити
+                                </button>
+                            </div>
                         </div>
-                        <div class = "card-info">
-                            <h1 class = "name">Yehor Aung</h1>
-                            <h1 class = "tag-name">@YehorAung</h1>
-                        </div>
-                    
-                        <div class = "card-buttons">
-                            <button class = "button button-confirm recomended">
-                                Додати
-                            </button>
-                            <button class = "button button-delete">
-                                Видалити
-                            </button>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class = "request-card">
