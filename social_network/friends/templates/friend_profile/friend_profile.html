@@ -1,0 +1,134 @@
+{% extends 'base_header_main.html' %}
+{% load static %}
+
+{% block title %}
+    Сторінка друга
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'friends/css/friends.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class = "body">
+        <div class = "profile-frame">
+
+            <div class = "frame profile">
+                <div class = "avatar">
+                    <img class = "my-avatar" src="{{ friend.profile_image.url }}" alt="">
+                </div>
+
+                <div class = "nick-and-tag">
+                    <h2 class = "name">{{ friend.user.first_name }} {{friend.user.last_name}}</h2>
+                    <h3 class = "tag">@{{ friend }}</h3>
+                </div>
+
+                <div class = "subscribers" >
+                    <div class = "all-posts section">
+                        <h2 class = "number">566</h2>
+                        <h3 class = "info">Дописи</h3>  
+                    </div>
+                    <div class = "followers section">
+                        <h2 class = "number">12.1K</h2>
+                        <h3 class = "info">Читачі</h3>
+                    </div>
+                    <div class = "all-friends section">
+                        <h2 class = "number">222</h2>
+                        <h3 class = "info">Друзі</h3>
+                    </div>
+                </div>
+
+                <div class="confirm-delete-div">
+                    <button class="add-button butt">Підтвердити</button>
+                    <button class="del butt">Видалити</button>
+                </div>
+
+            </div>
+            <div class = "frame request">
+                <div class = "title-frame first">
+                    <div class = "logo-frame">
+                        <div class = "icon">
+                            <img class = "icon-people-request" src="{% static 'images/icons/albums.png'%}" alt="">
+                        </div>
+                        <h3 class = "description-block">Альбоми</h3>
+                    </div>
+                    <div class = "button-frame">
+                        <h3>Дивитись всі</h3>
+                    </div>
+                </div>  
+            </div>     
+        </div>
+        
+        <div class = "wrapper-body">
+            <div class="main-content">
+                <p class="text-no">Нема ще жодного посту</p>
+            </div>
+            <div class = "posts-wrapper">
+                    <div class = "posts">
+                        {% for post in all_posts %}
+                            <div class = "social-media-post">
+                                <div class = "people-information-post">
+                                    <div class = "avatar-label">
+                                        <div class = "people-logo-and-nick">
+                                            <div class = "logo-post">
+                                                <img class = "post-friend-avatar my-avatar" src="{{ friend.profile_image.url }}" alt="">
+                                            </div>
+                                            <div class = "nick-post">
+                                                <h2 class = "nick-friend">{{post.user}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class = "signature">
+                                                <img src="" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class = "dots dots-post">
+                                        <img class = "dot" src="" alt="">
+                                    </div>         
+                                    </div>
+                            
+                                <div class = "body-post">
+                                    <h2 class = "title-post">{{post.title}}</h2>
+                                    <h3 class = "description-post">{{post.text}}</h3>
+                                    {% if post.tags.all %}
+                                        <div class = "hashtags">
+                                            
+                                            {% for tag in post.tags.all %}
+                                                <h1 class = "hashtag">{{tag.tag_name}}</h1>
+                                            {% endfor %}
+                                        </div>
+
+                                    {% endif %}
+                                    <div class = "url-post">
+                                        <a href = "{{ post.url }}" class = "url-post" target="_blank">{{ post.url }} </a>
+                                    </div>
+                                    <div class="photos ">
+                                        {% for img in post.pictures_set.all %}
+                                            <img src="{{ img.image.url }}" class="image photos-{{ post.pictures_set.all|length }} number-{{forloop.counter}}"   >
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class = "reviews">
+                                        <div class = "review">
+                                            <div class = "icon-review">
+                                                <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
+                                            </div>
+                                            <h2 class = "likes">{{post.like_count}} Вподобайок</h2>
+                                        </div>
+                                        <div class = "review">
+                                            <div class = "icon-review">
+                                                <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
+                                            </div>
+                                            <h2 class = "likes">{{post.view_count}} Переглядів</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>    
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

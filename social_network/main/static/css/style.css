@@ -85,10 +85,12 @@ a{
 
 .frame{
     width: calc(12.2vw + 17.2vh);
+    height: fit-content;
     background-color: white;
     border: calc(0.03vw + 0.05vh) rgba(205, 206, 210, 1) solid;
     border-radius: calc(0.3vw + 0.5vh);
-    padding: calc(0.5vw + 0.8vh);
+    padding-top: calc(0.5vw + 0.7vh);
+    padding-bottom: calc(0.5vw + 0.7vh);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -974,4 +976,67 @@ option:hover{
 }
 button{
     border: calc(0.03vw + 0.05vh) black solid;
+}
+
+div.title-frame.first{
+    border-bottom: calc(0.03vw + 0.05vh) #CDCED2 solid;
+    padding-bottom: calc(0.5vw + 0.7vh);
+}
+
+.confirm-delete-div{
+    width: calc(12.1vw + 17.1vh);
+    height: calc(1.3vw + 1.9vh);
+    gap: calc(0.5vw + 0.7vh);
+    margin-top: calc(0.5vw + 0.7vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.add-button{
+    width: calc(3.8vw + 5.4vh);
+    height: calc(1.3vw + 1.9vh);
+    background-color: #543C52;
+    color: white;
+    border: none;
+}
+
+
+div.frame.profile{
+    justify-content: space-between;
+}
+
+.del{
+    background-color: white;
+    border: calc(0.03vw + 0.05vh) #543C52 solid;
+}
+
+.butt{
+    border-radius: 1234px;
+    padding: calc(0.3vw + 0.5vh) calc(0.5vw + 0.7vh) calc(0.3vw + 0.5vh) calc(0.5vw + 0.7vh);
+    gap: calc(0.2vw + 0.4vh);
+    font-size: calc(0.4vw + 0.6vh);
+}
+
+.del:hover{
+    background-color: #E9E5EE;
+}
+
+.add-button:hover{
+    background-color: #493447;
+}
+
+.main-content{
+    width: calc(32vw + 45.2vh);
+    height: fit-content;
+    min-height: calc(3.1vw + 4.4vh);
+    background-color: white;
+    border-radius: calc(0.3vw + 0.5vh);
+    padding: calc(0.5vw + 0.7vh);
+}
+
+.text-no{
+    font-size: calc(0.4vw + 0.6vh);
+    color: #CDCED2;
 }

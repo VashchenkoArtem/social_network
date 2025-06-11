@@ -40,12 +40,12 @@
                             </div>
                 
                             <div class = "card-buttons">
-                                <button class = "button button-confirm">
+                                <a class = "button button-confirm" href="{% url 'friend_profile' request.sent_user.pk %}">
                                     Підтвердити
-                                </button>
-                                <button class = "button button-delete">
+                                </a>
+                                <a class = "button button-delete" id = "{% url 'delete_request' request.sent_user.pk %}">
                                     Видалити
-                                </button>
+                                </a>
                             </div>
                         </div>
                     {% endfor %}
@@ -68,12 +68,12 @@
                             </div>
                         
                             <div class = "card-buttons">
-                                <button class = "button button-confirm recomended">
+                                <a class = "button button-confirm recomended">
                                     Додати
-                                </button>
-                                <button class = "button button-delete">
+                                </a>
+                                <a class = "button button-delete">
                                     Видалити
-                                </button>
+                                </a>
                             </div>
                         </div>
                     {% endfor %}
@@ -100,12 +100,12 @@
                         
                     
                         <div class = "card-buttons">
-                            <button class = "button button-confirm">
+                            <a class = "button button-confirm">
                                 Повідомлення
-                            </button>
-                            <button class = "button button-delete">
+                            </a>
+                            <a class = "button button-delete">
                                 Видалити
-                            </button>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
@@ -115,4 +115,7 @@
     </div>
     
 {% endblock %}
-
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'friends/js/script.js'%}"></script>
+{% endblock  %}
