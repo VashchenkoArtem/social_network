@@ -22,11 +22,11 @@
             <div class = "request-card">
                 <div class = "title-card">
                     <h1 class = "title-h1 h1">Всі друзі</h1>
-                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                    <a class = "title-watch h1" href = "{% url 'all_friends'%}">Дивитись усі</a>
                 </div>
                 <div class = "all-cards request">
                     {% for friend in all_friends %}
-                    <div class = "card">
+                    <div class = "card" id = "card-friend-{{friend.user.pk}}">
                         
                         <div class = "profile-card">
                             <img class = "avatar" src="{{ friend.profile_image.url }}" alt="">
@@ -40,12 +40,12 @@
                         
                     
                         <div class = "card-buttons">
-                            <button class = "button button-confirm">
-                                Підтвердити
-                            </button>
-                            <button class = "button button-delete">
+                            <a class = "button button-confirm">
+                                Повідомлення
+                            </a>
+                            <a class = "button button-delete-friend" id = "{% url 'delete_friend' friend.user.pk%}">
                                 Видалити
-                            </button>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
@@ -55,4 +55,7 @@
     </div>
     
 {% endblock %}
-
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'friends/js/script.js' %}"></script>
+{% endblock %}

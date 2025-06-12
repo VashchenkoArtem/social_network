@@ -3,6 +3,7 @@ from django.views.generic import View
 from .forms import PostForm
 from .models import User_Post, Pictures, Tag
 from .forms import PostForm, PostFormEdit
+from settings_app.models import ProfileModel
 from .models import User_Post
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
@@ -36,7 +37,8 @@ class MainView(CreateView):
         context = super(MainView, self).get_context_data(**kwargs)
         context["posts"] = User_Post.objects.all()
         context["tags"] = Tag.objects.all()
-            
+        context['people'] = ProfileModel.objects.get(user_id = self.request.user.pk)
+        context['all_peoples'] = ProfileModel.objects.all().exclude(user_id = self.request.user.pk)
         return context 
     
 class MyDeleteView(DeleteView):

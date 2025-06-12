@@ -38,12 +38,14 @@
                         <h3 class = "info">Друзі</h3>
                     </div>
                 </div>
-
+                {% if not current_request.is_friend %}
                 <div class="confirm-delete-div">
-                    <button class="add-button butt">Підтвердити</button>
-                    <button class="del butt">Видалити</button>
+                    <a class="add-button button" id = "{% url 'confirm_friend' friend.user.pk %}">Підтвердити</a>
+                    <a class = "button button-delete" id = "{% url 'delete_request' friend.user.pk %}" href = "{% url 'main_friends'%}">
+                        Видалити
+                    </a>
                 </div>
-
+                {% endif%}
             </div>
             <div class = "frame request">
                 <div class = "title-frame first">
@@ -61,9 +63,6 @@
         </div>
         
         <div class = "wrapper-body">
-            <div class="main-content">
-                <p class="text-no">Нема ще жодного посту</p>
-            </div>
             <div class = "posts-wrapper">
                     <div class = "posts">
                         {% for post in all_posts %}
@@ -125,10 +124,18 @@
                                     </div>
                                 </div>
                             </div>
+                        {% empty %}
+                            <div class = "empty-posts">
+                                <h1 class = "empty-h1">Користувач не зробив ще не одного поста...</h1>
+                            </div>
                         {% endfor %}
                     </div>    
             </div>
         </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'friends/js/script.js' %}"></script>
 {% endblock %}

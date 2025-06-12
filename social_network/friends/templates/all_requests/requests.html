@@ -22,33 +22,37 @@
             <div class = "request-card">
                 <div class = "title-card">
                     <h1 class = "title-h1 h1">Запити</h1>
-                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                    <a class = "title-watch h1" href = "{% url 'all_requests'%}">Дивитись усі</a>
                 </div>
                     
                 
                 <div class = "all-cards request">
                     {% for request in all_requests %}
-                        
+                        {% if not request.is_friend %}
+                            <div class = "card" id = "card-request-{{request.sent_user.pk}}">
+                                <div class = "profile-card">
+                                    <img class = "avatar" src="{{request.sent_user.profile.profile_image.url}}" alt="">
+                                </div>
+                                <div class = "card-info">
+                                    <h1 class = "name">{{request.sent_user.first_name}} {{request.sent_user.last_name}}</h1>
+                                    <h1 class = "tag-name">@{{request.sent_user.username}}</h1>
+                                </div>
                     
-                        <div class = "card">
-                            <div class = "profile-card">
-                                <img class = "avatar" src="{{request.sent_user.profile.profile_image.url}}" alt="">
+                                <div class = "card-buttons">
+                                    <a class = "button button-confirm" href="{% url 'friend_profile' request.sent_user.pk %}">
+                                        Підтвердити
+                                    </a>
+                                    <a class = "button button-delete" id = "{% url 'delete_request' request.sent_user.pk %}">
+                                        Видалити
+                                    </a>
+                                </div>
                             </div>
-                            <div class = "card-info">
-                                <h1 class = "name">{{request.sent_user.first_name}} {{request.sent_user.last_name}}</h1>
-                                <h1 class = "tag-name">@{{request.sent_user.username}}</h1>
-                            </div>
-                
-                            <div class = "card-buttons">
-                                <button class = "button button-confirm">
-                                    Підтвердити
-                                </button>
-                                <button class = "button button-delete">
-                                    Видалити
-                                </button>
-                            </div>
-                        </div>
+                        {% endif%}
                     {% endfor %}
                 </div>
             </div>
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'friends/js/script.js' %}"></script>
 {% endblock %}

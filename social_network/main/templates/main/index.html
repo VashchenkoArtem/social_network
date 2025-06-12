@@ -15,7 +15,7 @@
 
             <div class = "frame profile">
                 <div class = "avatar">
-                    <img class = "my-avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                    <img class = "my-avatar" src="{{ people.profile_image.url}}" alt="">
                 </div>
                 <div class = "nick-and-tag">
                     <h2 class = "name">{{request.user.first_name}} {{request.user.last_name}}</h2>
@@ -204,7 +204,8 @@
             <div class = "posts-wrapper">
                 <div class = "posts">
                     {% for post in posts %}
-                        
+                    {% for user in all_peoples %}
+                    {% if post.user_id == user.user_id %}
                         <div class = "redact-post-function hidden">
                             <div class="redact-form">
                                 <div class="cross-img">
@@ -278,7 +279,7 @@
                                 <div class = "avatar-label">
                                     <div class = "people-logo-and-nick">
                                         <div class = "logo-post">
-                                            <img class = "post-friend-avatar" src="{% static 'images/icons/avatar-post.png'%}" alt="">
+                                            <img class = "post-friend-avatar" src="{{ user.profile_image.url }}" alt="">
                                         </div>
                                         <div class = "nick-post">
                                             <h2 class = "nick-friend">{{post.user}}</h2>
@@ -331,6 +332,8 @@
                                 </div>
                             </div>
                         </div>
+                    {% endif %}
+                    {% endfor %}
                     {% endfor %}
                     
                 </div>
@@ -438,6 +441,6 @@
     {% endif %}
 {% endblock %}
 {% block script %}
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src = "{% static 'js/script.js' %}"></script>
 {% endblock %}

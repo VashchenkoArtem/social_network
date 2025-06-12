@@ -22,11 +22,11 @@
             <div class = "request-card">
                 <div class = "title-card">
                     <h1 class = "title-h1 h1">Рекомендації</h1>
-                    <h1 class = "title-watch h1">Дивитись усі</h1>
+                    <a class = "title-watch h1" href = "{% url 'recommended'%}">Дивитись усі</a>
                 </div>
                 <div class = "all-cards request">
                     {% for recommended in all_recommended %}
-                        <div class = "card">
+                        <div class = "card" id = "card-recommended-{{recommended.user.pk}}">
                             <div class = "profile-card">
                                 <img class = "avatar" src="{{ recommended.profile_image.url }}" alt="">
                             </div>
@@ -36,22 +36,23 @@
                             </div>
                         
                             <div class = "card-buttons">
-                                <form method="post">
-                                <button class = "button button-confirm recomended">
+                                <a class = "button button-confirm button-confirm-recomended" id = "{% url 'sent_request' recommended.user.pk %}">
                                     Додати
-                                </button>
-                                </form>
-                                <form method = "post">
-                                <button class = "button button-delete">
+                                </a>
+                                <a class = "button button-delete-recommended" id = "{% url 'delete_recommended' recommended.user.pk%}">
                                     Видалити
-                                </button>
-                                </form>
+                                </a>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
             </div>
+            </div>
         </div>
     </div>
     
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'friends/js/script.js' %}"></script>
 {% endblock %}

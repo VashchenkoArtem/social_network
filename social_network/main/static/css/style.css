@@ -367,6 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 .post-friend-avatar{
     width: calc(1.6vw + 2.6vh);
     height: calc(1.6vw + 2.6vh);
+    border-radius: 1234px;
 }
 
 .nick-friend{

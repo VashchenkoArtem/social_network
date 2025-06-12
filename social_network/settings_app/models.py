@@ -17,5 +17,13 @@ class ProfileModel(models.Model):
     profile_image = models.ImageField(upload_to= "images/profile_images/", blank = True)
     friends = models.ManyToManyField('self', related_name = "friends", symmetrical=True, blank = True)
     requests = models.ManyToManyField(RequestModel, related_name = "requests", blank = True)
+    def remove_friend(self, friend):
+        
+        if friend in self.friends.all():
+            self.friends.remove(friend)
+            friend.friends.remove(self)
     def __str__(self):
         return f'{self.user}'
+class DeclineRecommended(models.Model):
+    current_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='current_user')
+    rejected_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='rejected_user')
