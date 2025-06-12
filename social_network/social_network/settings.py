@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,14 @@ INSTALLED_APPS = [
     'friends',
     'chats'
 ]
+
+ASGI_APPLICATION = 'social_network.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default":{
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,8 +81,15 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'social_network.wsgi.application'
+# ASGI_APPLICATION = 'social_network.asgi.application'
+# CHANNEL_LAYERS = {
+#     "default":{
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
 
+# на 50 строке уже есть ^
+#                       |
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

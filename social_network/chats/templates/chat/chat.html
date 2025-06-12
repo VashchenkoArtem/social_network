@@ -1,0 +1,15 @@
+{% extends 'base_header_main.html' %}
+{% load static %}
+
+{% block content %}
+    <form method = "post" id = "form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "submit">Надіслати</button>
+    </form>
+    <div id = "messages"></div>
+{% endblock %}
+
+{% block script %}
+    <script src = "{% static 'js/chat.js'%}"></script>
+{% endblock %}
