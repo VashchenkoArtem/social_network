@@ -579,12 +579,12 @@ textarea{
 }
 .input-url{
     display: flex;
-
 }
 .inputs-photo-emoji-form{
     display: flex;
     margin-left: calc(15.7vw + 22.2vh);
     gap: calc(0.3vw + 0.5vh);
+    margin-top: calc(0.5vw + 0.1vh);
 }
 
 .emojy-and-photo{

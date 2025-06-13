@@ -13,7 +13,6 @@ class User_Post(models.Model):
     topic = models.CharField(max_length = 128)
     tags = models.ManyToManyField(Tag)
     text = models.TextField()
-    url = models.URLField(null = True, blank = False)
     # view_count = models.IntegerField(default = 0)
     views = models.ManyToManyField(User, related_name='view_count', null = True, blank = False)
     like_count = models.IntegerField(default = 0)
@@ -21,3 +20,10 @@ class User_Post(models.Model):
 class Pictures(models.Model):
     post = models.ForeignKey(User_Post, on_delete = models.CASCADE)
     image = models.ImageField(upload_to= "images/post_images/", null= True)
+
+class Url_Post(models.Model):
+    post = models.ForeignKey(User_Post, on_delete = models.CASCADE)
+    url = models.URLField()
+
+    def __str__(self):
+        return f"{self.url} - {self.post}"

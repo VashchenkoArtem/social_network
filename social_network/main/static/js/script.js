@@ -72,7 +72,13 @@ for (let count = 0; count < crossesRedact.length; count++) {
 }
 const input = document.querySelector("#image-to-post-form");
 const previewDiv = document.querySelector("#image-preview-container");
-if (input && previewDiv) {
+const customButton = document.querySelector("#custom-upload-button");
+
+if (input && previewDiv && customButton) {
+    customButton.addEventListener("click", function () {
+        input.click();
+    });
+
     input.addEventListener("change", function () {
         previewDiv.innerHTML = "";
         const files = Array.from(input.files);
@@ -82,10 +88,26 @@ if (input && previewDiv) {
             reader.onload = function (event) {
                 const img = document.createElement("img");
                 img.src = event.target.result;
-                img.classList.add("post-images-form")
+                img.classList.add("post-images-form");
                 previewDiv.appendChild(img);
             };
             reader.readAsDataURL(file);
         });
     });
-};
+}
+
+
+const addUrl = document.querySelector(".image-tag");
+
+addUrl.addEventListener("click", function(){
+    let cont = document.querySelector(".url-inputs");
+    let lastInput = cont.querySelector(".input-url:last-child");
+    let newInput = lastInput.cloneNode(true);
+
+    let inputField = newInput.querySelector('input');
+    if (inputField) {
+        inputField.value = "";
+    }
+
+    cont.appendChild(newInput);
+});

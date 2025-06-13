@@ -2,6 +2,8 @@ from django import forms
 from .models import User_Post, Tag
 from django.contrib.auth.models import User
 
+
+
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
@@ -18,18 +20,12 @@ class MultipleField(forms.ImageField):
             result = single_file_clean(data, initial)
         return result
 
-class PostForm(forms.ModelForm):
 
+class PostForm(forms.ModelForm):
     class Meta:
         model = User_Post
-        fields = ["title", "topic", "tags", "text", "url"]
+        fields = ["title", "topic", "tags", "text"]
 
-    images = MultipleField(required=False, label="", widget=MultipleFileInput(attrs={
-        "name": "images",
-        "id": "image-to-post-form",
-        "class": "image-to-post-form",
-        "multiple": True 
-    }))
     url = forms.URLField(
         required=False,
         label="Посилання",
@@ -69,12 +65,10 @@ class PostForm(forms.ModelForm):
 
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "id": "field-tags"
-        }),
+        widget=forms.CheckboxSelectMultiple(attrs={"id": "field-tags"}),
         required=False
     )
-    
+
 
 class PostFormEdit(forms.ModelForm):
     class Meta(PostForm.Meta):

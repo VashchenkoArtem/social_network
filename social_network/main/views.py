@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import View
 from .forms import PostForm
-from .models import User_Post, Pictures, Tag
+from .models import User_Post, Pictures, Tag, Url_Post
 from .forms import PostForm, PostFormEdit
 from settings_app.models import ProfileModel, RequestModel
 from .models import User_Post
@@ -11,7 +11,6 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserUpdateForm
 
 
@@ -20,14 +19,12 @@ class MainView(CreateView):
     form_class = PostForm
     success_url = "/"
     def form_valid(self, form):
-
-        files = self.request.FILES.getlist('images')
-        if len(files) > 9:
-            form.add_error(None, "Неможливо вказати більше 9 фотографій!")
-            return self.form_invalid(form)
-
         form.instance.user = self.request.user
         response = super().form_valid(form)
+        urls = self.request.POST.getlist('url')    
+        for url in urls:
+            Url_Post.objects.create(post = self.object, url = url) 
+        files = self.request.FILES.getlist('images')
         for file in files:
             Pictures.objects.create(post=self.object, image=file)
         return response
@@ -46,7 +43,7 @@ class MainView(CreateView):
         context["posts"] = User_Post.objects.all()
         context["tags"] = Tag.objects.all()
         context['people'] = ProfileModel.objects.get(user_id = self.request.user.pk)
-        
+        context["all_urls"] = Url_Post.objects.all()
         context['all_peoples'] = ProfileModel.objects.all()
         context["posts_count"] = User_Post.objects.filter(user_id = self.request.user.pk)
         profile = ProfileModel.objects.get(user_id = self.request.user.pk)
