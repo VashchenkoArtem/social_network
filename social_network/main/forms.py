@@ -62,7 +62,8 @@ class PostForm(forms.ModelForm):
         label="",
         widget=forms.Textarea(attrs={
             "placeholder": "Напишіть текст публікації",
-            "id": "field-text"
+            "id": "field-text",
+            "class": "text-create",
         })
     )
 

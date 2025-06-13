@@ -171,7 +171,8 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(1.5vw + 2.2vh);
 }
 .request{
-    height: calc(10vh + 8vw );
+    height: fit-content;
+    max-height: calc(10vh + 8vw );
     padding-top: calc(0.6vw + 0.9vh);
 }
 .message{
@@ -979,4 +980,11 @@ option:hover{
 }
 button{
     border: calc(0.03vw + 0.05vh) black solid;
+}
+.posts-url{
+    background-color: rgba(233, 229, 238, 1);
+    border-radius: calc(0.1vw + 0.15vw);
+}
+.main{
+    background-color: white;
 }

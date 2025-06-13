@@ -11,6 +11,7 @@ body{
     margin-bottom: calc(0.7vw + 1vh);
     height: calc(26vw + 35vh);
     justify-content: center;
+    width: 100%;
 
 }
 .all-contacts{
@@ -98,6 +99,7 @@ body{
 .people-avatar{
     width: calc(1.6vw + 2.3vh);
     height: calc(1.6vw + 2.3vh);
+    border-radius: 1234px;
 }
 .people-name{
     font-size: calc(0.5vw + 0.8vh);
@@ -116,6 +118,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 .new-chat{
     width: calc(18.5vw + 26vh);
@@ -187,6 +190,8 @@ body{
 }
 .people-information{
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: calc(0.4vw + 0.6vh);
     align-items: center;
 }
@@ -198,6 +203,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: calc(0.1vw + 0.2vh);
+    margin-bottom: calc(0.5vw + 0.9vh);
 }
 .people-name-and-time{
     width: calc(8.3vw + 11.8vh);

@@ -18,7 +18,9 @@ form.addEventListener("submit", (event) => {
 socket.addEventListener('message', function(event){
     const messageObject = JSON.parse(event.data)
     const messageElem = document.createElement('p')
+    messageElem.class = "one-message"
     messageElem.textContent = messageObject["message"]
+    messages.scrollTop = messages.scrollHeight
     messages.append(messageElem)
 
 })

@@ -209,3 +209,62 @@ form{
     color: rgb(169, 166, 171);
     font-size: calc(1vw + 1.4vh);
 }
+.deleting-confirming{
+    width: calc(16.9vw + 23.9vh);
+    height: calc(8.9vw + 12.6vh);
+    background-color: white;
+    border-radius: calc(0.7vw + 1vh);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(1.5vw + 2.2vh);
+    gap: calc(1.25vw + 1.8vh);
+    z-index: 2;
+}
+.confirm-action{
+    font-size: calc(1.2vw + 1.7vh);
+    font-weight: 500;
+}
+.question-deleting{
+    font-size: calc(0.5vw + 0.8vh);
+    font-weight: 400;
+}
+.confirming-buttons{
+    display: flex;
+    width: calc(13.9vw + 19.6vh);
+    justify-content: flex-end;
+    align-items: center;
+    gap: calc(0.5vw + 0.8vh);
+}
+.button-confirm-deleting{
+    background-color: rgba(84, 60, 82, 1);
+    color: white;
+    width: calc(3.9vw + 5.4vh);
+}
+.button-cancel{
+    width: calc(3.5vw + 5vh);
+    height: calc(1.4vw + 2vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(84, 60, 82, 1);
+    border: calc(0.03vw + 0.05vh) rgba(84, 60, 82, 1) solid;
+    border-radius: 1234px;
+    font-size: calc(0.5vw + 0.8vh);
+}
+.button-cancel:hover{
+    cursor: pointer;
+}
+.fullscreen{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #81818d54;
+    z-index: 1;
+}

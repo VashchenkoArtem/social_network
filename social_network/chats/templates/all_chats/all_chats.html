@@ -25,55 +25,12 @@
                     <input type="text" class = "seacrh-input" placeholder="Пошук">
                 </div>
                 <div class = "people-contacts">
-                    <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-                                        <div class = "contact">
-                        <img src="{% static 'images/account.png'%}" class = "people-avatar" alt="">
-                        <span class = "people-name">People Name</span>
-                    </div>
-
+                    {% for friend in my_friends %}
+                        <div class = "contact">
+                            <img src="{{ friend.profile_image.url }}" class = "people-avatar" alt="">
+                            <span class = "people-name">{{ friend.user.first_name }} {{ friend.user.last_name }}</span>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -173,55 +130,13 @@
                             <div class = icon-people>
                                 <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
                             </div>
-                            <div class = "people-name-and-message">
+                            <a class = "people-name-and-message" href = "{% url 'chat'%}">
                                 <div class = "people-name-and-time">
                                     <h3 class = "friend-name">Mona Lisa</h3>
                                     <h3 class = "time">09:41</h3>
                                 </div>
                                 <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

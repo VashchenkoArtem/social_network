@@ -1,8 +1,7 @@
 from django.urls import path
 from social_network.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
-from .views import MyDeleteView, EditView, MyLogoutView, PostDataView
-from .views import MyDeleteView, EditView, MyLogoutView, UserUpdateView
+from .views import *
 
 
 
@@ -11,7 +10,8 @@ urlpatterns = [
     path('edit/<int:pk>', EditView.as_view(), name='edit'),
     path('logout/', MyLogoutView.as_view(), name = "logout"),
     path('check_info/<int:post_pk>', PostDataView.as_view(), name = "check_info"),
-    path('update/', UserUpdateView.as_view(), name='update_user')  
+    path('update/', UserUpdateView.as_view(), name='update_user'),
+    path("check_views/<int:pk>", check_views, name = "check_views")  
 ]
 
 if DEBUG:

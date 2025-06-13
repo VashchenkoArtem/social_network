@@ -23,7 +23,7 @@
                 </div>
                 <div class = "subscribers" >
                     <div class = "all-posts section">
-                        <h2 class = "number">566</h2>
+                        <h2 class = "number">{{ posts_count | length }}</h2>
                         <h3 class = "info">Дописи</h3>  
                     </div>
                     <div class = "followers section">
@@ -31,14 +31,11 @@
                         <h3 class = "info">Читачі</h3>
                     </div>
                     <div class = "all-friends section">
-                        <h2 class = "number">222</h2>
+                        <h2 class = "number">{{ my_friends | length }}</h2>
                         <h3 class = "info">Друзі</h3>
                     </div>
                 </div>
             </div>
-
-
-
             <div class = "frame request">
                 <div class = "title-frame">
                     <div class = "logo-frame">
@@ -51,52 +48,22 @@
                         <h3>Дивитись всі</h3>
                     </div>
                 </div>  
-                
                 <div class = "body-frame">
-                    <div class = "one-people">
+                    {% for request in all_requests %}
+                    <a class = "one-people" href = "{% url 'all_requests'%}">
                         <div class = "people-information">
                             <div class = "icon-people">
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
+                                <img class = "icon-people" src="{{request.sent_user.profile.profile_image.url}}" alt="">
                             </div>
-                            <div class = "people-name-and-subscribers">
-                                <h3 class = "friend-name request-block">Yehor Aung</h3>
-                                <h4 class = "subscribe">4.3к підписників</h4>
-                            </div>
+                            
+                                <div class = "people-name-and-subscribers">
+                                    <h3 class = "friend-name request-block">{{ request.sent_user.first_name }} {{ request.sent_user.last_name }}</h3>
+                                    <h4 class = "subscribe">4.3к підписників</h4>
+                                </div>  
+                             
                         </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = "icon-people">
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-subscribers">
-                                <h3 class = "friend-name request-block">Yehor Aung</h3>
-                                <h4 class = "subscribe">4.3к підписників</h4>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = "icon-people">
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-subscribers">
-                                <h3 class = "friend-name request-block">Yehor Aung</h3>
-                                <h4 class = "subscribe">4.3к підписників</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = "icon-people">
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-subscribers">
-                                <h3 class = "friend-name request-block">Yehor Aung</h3>
-                                <h4 class = "subscribe">4.3к підписників</h4>
-                            </div>
-                        </div>
-                    </div> 
+                    </a>
+                    {% endfor%}     
                 </div>
             </div>
             
@@ -249,7 +216,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class = "social-media-post">
+                        <div class = "social-media-post" id = "{{ post.pk }}">
                             <div class = "redact-wrapper hidden">
                                 <div class = "redact-post">
                                     <div class = "dots dot-form">
@@ -327,7 +294,7 @@
                                         <div class = "icon-review">
                                             <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
                                         </div>
-                                        <h2 class = "likes">{{post.view_count}} Переглядів</h2>
+                                        <h2 class = "likes">{{ post.views.count }} Переглядів</h2>
                                     </div>
                                 </div>
                             </div>
@@ -382,15 +349,24 @@
                         <div class = "all_tags">    
                             <div class = "tag-container">
                                 {% for tag in tags %}
-                                <label class="tag-object" data-id="{{ tag.id }}">
-                                    {{ tag.tag_name}}
-                                    <input type="checkbox" name="tags" value="{{ tag.id }}">
-                                </label>
+                                    <label class="tag-object" data-id="{{ tag.id }}">
+                                        {{ tag.tag_name }}
+                                        <input type="checkbox" name="tags" value="{{ tag.id }}">
+                                    </label>
                                 {% endfor %}
                                 <button class = "button-hashtag">
                                     <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
                                 </button>
                             </div>
+                        </div>
+                    {% elif field.name == "url" %}
+                        <div class = "input-url">
+                            <div class="inputs-form">
+                                <div class="label-tag">{{ field.label_tag }}</div>
+                                <div class="field">{{ field }}</div>
+                                <div class="field-error">{{ field.errors }}</div>
+                            </div>
+                            <img  class = "image-tag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
                         </div>
                     {% else %}
                         <div class="inputs-form">
@@ -443,4 +419,5 @@
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src = "{% static 'js/script.js' %}"></script>
+    <script src = "{% static 'js/ajax.js' %}"></script>
 {% endblock %}

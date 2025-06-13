@@ -14,7 +14,8 @@ class User_Post(models.Model):
     tags = models.ManyToManyField(Tag)
     text = models.TextField()
     url = models.URLField(null = True, blank = False)
-    view_count = models.IntegerField(default = 0)
+    # view_count = models.IntegerField(default = 0)
+    views = models.ManyToManyField(User, related_name='view_count', null = True, blank = False)
     like_count = models.IntegerField(default = 0)
 
 class Pictures(models.Model):

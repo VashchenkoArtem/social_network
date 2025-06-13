@@ -14,7 +14,7 @@ class RequestModel(models.Model):
 class ProfileModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     date_of_birth = models.DateField(auto_now_add=True)
-    profile_image = models.ImageField(upload_to= "images/profile_images/", blank = True)
+    profile_image = models.ImageField(upload_to= "images/profile_images/",default = "/../images/account.png", blank = True)
     friends = models.ManyToManyField('self', related_name = "friends", symmetrical=True, blank = True)
     requests = models.ManyToManyField(RequestModel, related_name = "requests", blank = True)
     def remove_friend(self, friend):
