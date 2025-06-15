@@ -26,28 +26,41 @@
                 </div>
                 <div class = "all-cards request">
                     {% for friend in all_friends %}
-                    <div class = "card" id = "card-friend-{{friend.user.pk}}">
-                        
-                        <div class = "profile-card">
-                            <img class = "avatar" src="{{ friend.profile_image.url }}" alt="">
-                            <h1>{{friend.user.profile_image.url}}</h1>
-                        </div>
-                        
-                            <div class = "card-info">
-                                <h1 class = "name">{{ friend.user.first_name }} {{ friend.user.last_name }}</h1>
-                                <h1 class = "tag-name">@{{ friend.user.username }}</h1>
+                        {% if friend.profile1 == current_user or friend.profile2 == current_user %}
+                            <div class = "card" id = "card-friend-{{friend.user.pk}}">
+                                <div class = "profile-card">
+                                    {% for avatar in all_avatars %}
+                                        {% if avatar.active %}
+                                            {% if avatar.profile == friend.profile1 or avatar.profile == friend.profile2 and avatar.profile != current_user %}
+                                                <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                            
+                                            {% endif  %}
+                                        {% else %}
+                                            <img class = "avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                        {% endif%}
+                                    {% endfor %}
+                                </div>
+                                
+                                    <div class = "card-info">
+                                        {% if friend.profile1 == current_user %}
+                                            <h1 class = "name">{{ friend.profile2.user.first_name }} {{ friend.profile2.user.last_name }}</h1>
+                                            <h1 class = "tag-name">@{{ friend.profile1.user.username }}</h1>
+                                        {% elif friend.profile2 == current_user %}
+                                            <h1 class = "name">{{ friend.profile1.user.first_name }} {{ friend.profile1.user.last_name }}</h1>
+                                            <h1 class = "tag-name">@{{ friend.profile1.user.username }}</h1>                   
+                                        {% endif %}    
+                                    </div>
+                                
+                            
+                                <div class = "card-buttons">
+                                    <a class = "button button-confirm">
+                                        Повідомлення
+                                    </a>
+                                    <a class = "button button-delete-friend" id = "{% url 'delete_friend' friend.profile1.user.pk%}">
+                                        Видалити
+                                    </a>
+                                </div>
                             </div>
-                        
-                    
-                        <div class = "card-buttons">
-                            <a class = "button button-confirm">
-                                Повідомлення
-                            </a>
-                            <a class = "button button-delete-friend" id = "{% url 'delete_friend' friend.user.pk%}">
-                                Видалити
-                            </a>
-                        </div>
-                    </div>
+                        {% endif%}
                     {% endfor %}
                 </div>
             </div>

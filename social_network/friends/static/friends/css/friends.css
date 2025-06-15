@@ -196,6 +196,9 @@ form{
 .wrapper-body{
     width: calc(32vw + 45.2vh);
 }
+.posts-wrapper{
+        max-height: calc(29.3vw + 28.7vh);
+}
 .empty-posts{
     width: calc(32vw + 45.2vh);
     background-color: rgba(199, 197, 201, 0.252);

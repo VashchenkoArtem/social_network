@@ -28,7 +28,15 @@
                     {% for recommended in all_recommended %}
                         <div class = "card" id = "card-recommended-{{recommended.user.pk}}">
                             <div class = "profile-card">
-                                <img class = "avatar" src="{{ recommended.profile_image.url }}" alt="">
+                                {% for avatar in all_avatars %}
+                                    {% if avatar.active %}
+                                        {% if avatar.profile == recommended %}
+                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
+                                        {% endif  %}
+                                    {% else %}
+                                        <img class = "avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                    {% endif%}
+                                {% endfor %}
                             </div>
                             <div class = "card-info">
                                 <h1 class = "name">{{recommended.user.first_name}} {{ recommended.user.last_name }}</h1>
