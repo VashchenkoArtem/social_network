@@ -235,3 +235,8 @@ body{
     background-color: rgba(233, 229, 238, 1);
     border-radius: calc(0.1vw + 0.1vh);
 }
+.post-friend-avatar{
+    border-radius: 1234px;
+    width: calc(1.5vw + 2.4vh);
+    height: calc(1.5vw + 2.4vh);
+}

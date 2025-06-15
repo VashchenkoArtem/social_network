@@ -26,36 +26,75 @@
                     <input type="text" class = "seacrh-input" placeholder="Пошук">
                 </div>
                 <div class = "people-contacts">
-                    {% for friend in my_friends %}
-                        <div class = "contact">
-                            <img src="{{ friend.profile_image.url }}" class = "people-avatar" alt="">
-                            <span class = "people-name">{{ friend.user.first_name }} {{ friend.user.last_name }}</span>
-                        </div>
+                    {% for friend in friends %}
+                        {% if friend.profile1 == current_user %}
+                            <div class = "contact">
+                                {% for avatar in all_avatars %}
+                                    {% if avatar.image %}
+                                        {% if avatar.profile == current_user %}
+                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
+                                        {% endif  %}
+                                    {% else %}
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                    {% endif%}
+                                {% endfor %}
+                                <span class = "people-name">{{ friend.user.first_name }} asdaads{{ friend.user.last_name }}</span>
+                            </div>
+                        {% elif friend.profile2 == current_user %}
+                            <div class = "contact">
+                                {% for avatar in all_avatars %}
+                                    {% if avatar.image %}
+                                        {% if avatar.profile == post.author%}
+                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
+                                        {% endif  %}
+                                    {% else %}
+                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                    {% endif%}
+                                {% endfor %}
+                                <span class = "people-name">{{ friend.user.first_name }} asdasd{{ friend.user.last_name }}</span>
+                            </div>
+                        {% endif%}
                     {% endfor %}
                 </div>
             </div>
         </div>
         <div class = "people-chat">
             <div class = "chat">
-                <div id = "messages">
-
-                </div> 
-                <div class = "input-div"> 
-                    <form method="post" class = "input-form" id = "form">
-                        {{ form }}
-                        {% csrf_token %}
-                        <div class = "buttons">
-                            <button class = "button emoji">
-                                <img class = "images" src="{% static 'images/emoji.png' %}" alt="">
-                            </button>
-                            <button class = "button photos">
-                                <img class = "images" src="{% static 'images/photos.png'%}" alt="">
-                            </button>
-                            <button class = "button confirm" type = "submit">
-                                <img class = "images" src="{% static 'images/confirm.png'%}" alt="">
-                            </button>
+                <div class = "chat-hat">
+                    <div class = "name-and-avatar-group">
+                        <img class = "arrow-image small-image" src="{% static 'images/arrow.png' %}" alt="">
+                        <div class = "information-group">
+                            <img class = "avatar" src="{% static 'images/group_avatar.png' %}" alt="">
+                            <div class = 'name-group'>
+                                <input type="hidden" value = "{{ chat_group.pk }}" id = "chatGroupId">
+                                <h1 class = 'name'>{{chat_group.name}}</h1>
+                                <h2 class = "members">{{ chat_group.members.all | length}} учасників, 1 в мережі</h2>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                    <img class = "dots small-image" src="{% static 'images/dots.png'%}" alt="">
+                </div>
+                <div class = "message-and-input">
+                    <div id = "messages">
+
+                    </div> 
+                    <div class = "input-div"> 
+                        <form method="post" class = "input-form" id = "form">
+                            {{ form }}
+                            {% csrf_token %}
+                            <div class = "buttons">
+                                <button class = "button emoji">
+                                    <img class = "images" src="{% static 'images/emoji.png' %}" alt="">
+                                </button>
+                                <button class = "button photos">
+                                    <img class = "images" src="{% static 'images/photos.png'%}" alt="">
+                                </button>
+                                <button class = "button confirm" type = "submit">
+                                    <img class = "images" src="{% static 'images/confirm.png'%}" alt="">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,6 +140,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class = "one-people">
                         <div class = "people-information">
                             <div class = icon-people>
@@ -144,25 +184,32 @@
                     </div>  
                 </div>
                 <div class = "body-frame">
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <a class = "people-name-and-message" href = "{% url 'chat'%}">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
+                    
+                    {% for group in all_groups %}
+                        {% for member in group.members.all %}
+                            {% if member == current_user %}
+                                <div class = "one-people">
+                                    <div class = "people-information">
+                                        <div class = icon-people>
+                                            <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                                        </div>
+                                                <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
+                                                    <div class = "people-name-and-time">
+                                                        <h3 class = "friend-name">{{group.name}}</h3>
+                                                        <h3 class = "time">09:41</h3>
+                                                    </div>
+                                                    <h4 class = message-friend>Привіт! Як справи?</h4>
+                                                </a>
+                                    </div>
                                 </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </a>
-                        </div>
-                    </div>
+                            {% endif%}
+                        {% endfor%}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block script %}
-    <script src = "{% static 'js/chat.js'%}"></script>
+    <script src = "{% static 'js/chat.js' %}"></script>
 {% endblock %}

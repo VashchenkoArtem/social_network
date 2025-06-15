@@ -1,8 +1,7 @@
 from django.contrib import admin
-from settings_app.models import ProfileModel, RequestModel, DeclineRecommended
+from settings_app.models import Profile, Friendship
 
 # Register your models here.
 
-admin.site.register(ProfileModel)
-admin.site.register(RequestModel)
-admin.site.register(DeclineRecommended)
+admin.site.register(Profile)
+admin.site.register(Friendship)

@@ -108,6 +108,5 @@ addUrl.addEventListener("click", function(){
     if (inputField) {
         inputField.value = "";
     }
-
     cont.appendChild(newInput);
 });

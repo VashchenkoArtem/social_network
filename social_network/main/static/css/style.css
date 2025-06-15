@@ -1058,3 +1058,15 @@ div.frame.profile{
 .choosed{
     background: rgb(185, 185, 185);
 }
+.avatar-label{
+    width: calc(29.4vw + 41.5vh);
+    display: flex;
+    justify-content: space-between;
+}
+.signature{
+    width: calc(7.6vw + 10.8vh);
+    height: calc(1.7vw + 2.4vh);
+}
+.image.photos-4.number-4{
+    width: calc(30.4vw + 43.4vh);
+}

@@ -1,4 +1,6 @@
-const socketUrl = `ws://${window.location.host}/chats/all_chats/chat`;
+const chatGroup = document.getElementById("chatGroupId").value
+
+const socketUrl = `ws://${window.location.host}/chats/all_chats/${chatGroup}`;
 
 const socket = new WebSocket(socketUrl);
 
@@ -25,9 +27,5 @@ socket.addEventListener('message', function(event){
 
 })
 
-// const form = document.getElementById("form");
 
-// form.addEventListener("submit", (event)=>{
-//     event.preventDefault();
-    
-// })
+        

@@ -28,36 +28,36 @@
                 
                 <div class = "all-cards request">
                     {% for request in all_requests %}
-                        {% if not request.is_friend %}
-                            <div class = "deleting-confirming hidden" id = "{{request.sent_user.pk}}">
+                        {% if not request.accepted %}
+                            <div class = "deleting-confirming hidden" id = "{{request.profile1.user.pk}}">
                                 <h1 class = "confirm-action">Підтвердити дію</h1>
                                 <h3 class = "question-deleting">Ви дійсно хочете видалити користувача?</h3>
                                 <div class = "confirming-buttons">
                                     <a class = "button-cancel">
                                         Скасувати
                                     </a>
-                                    <a class = "button button-confirm-deleting button-delete" id = "{% url 'delete_request' request.sent_user.pk %}">
+                                    <a class = "button button-confirm-deleting button-delete" id = "{% url 'delete_request' request.profile1.user.pk %}">
                                         Підтвердити
                                     </a>
                                 </div>
                             </div>
                             <div class = "fullscreen hidden"></div>
-                            <div class = "card" id = "card-request-{{request.sent_user.pk}}">
+                            <div class = "card" id = "card-request-{{request.profile1.user.pk}}">
                                 <div class = "profile-card">
-                                    <a href="{% url 'friend_profile' request.sent_user.pk %}" class = "avatar">
+                                    <a href="{% url 'friend_profile' request.profile1.user.pk %}" class = "avatar">
                                         <img class = "avatar" src="{{request.sent_user.profile.profile_image.url}}" alt="">
                                     </a>
                                 </div>
                                 <div class = "card-info">
-                                    <h1 class = "name">{{request.sent_user.first_name}} {{request.sent_user.last_name}}</h1>
-                                    <h1 class = "tag-name">@{{request.sent_user.username}}</h1>
+                                    <h1 class = "name">{{request.profile1.user.first_name}} {{request.profile1.user.last_name}}</h1>
+                                    <h1 class = "tag-name">@{{request.profile1.user.username}}</h1>
                                 </div>
                     
                                 <div class = "card-buttons">
-                                    <a class = "button button-confirm" href="{% url 'friend_profile' request.sent_user.pk %}">
+                                    <a class = "button button-confirm" href="{% url 'friend_profile' request.profile1.user.pk %}">
                                         Підтвердити
                                     </a>
-                                    <a class = "button button-delete" id = "{% url 'delete_request' request.sent_user.pk %}">
+                                    <a class = "button button-delete" id = "{% url 'delete_request' request.profile1.user.pk %}">
                                         Видалити
                                     </a>
                                 </div>

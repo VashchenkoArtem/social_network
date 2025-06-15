@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import SpecialCode
-from settings_app.models import ProfileModel
+from settings_app.models import Profile
 
 
 

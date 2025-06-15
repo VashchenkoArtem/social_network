@@ -1,7 +1,8 @@
 from django.views.generic import TemplateView, FormView
-from settings_app.models import ProfileModel
+from settings_app.models import Profile, Friendship, Avatar
 from .forms import MessageForm
 from django.urls import reverse_lazy
+from .models import ChatGroup
 
 
 # Create your views here.
@@ -9,8 +10,10 @@ class ChatsView(TemplateView):
     template_name = "all_chats/all_chats.html"
     def get_context_data(self, **kwargs):
         context = super(ChatsView, self).get_context_data(**kwargs)
-        profile = ProfileModel.objects.get(user_id = self.request.user.pk)
-        context["my_friends"] = profile.friends.all()
+        context["all_avatars"] = Avatar.objects.all()
+        context['current_user'] = Profile.objects.get(user_id = self.request.user.id)
+        context["friends"] = Friendship.objects.filter(accepted = True)
+        context['all_groups'] = ChatGroup.objects.all()
         return context
 
 class ChatView(FormView):
@@ -20,6 +23,10 @@ class ChatView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ChatView, self).get_context_data(**kwargs)
-        profile = ProfileModel.objects.get(user_id = self.request.user.pk)
-        context["my_friends"] = profile.friends.all()
+        chat_pk = self.kwargs["chat_pk"]
+        context['chat_group'] = ChatGroup.objects.get(pk = chat_pk)
+        context["all_avatars"] = Avatar.objects.all()
+        context['current_user'] = Profile.objects.get(user_id = self.request.user.id)
+        context["friends"] = Friendship.objects.filter(accepted = True)
+        context['all_groups'] = ChatGroup.objects.all()
         return context

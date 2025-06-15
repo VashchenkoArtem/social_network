@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_Post, Tag
+from publications.models import Post, Tag
 from django.contrib.auth.models import User
 
 
@@ -23,9 +23,8 @@ class MultipleField(forms.ImageField):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = User_Post
-        fields = ["title", "topic", "tags", "text"]
-
+        model = Post
+        fields = ["title", "topic", "tags", "content"]
     url = forms.URLField(
         required=False,
         label="Посилання",
@@ -54,7 +53,7 @@ class PostForm(forms.ModelForm):
         })
     )
 
-    text = forms.CharField(
+    content = forms.CharField(
         label="",
         widget=forms.Textarea(attrs={
             "placeholder": "Напишіть текст публікації",
