@@ -55,17 +55,27 @@
                 </div>  
                 <div class = "body-frame">
                     {% for request in all_requests %}
-                    <a class = "one-people" href = "{% url 'all_requests'%}">
-                        <div class = "people-information">
-                            <div class = "icon-people">
-                                <img class = "icon-people" src="{{request.sent_user.profile.profile_image.url}}" alt="">
-                            </div>
-                                <div class = "people-name-and-subscribers">
-                                    <h3 class = "friend-name request-block">{{ request.profile2.user.first_name }} {{ request.profile2.user.last_name }}</h3>
-                                    <h4 class = "subscribe">4.3к підписників</h4>
-                                </div>  
-                        </div>
-                    </a>
+                        {% if request.accepted == False%}
+                            <a class = "one-people" href = "{% url 'all_requests'%}">
+                                <div class = "people-information">
+                                    <div class = "icon-people">
+                                        {% for avatar in all_avatars %}
+                                            {% if avatar.image %}
+                                                {% if avatar.profile == request.profile1 %}
+                                                    <img class = "icon-people" src="{{ avatar.image.url }}" alt="">                                              
+                                                {% endif  %}
+                                            {% else %}
+                                                <img class = "icon-people" src="{% static 'images/icons/account.png'%}" alt="">
+                                            {% endif%}
+                                        {% endfor %}
+                                    </div>
+                                        <div class = "people-name-and-subscribers">
+                                            <h3 class = "friend-name request-block">{{ request.profile1.user.first_name }} {{ request.profile1.user.last_name }}</h3>
+                                            <h4 class = "subscribe">4.3к підписників</h4>
+                                        </div>  
+                                </div>
+                            </a>
+                        {% endif %}
                     {% endfor%}     
                 </div>
             </div>
@@ -258,7 +268,7 @@
                                                     {% endfor %}
                                                 </div>
                                                 <div class = "nick-post">
-                                                    <h2 class = "nick-friend">{{post.author}}</h2>
+                                                    <h2 class = "nick-friend">{{post.author.user.first_name}} {{post.author.user.last_name}}</h2>
                                                 </div>
                                             </div>
                                             <div class = "signature">
