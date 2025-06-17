@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from .models import ChatGroup, ChatMessage
 import json
+from django.urls import reverse
 
 
 # Create your views here.
@@ -12,50 +13,54 @@ class ChatsView(TemplateView):
     template_name = "all_chats/all_chats.html"
 
     def post(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        response = render(request, self.template_name, context)
         if request.POST.getlist('friends'):  
-            checkbox_list = request.POST.getlist('friends')  
-            context = self.get_context_data()
-            context['selected_friends'] = checkbox_list
-            profile = Profile.objects.get(user_id = self.request.user.id)
-            group = ChatGroup.objects.create(name = "New Group", admin = profile)
-            for people_id in checkbox_list:
-                people = Profile.objects.get(id = people_id)
-                group.members.add(people)
-            group.members.add(profile)
-            ids = ""
-            for member in group.members.all():
-                ids += f" {member.id}"
-            ids += " "
-            response = render(request, self.template_name, context)
-            response.set_cookie('group_members', ids)
+            selected_ids = request.POST.getlist('friends')
+            ids_str = " ".join(selected_ids)
+            response = redirect('all_chats') 
+            response.set_cookie('group_members', ids_str)
             return response
-        # else:
-        #     request.POST.get("add-image-avatar")
-        return response
+
+        else:
+            group_name = request.POST.get("group_name")
+            group_avatar = request.FILES.get("add-image-avatar")
+
+            ids_str = request.COOKIES.get("group_members", "")
+            member_ids = ids_str.strip().split()
+            members = Profile.objects.filter(id__in=member_ids)
+
+            group = ChatGroup.objects.create(
+                name=group_name,
+                avatar=group_avatar,
+                admin_id=self.request.user.id
+            )
+            my_profile = Profile.objects.get(user_id = self.request.user.pk)
+            group.members.set(members)
+            group.members.add(my_profile)
+            
+
+            response = redirect('all_chats')
+            response.delete_cookie('group_members')
+            return response
+
     def get_context_data(self, **kwargs):
-        context = super(ChatsView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+
+        my_profile = Profile.objects.get(user_id=self.request.user.id)
         context["all_avatars"] = Avatar.objects.all()
-        my_profile = Profile.objects.get(user_id = self.request.user.id)
-        context['current_user'] = my_profile
-        context["friends"] = Friendship.objects.filter(accepted = True)
-        context['all_groups'] = ChatGroup.objects.all()
-        context['members_group'] = Profile.objects.filter(user_id = -1)
-        if self.request.COOKIES.get('group_members'):
-            members_ids = self.request.COOKIES.get('group_members')
-            list_ids = str(members_ids).split(" ")
-            del list_ids[0]
-            del list_ids[-1]
-            for id in list_ids:
-                profile = Profile.objects.filter(id = id)
-                context["members_group"] = context['members_group'].union(profile)
+        context["current_user"] = my_profile
+        context["friends"] = Friendship.objects.filter(accepted=True)
+        context["all_groups"] = ChatGroup.objects.all()
+        context["members_group"] = Profile.objects.none()
+
+        ids_str = self.request.COOKIES.get('group_members')
+        if ids_str:
+            member_ids = ids_str.strip().split()
+            context["members_group"] = Profile.objects.filter(id__in=member_ids)
         return context
 
 class ChatView(FormView):
     template_name = "chat/chat.html"
     form_class = MessageForm
-    success_url = "/chats/all_chats/chat"
     def get_context_data(self, **kwargs):
         context = super(ChatView, self).get_context_data(**kwargs)
         chat_pk = self.kwargs["chat_pk"]
@@ -68,15 +73,17 @@ class ChatView(FormView):
         context["friends"] = Friendship.objects.filter(accepted = True)
         context['all_groups'] = ChatGroup.objects.all()
         context['messages'] = all_messages
-        context['times'] = ChatGroup.objects.filter(id = -1)
-        list_times = []
-        for message_time in all_messages:
-            only_time = message_time.sent_at.time()
-            list_times.append(only_time)
+        # context['times'] = ChatGroup.objects.filter(id = -1)
+        # list_times = []
+        # for message_time in all_messages:
+        #     only_time = message_time.sent_at.time()
+        #     list_times.append(only_time)
 
-            print(only_time)
-        context['times'] = list_times
+        #     print(only_time)
+        # context['times'] = list_times
         return context
+    def get_success_url(self):
+        return reverse("chat", kwargs={"chat_pk": self.kwargs["chat_pk"]})
     
 def create_chat(request, user_pk):
     connected_user = Profile.objects.get(pk = user_pk)

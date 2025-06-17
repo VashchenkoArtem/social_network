@@ -198,6 +198,7 @@ body{
 .icon-people{
     width: calc(1.5vw + 2.2vh);
     height: calc(1.5vw + 2.2vh);
+    border-radius: 12345px;
 }
 .people-name-and-message{
     display: flex;
@@ -325,4 +326,9 @@ body{
 .member{
     display: flex;
     width: calc(12.2vw + 17.2vh);
+}
+.form-set-name{
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.8vw + 1.2vh);
 }

@@ -123,14 +123,18 @@
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                                                {% if group.avatar %}
+                                                    <img class = "icon-people" src="{{ group.avatar.url }}" alt="">
+                                                {% else %}
+                                                    <img class = "icon-people" src="{% static 'images/group_avatar.png' %}" alt="">
+                                                {% endif %}
                                             </div>
                                                     <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
                                                         <div class = "people-name-and-time">
                                                             <h3 class = "friend-name">{{group.name}}</h3>
-                                                            <h3 class = "time">09:41</h3>
+                                                            <h3 class = "time">Час</h3>
                                                         </div>
-                                                        <h4 class = message-friend>Привіт! Як справи?</h4>
+                                                        <h4 class = message-friend>Повідомлення</h4>
                                                     </a>
                                         </div>
                                     </div>
@@ -154,7 +158,7 @@
             <h3 class = "selected-people">
                 Вибрано: <span class = "selected-count-people"></span>
             </h3>
-            <form method = "post">
+            <form method = "post" class = "form">
                 {% csrf_token%}
                 <div class = "filter-people-group">
                     {% for friend in friends %}
@@ -201,8 +205,8 @@
                 </div>
             </form>
         </div>
-        <div class = "modal-set-name">
-            <form method = "post" enctype="multipart/form-data">
+        <div class = "">
+            <form method = "post" class = "form-set-name modal-set-name hidden" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class = "frame-cross">
                     <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
@@ -254,8 +258,8 @@
                     <button type = "submit" class = "button_down">Назад</button>
                     <button type = "submit" class = "button_right">Створити групу</button>
                 </div>
-                </div>
             </form>
+        </div>
         </div>
     </div>
 {% endblock %}
