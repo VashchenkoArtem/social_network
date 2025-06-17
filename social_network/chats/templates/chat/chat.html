@@ -86,7 +86,13 @@
                         <!-- <div class="date-create-chat-div">
                             <p class="date-create-chat-text">date</p>
                         </div> -->
+                        <p>date</p>
+                    
+
                         {% for message in messages %}
+                            {% for time in times %}
+                                <p>{{ time }}</p>
+                            {% endfor %}
                             {% if message.author == current_user %}
                                 <div class = "one-message author-me">
                                     <p class = "message-content">{{ message.content}}</p>

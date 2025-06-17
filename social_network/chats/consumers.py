@@ -4,6 +4,7 @@ from .forms import MessageForm
 from channels.db import database_sync_to_async
 from .models import ChatGroup, ChatMessage
 from settings_app.models import Profile
+from datetime import time
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
