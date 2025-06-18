@@ -209,7 +209,7 @@
             <form method = "post" class = "form-set-name modal-set-name hidden" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class = "frame-cross">
-                    <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+                    <img class = "cross-image close-second-modal" src="{% static 'images/cross.png' %}" alt="">
                 </div>
                 <h1 class = "title-new-group">Нова група</h1>
                 <div class = "input-modal-create">
@@ -248,7 +248,7 @@
                             </div>
                             <div class="name-and-delete">
                                 <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
-                                <img class = "image-20px" src="{% static 'images/delete.png' %}" alt="">
+                                <a id="{% url 'delete_user_cookie' member.pk %}" class = "none-url delete-user-from-cookies"><img class = "image-20px" src="{% static 'images/delete.png' %}" alt=""></a>
                             </div>
                         </div>
                     {% endfor %}
@@ -264,6 +264,7 @@
     </div>
 {% endblock %}
 {% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "{% static 'js/ajax.js'%}"></script>
     <script src = "{% static 'js/modal.js'%}"></script>
-    <script src = "{% static 'js/chat.js' %}"></script>
 {% endblock %}

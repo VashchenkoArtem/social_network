@@ -241,6 +241,11 @@ body{
     width: calc(1.5vw + 2.4vh);
     height: calc(1.5vw + 2.4vh);
 }
+.group-image{
+    width: calc(1.6vw + 2.6vh);
+    height: calc(1.6vw + 2.6vh);
+    border-radius: 1234px;
+}
 .hidden{
     visibility: hidden;
     display: none;
@@ -331,4 +336,14 @@ body{
     display: flex;
     flex-direction: column;
     gap: calc(0.8vw + 1.2vh);
+}
+input[type="checkbox"]:hover{
+    cursor: pointer;
+}
+.none-url{
+    all: unset;
+}
+.add-avatar{
+    display: flex;
+    align-items: center;
 }

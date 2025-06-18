@@ -8,7 +8,9 @@ from .views import *
 urlpatterns = [
     path("all_chats/", ChatsView.as_view(), name = "all_chats"),
     path("all_chats/<int:chat_pk>", ChatView.as_view(), name = "chat"),
-    path("all_chats/create_chat/<int:user_pk>", create_chat, name = "create_chat")
+    path("all_chats/create_chat/<int:user_pk>", create_chat, name = "create_chat"),
+    path("all_chats/delete_cookie_user/<int:user_pk>", delete_user_from_cookies, name = "delete_user_cookie"),
+    # path("all_chats/edit_chat/<int:pk>", EditChat.as_view(), name = "edit_chat")
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

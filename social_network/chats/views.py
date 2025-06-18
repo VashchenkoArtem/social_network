@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, UpdateView
 from settings_app.models import Profile, Friendship, Avatar
 from .forms import MessageForm
 from django.urls import reverse_lazy
@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from .models import ChatGroup, ChatMessage
 import json
 from django.urls import reverse
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -66,22 +67,38 @@ class ChatView(FormView):
         chat_pk = self.kwargs["chat_pk"]
         group = ChatGroup.objects.get(id = chat_pk)
         all_messages = ChatMessage.objects.filter(chat_group = group)
-
+        
         context['chat_group'] = group
         context["all_avatars"] = Avatar.objects.all()
         context['current_user'] = Profile.objects.get(user_id = self.request.user.id)
         context["friends"] = Friendship.objects.filter(accepted = True)
         context['all_groups'] = ChatGroup.objects.all()
         context['messages'] = all_messages
-        # context['times'] = ChatGroup.objects.filter(id = -1)
-        # list_times = []
-        # for message_time in all_messages:
-        #     only_time = message_time.sent_at.time()
-        #     list_times.append(only_time)
-
-        #     print(only_time)
-        # context['times'] = list_times
+        context["members_group"] = group.members.all()
         return context
+    def post(self, request, *args, **kwargs):
+        if not request.POST.getlist('friends'):
+            new_group_name = request.POST.get("group_name")
+            new_group_avatar = request.FILES.get("add-image-avatar")
+            group = ChatGroup.objects.get(id = self.kwargs['chat_pk'])
+            group.name = new_group_name
+            if new_group_avatar:
+                group.avatar = new_group_avatar
+            group.save()
+            response = redirect('chat', self.kwargs['chat_pk'])
+            response.delete_cookie("get_friends")
+            return response
+        else:
+            members_id = request.POST.getlist('friends')
+            response = redirect('chat', self.kwargs['chat_pk'])
+            chat_pk = self.kwargs["chat_pk"]
+            my_profile = Profile.objects.get(user_id = self.request.user.id)
+            group = ChatGroup.objects.get(id = chat_pk)
+            group.members.set(members_id)
+            group.members.add(my_profile)
+            print("asdasda")
+            response.set_cookie("get_friends", "1234")
+            return response
     def get_success_url(self):
         return reverse("chat", kwargs={"chat_pk": self.kwargs["chat_pk"]})
     
@@ -102,3 +119,12 @@ def create_chat(request, user_pk):
         personal_chat = user_group_with_us
     return redirect("chat", personal_chat.pk)
 
+def delete_user_from_cookies(request, user_pk):
+    response = JsonResponse({})
+    ids_str = request.COOKIES.get('group_members')
+    if ids_str:
+        member_ids = ids_str.strip().split()
+        member_ids.remove(str(user_pk))  
+        ids_str = " ".join(member_ids)
+    response.set_cookie('group_members', ids_str)
+    return response

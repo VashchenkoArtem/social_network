@@ -11,6 +11,15 @@ for (let time of dateTime){
     let dateAndTime = new Date(time.textContent);
     let dateAndTimeLocal = dateAndTime.toLocaleString();
     time.textContent = dateAndTimeLocal
+
+    // let dateMinutesDiv = document.querySelectorAll('.date-minutes-div')
+
+    // dateMinutesDiv.forEach(date =>{
+    //     let dateMinutes = `${dateAndTime.getHours()}: ${dateAndTime.getMinutes()}`
+    //     let data = document.createElement('p');
+    //     dateMinutesDiv.innerHTML += `<p>(${dateMinutes})</p>`;
+    //     console.log(dateMinutes)
+    // })
 }
 form.addEventListener("submit", (event) => {
     // 

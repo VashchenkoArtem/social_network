@@ -1,4 +1,4 @@
-{% extends 'base_header_main.html' %}
+1   {% extends 'base_header_main.html' %}
 {% load static %}
 
 {% block title %}
@@ -8,6 +8,7 @@
 {% block link %}
     <link rel="stylesheet" href="{% static 'css/all_chats/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modals/modals.css' %}">
 {% endblock %}
 {% block content %}
     <div class = "body">
@@ -87,20 +88,19 @@
                 </div>
                 <div class = "message-and-input">
                     <div id = "messages" class="messages-class">
-                        <!-- <div class="date-create-chat-div">
-                            <p class="date-create-chat-text">date</p>
-                        </div> -->
-                        <!-- <p>date</p> -->
+
                     
 
                         {% for message in messages %}
-                            {% for time in times %}
-                                <p>{{ time }}</p>
-                            {% endfor %}
                             {% if message.author == current_user %}
                                 <div class = "one-message author-me">
                                     <p class = "message-content">{{ message.content}}</p>
                                     <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
+
+                                    <!-- <div class="date-minutes-div">
+                                        <p class="date-minutes-text"></p>
+                                    </div> -->
+
                                 </div>
                             {% elif message.author != current_user %}
                                 <div class = "one-message author-people">
@@ -215,11 +215,151 @@
             </div>
         </div>
         <div class = "fullscreen hidden"></div>
+        <div class = "modal-create-group modal-edit-group hidden">
+            <div class = "frame-cross">
+                <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+            </div>
+            <h1 class = "title-new-group">Додати учасника</h1>
+            <div class = "input-modal-create">
+                <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
+                <input type="text" class = "input-create-group" placeholder="Пошук">
+            </div>
+            <h3 class = "selected-people">
+                Вибрано: <span class = "selected-count-people"></span>
+            </h3>
+            <form method = "post" class = "form">
+                {% csrf_token%}
+                <div class = "filter-people-group">
+                    {% for friend in friends %}
+                        {% if friend.profile1 == current_user %}
+                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
+                                {% for avatar in all_avatars %}
+                                    {% if avatar.image %}
+                                        {% if avatar.profile == friend.profile2 %}
+                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                         
+                                        {% endif  %}
+                                    {% else %}
+                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                    {% endif%}
+                                {% endfor %}
+                                <div class = "name-and-correct">
+                                    <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
+                                    {% if friend.profile2 in chat_group.members.all %}
+                                        <input type="checkbox" name = "friends" checked value = "{{friend.profile2.pk}}">
+                                    {% else %}
+                                        <input type="checkbox" name = "friends" value = "{{friend.profile2.pk}}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% elif friend.profile2 == current_user %}
+                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
+                                {% for avatar in all_avatars %}
+                                    {% if avatar.image %}
+                                        {% if avatar.profile == friend.profile1 %}
+                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
+                                        {% endif  %}
+                                    {% else %}
+                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                    {% endif%}
+                                {% endfor %}
+                                <div class = "name-and-correct">
+                                    <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
+                                    {% if friend.profile1 in chat_group.members.all %}
+                                        <input type="checkbox" name = "friends" checked value = "{{friend.profile1.pk}}">
+                                    {% else %}
+                                        <input type="checkbox" name = "friends" value = "{{friend.profile1.pk}}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif%}
+                    {% endfor %}
+                
+                </div>
+                <div class = "buttons-create-group">
+                    <a class = "cancel-create-group" href = "{% url 'all_chats' %}">Скасувати</a>
+                    
+                    <button type = "submit" class = "confirm-create-group confirm-edit-group">Далі</button>
+                    
+                </div>
+            </form>
+        </div>
+        <div class = "">
+            <form method = "post" class = "form-set-name modal-set-name edit-form-name hidden" enctype="multipart/form-data">
+                
+                {% csrf_token %}
+                <div class = "frame-cross">
+                    <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+                </div>
+                <h1 class = "title-new-group">Редагування групи</h1>
+                <div class = "input-modal-create">
+                    <label for="seacrh" class = "label-name">Назва</label>
+                    <div>
+                        <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
+                        <input type="text" class = "input-create-group" name = "group_name" placeholder="Введіть назву" value = {{chat_group.name}}>
+                    </div>
+                </div>
+                <div class = "avatar-group">
+                    {% if chat_group.avatar %}
+                        <img src="{{ chat_group.avatar.url }}" class = "group-image" alt="">
+                    {% else %}
+                        <img src="{% static 'images/new_group.png' %}" class = "group-image" alt="">
+                    {% endif %}
+                    <div class = "buttons-avatar-group">
+                        <div class = "add-avatar-button">
+
+                                <input type="file" hidden name = "add-image-avatar" id="add-image-avatar"  accept="image/*">
+
+                            <label class = "add-avatar" for="add-image-avatar">
+                                
+                                <img class = "image-choose image-20px" src="{% static 'images/plus_peorple.png' %}" alt="">
+                                <p class = "title-choose">Додайте фото</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class = "members-group">
+                    <div class = "members-setting">
+                        <label for="seacrh" class = "label-name">Учасники</label>
+                        <div class = "add-member">
+                            <img class = "image-choose image-20px" src="{% static 'images/plus_peorple.png' %}" alt="">
+                            <span class = 'add-member-button'>Додати учасника</span>
+                        </div>
+                    </div>
+                    <div class = "members-div">
+                        {% for member in members_group %}
+                            <div class="member">
+                                <div class = "member-avatar">
+                                    {% for avatar in all_avatars %}
+                                        {% if avatar.image %}
+                                            {% if avatar.profile == member %}
+                                                <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
+                                            {% endif  %}
+                                        {% else %}
+                                            <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                        {% endif%}
+                                    {% endfor %}
+                                </div>
+                                <div class="name-and-delete">
+                                    <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
+                                    <img class = "image-20px" src="{% static 'images/delete.png' %}" alt="">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class = "button_style">
+                    <button class = "button_down">Назад</button>
+                    <button type = "submit" class = "button_right">Створити групу</button>
+                </div>
+            </form>
+        </div>
+        </div>
         <div class = "modal-create-group hidden">
             <div class = "frame-cross">
                 <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
             </div>
-            <h1 class = "title-new-group">Нова група</h1>
+            <h1 class = "title-new-group">Додати учасника</h1>
             <div class = "input-modal-create">
                 <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
                 <input type="text" class = "input-create-group" placeholder="Пошук">
@@ -273,66 +413,10 @@
                     
                 </div>
             </form>
-        </div>
-        <div class = "">
-            <form method = "post" class = "form-set-name modal-set-name hidden" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class = "frame-cross">
-                    <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
-                </div>
-                <h1 class = "title-new-group">Нова група</h1>
-                <div class = "input-modal-create">
-                    <label for="seacrh" class = "label-name">Назва</label>
-                    <div>
-                        <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
-                        <input type="text" class = "input-create-group" name = "group_name" placeholder="Введіть назву">
-                    </div>
-                </div>
-                <div class = "avatar-group">
-                    <img src="{% static 'images/new_group.png' %}" class = "group-image" alt="">
-                    <div class = "buttons-avatar-group">
-                        <div class = "add-avatar-button">
-                            <input type="file" hidden name = "add-image-avatar" id="add-image-avatar" accept="image/*">
-                            <label class = "add-avatar" for="add-image-avatar">
-                                <img class = "image-choose image-20px" src="{% static 'images/plus_peorple.png' %}" alt="">
-                                <p class = "title-choose">Додайте фото</p>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class = "members-group">
-                    <label for="seacrh" class = "label-name">Учасники</label>
-                    {% for member in members_group %}
-                        <div class="member">
-                            <div class = "member-avatar">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == member %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
-                                    {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
-                            </div>
-                            <div class="name-and-delete">
-                                <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
-                                <img class = "image-20px" src="{% static 'images/delete.png' %}" alt="">
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                
-                <div class = "button_style">
-                    <button type = "submit" class = "button_down">Назад</button>
-                    <button type = "submit" class = "button_right">Створити групу</button>
-                </div>
-            </form>
-        </div>
-        </div>
+        </div> 
     </div>
 {% endblock %}
 {% block script %}
-    <script src = "{% static 'js/modal.js'%}"></script>
     <script src = "{% static 'js/chat.js' %}"></script>
+    <script src = "{% static 'js/modal.js'%}"></script>
 {% endblock %}

@@ -6,3 +6,7 @@ class MessageForm(forms.Form):
         "placeholder": "Повідомлення",
         "class": "message-input"
     }))
+
+class GroupForm(forms.Form):
+    class Meta:
+        fields = ['name', 'avatar']
