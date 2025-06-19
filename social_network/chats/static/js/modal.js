@@ -56,10 +56,13 @@ for (let field of cookies){
         editFormName.classList.toggle('hidden');
     }
 }
-crossImage.addEventListener("click", function(){
-    groupModal.classList.toggle('hidden');
-    fullscreen.classList.toggle("hidden");
-})
+if (crossImage){
+    crossImage.addEventListener("click", function(){
+        groupModal.classList.toggle('hidden');
+        fullscreen.classList.toggle("hidden");
+    })
+}
+
 // $(document).ready(
 //     function(){
 //         $(".delete-user-from-cookie").each(function(){

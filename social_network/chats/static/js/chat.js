@@ -9,17 +9,8 @@ const form = document.getElementById("form");
 const dateTime = document.querySelectorAll(".message-time");
 for (let time of dateTime){
     let dateAndTime = new Date(time.textContent);
-    let dateAndTimeLocal = dateAndTime.toLocaleString();
+    let dateAndTimeLocal = dateAndTime.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
     time.textContent = dateAndTimeLocal
-
-    // let dateMinutesDiv = document.querySelectorAll('.date-minutes-div')
-
-    // dateMinutesDiv.forEach(date =>{
-    //     let dateMinutes = `${dateAndTime.getHours()}: ${dateAndTime.getMinutes()}`
-    //     let data = document.createElement('p');
-    //     dateMinutesDiv.innerHTML += `<p>(${dateMinutes})</p>`;
-    //     console.log(dateMinutes)
-    // })
 }
 form.addEventListener("submit", (event) => {
     // 
@@ -30,25 +21,37 @@ form.addEventListener("submit", (event) => {
     // 
     form.reset()
 })
-socket.addEventListener('message', function(event){
-    const messageObject = JSON.parse(event.data)
-    const messageElem = document.createElement('div')
-    messageElem.classList.add("one-message")
-    const username  = document.createElement('p')   
-    username.textContent = `${messageObject['username']}`
-    username.classList.add('message-author')
+socket.addEventListener('message', function(event){ 
+    const messageObject = JSON.parse(event.data);
+    const messageElem = document.createElement('div');
+    messageElem.classList.add("one-message");
+    const username  = document.createElement('p');  
+    const messageAndTime = document.createElement('div');
+    const hiddenInputId = document.querySelector(".input-name").value;
+    if (Number(hiddenInputId) !== messageObject['user_id']){
+        username.textContent = `${messageObject['username']}`;
+        username.classList.add('message-author');
+        messageElem.append(username);
+        messageElem.classList.add("author-people");
+    }
+    else{ 
+        messageElem.classList.add("author-me")
+    }
     const message = document.createElement('p')
     message.textContent = `${messageObject['message']}`
-    messageElem.append(message)
-    message.classList.add("message-content")
-    messageElem.append(username)
-    messages.append(messageElem)
+    messageAndTime.append(message)
     const time = document.createElement('p')
+    messageAndTime.classList.add("message-and-time")
     time.classList.add('message-time')
     let dateAndTime = new Date(messageObject['date_time']);
-    let dateAndTimeLocal = dateAndTime.toLocaleString();
+    let dateAndTimeLocal = dateAndTime.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
     time.textContent = dateAndTimeLocal
-    messageElem.append(time)
+    messageAndTime.append(time)
+
+    message.classList.add("message-content")
+    messageElem.append(messageAndTime)
+    messages.append(messageElem)
+
     scrollMessagesToBottom()
 })
 

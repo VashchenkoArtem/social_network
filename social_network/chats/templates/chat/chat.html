@@ -1,4 +1,4 @@
-1   {% extends 'base_header_main.html' %}
+{% extends 'base_header_main.html' %}
 {% load static %}
 
 {% block title %}
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/chat/chat.css' %}">
     <link rel="stylesheet" href="{% static 'css/modals/modals.css' %}">
 {% endblock %}
+
 {% block content %}
     <div class = "body">
         <div class = "all-contacts">
@@ -87,32 +88,32 @@
                     <img class = "dots small-image" src="{% static 'images/dots.png'%}" alt="">
                 </div>
                 <div class = "message-and-input">
-                    <div id = "messages" class="messages-class">
+                    <div class = "messages-wrapper">
+                        <div id = "messages" class="messages-class">
+                            <input type="hidden" class = "input-name" value = "{{ current_user.user.pk }}">
+                        
 
-                    
-
-                        {% for message in messages %}
-                            {% if message.author == current_user %}
-                                <div class = "one-message author-me">
-                                    <p class = "message-content">{{ message.content}}</p>
-                                    <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
-
-                                    <!-- <div class="date-minutes-div">
-                                        <p class="date-minutes-text"></p>
-                                    </div> -->
-
-                                </div>
-                            {% elif message.author != current_user %}
-                                <div class = "one-message author-people">
-                                    <p class = "message-author">{{ message.author }}</p>
-                                    <p class = "message-content">{{ message.content}}</p>
-                                    <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
-                                </div>
-                            {% endif %}
-                            
-                        {% endfor%}
-                    </div> 
-                    
+                            {% for message in messages %}
+                                {% if message.author == current_user %}
+                                    <div class = "one-message author-me">
+                                        <div class = "message-and-time">
+                                            <p class = "message-content">{{ message.content}}</p>
+                                            <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
+                                        </div>
+                                    </div>
+                                {% elif message.author != current_user %}
+                                    <div class = "one-message author-people">
+                                        <p class = "message-author">{{ message.author }}</p>
+                                        <div class = "message-and-time">
+                                            <p class = "message-content">{{ message.content}}</p>
+                                            <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                            {% endfor%}
+                        </div> 
+                    </div>
                     <div class = "input-div"> 
                         <form method="post" class = "input-form" id = "form">
                             {{ form }}

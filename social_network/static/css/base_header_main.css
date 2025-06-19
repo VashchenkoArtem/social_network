@@ -37,20 +37,6 @@ body{
 .hat{
     width: 100%;
     height: calc(3.1vw + 4.3vh);  
-    position: fixed;
-    top: 0px;
-    left: 0px;  
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: calc(0.8vw + 1.2vh) calc(2.8vw + 3.9vh);
-    overflow: visible;
-    white-space: nowrap;
-}
-.hat-down{
-    width: 100%;
-    height: calc(3.1vw + 4.3vh);  
     top: 0px;
     left: 0px;  
     background-color: white;
