@@ -85,7 +85,13 @@
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                                                {% for avatar in all_avatars %}
+                                                    {% for member in group.members.all %}
+                                                        {% if avatar.profile == member and member != current_user %}
+                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
+                                                        {% endif %}
+                                                    {% endfor%}
+                                                {% endfor %}
                                             </div>
                                             <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
                                                 <div class = "people-name-and-time">

@@ -347,3 +347,7 @@ input[type="checkbox"]:hover{
     display: flex;
     align-items: center;
 }
+.friend-name{
+    max-height: calc(0.6vw + 0.9vh);
+    overflow-x: hidden;
+}

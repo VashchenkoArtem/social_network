@@ -7,6 +7,7 @@ from django.core import serializers
 from django.views.generic import TemplateView
 from settings_app.models import Profile, Friendship, Avatar
 from publications.models import Post,Image, Tag, Link
+from django.shortcuts import redirect
 
 
 class MyPublicationsView(CreateView):
@@ -28,6 +29,8 @@ class MyPublicationsView(CreateView):
         return response
 
     def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration")
         current_user = Profile.objects.get(user_id = self.request.user.pk)
         user_posts = Post.objects.all()
         if len(user_posts) > 0:

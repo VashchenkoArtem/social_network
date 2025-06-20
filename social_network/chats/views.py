@@ -12,7 +12,11 @@ from django.http import JsonResponse
 # Create your views here.
 class ChatsView(TemplateView):
     template_name = "all_chats/all_chats.html"
-
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
         if request.POST.getlist('friends'):  
             selected_ids = request.POST.getlist('friends')
@@ -62,6 +66,11 @@ class ChatsView(TemplateView):
 class ChatView(FormView):
     template_name = "chat/chat.html"
     form_class = MessageForm
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super(ChatView, self).get_context_data(**kwargs)
         chat_pk = self.kwargs["chat_pk"]

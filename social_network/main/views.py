@@ -6,7 +6,7 @@ from .forms import PostForm, PostFormEdit
 from settings_app.models import Profile, Friendship, Avatar
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.core import serializers
 from django.contrib.auth.models import User
@@ -32,6 +32,8 @@ class MainView(CreateView):
         return response
 
     def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration")
         current_user = Profile.objects.get(user_id = self.request.user.pk)
         user_posts = Post.objects.all()
         if len(user_posts) > 0:

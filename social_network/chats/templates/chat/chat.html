@@ -102,16 +102,22 @@
                                         </div>
                                     </div>
                                 {% elif message.author != current_user %}
+                                <div class = "message-with-avatar author-people-message" >
+                                    {% for avatar in all_avatars %}
+                                        {% if avatar.profile == message.author %}
+                                            <img class = "avatar-people" src="{{ avatar.image.url }}" alt="">
+                                        {% endif%}
+                                    {% endfor%}
                                     <div class = "one-message author-people">
-                                        <p class = "message-author">{{ message.author }}</p>
+                                        <p class = "message-author ">{{ message.author }}</p>
                                         <div class = "message-and-time">
                                             <p class = "message-content">{{ message.content}}</p>
                                             <p class = "message-time">{{ message.sent_at|date:'c'}}</p>
                                         </div>
                                     </div>
+                                </div>
                                 {% endif %}
-                                
-                            {% endfor%}
+                            {% endfor %}
                         </div> 
                     </div>
                     <div class = "input-div"> 
@@ -119,12 +125,7 @@
                             {{ form }}
                             {% csrf_token %}
                             <div class = "buttons">
-                                <button class = "button emoji">
-                                    <img class = "images" src="{% static 'images/emoji.png' %}" alt="">
-                                </button>
-                                <button class = "button photos">
-                                    <img class = "images" src="{% static 'images/photos.png'%}" alt="">
-                                </button>
+
                                 <button class = "button confirm" type = "submit">
                                     <img class = "images" src="{% static 'images/confirm.png'%}" alt="">
                                 </button>
@@ -134,7 +135,7 @@
                 </div>
             </div>
         </div>
-                <div class = "frames">
+        <div class = "frames">
             <div class = "frame message">
                 <div class = "title-frame">
                     <div class = "logo-frame">
@@ -155,7 +156,13 @@
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
+                                                {% for avatar in all_avatars %}
+                                                    {% for member in group.members.all %}
+                                                        {% if avatar.profile == member and member != current_user %}
+                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
+                                                        {% endif %}
+                                                    {% endfor%}
+                                                {% endfor %}
                                             </div>
                                             <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
                                                 <div class = "people-name-and-time">
@@ -199,13 +206,13 @@
                                                     <img class = "icon-people" src="{% static 'images/group_avatar.png' %}" alt="">
                                                 {% endif %}
                                             </div>
-                                                    <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
-                                                        <div class = "people-name-and-time">
-                                                            <h3 class = "friend-name">{{group.name}}</h3>
-                                                            <h3 class = "time">Час</h3>
-                                                        </div>
-                                                        <h4 class = message-friend>Повідомлення</h4>
-                                                    </a>
+                                                <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
+                                                    <div class = "people-name-and-time">
+                                                        <h3 class = "friend-name">{{group.name}}</h3>
+                                                        <h3 class = "time">Час</h3>
+                                                    </div>
+                                                    <h4 class = message-friend>Повідомлення</h4>
+                                                </a>
                                         </div>
                                     </div>
                                 {% endif%}

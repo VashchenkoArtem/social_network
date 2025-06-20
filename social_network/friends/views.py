@@ -18,6 +18,12 @@ class FriendsView(TemplateView):
         context["all_avatars"] = Avatar.objects.all()
         context["current_user"] = Profile.objects.get(user = self.request.user)
         return context 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
+            
     
     
 
@@ -29,7 +35,10 @@ class AllFriendsView(TemplateView):
         context["all_avatars"] = Avatar.objects.all()
         context["current_user"] = Profile.objects.get(user = self.request.user)
         return context 
-
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration")
+        
 class RequestView(TemplateView):
     template_name = "all_requests/requests.html"
 
@@ -38,7 +47,12 @@ class RequestView(TemplateView):
         profile = Profile.objects.get(user = self.request.user)
         context["all_requests"] = Friendship.objects.filter(profile2 = profile, accepted = False)
         context["all_avatars"] = Avatar.objects.all()
-        return context 
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
     
 class RecommendedView(TemplateView):
     template_name = "recommended/recommended.html"
@@ -47,6 +61,11 @@ class RecommendedView(TemplateView):
         context["all_recommended"] = Profile.objects.filter().exclude(user = self.request.user)
         context["all_avatars"] = Avatar.objects.all()
         return context
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
 
 class FriendProfileView(TemplateView):
     template_name = 'friend_profile/friend_profile.html'
@@ -62,7 +81,11 @@ class FriendProfileView(TemplateView):
 
         context['current_request'] = Friendship.objects.get(profile1= Profile.objects.get(user = friend_user), profile2 =Profile.objects.get(user = self.request.user))
         return context
-        
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
 
 def delete_request(request, pk):
     current_user = Profile.objects.get(user_id = request.user.id)
@@ -75,10 +98,6 @@ def delete_request(request, pk):
 
 def delete_recommended(request, pk):
     rejected_user = User.objects.get(id = pk)
-    # DeclineRecommended.objects.get_or_create(
-    #             current_user=request.user,
-    #             rejected_user=rejected_user
-    #         )
     return redirect("main_friends")
 
 def delete_friend(request, pk):

@@ -7,8 +7,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("user_settings/", UserSettingsView.as_view(), name = "user_settings"),
     path("albums/", UserAlbums.as_view(), name = "albums"),
-    path("friends/", FriendsView.as_view(), name = "friends"),
-    path("check_info/<int:pk>", RedactDataView.as_view(), name = "check_info")
+    path("check_info/<int:pk>", RedactDataView.as_view(), name = "check_info"),
+    path("edit_album/<int:pk>", RedactAlbumView.as_view(), name = "edit_album")
 ]
 
 if DEBUG:
