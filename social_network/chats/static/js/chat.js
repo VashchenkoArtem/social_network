@@ -22,21 +22,36 @@ form.addEventListener("submit", (event) => {
     form.reset()
 })
 socket.addEventListener('message', function(event){ 
+    const messageWithAvatar = document.createElement('div');
+    
     const messageObject = JSON.parse(event.data);
     const messageElem = document.createElement('div');
     messageElem.classList.add("one-message");
     const username  = document.createElement('p');  
     const messageAndTime = document.createElement('div');
+    const avatar = document.createElement('img');
     const hiddenInputId = document.querySelector(".input-name").value;
     if (Number(hiddenInputId) !== messageObject['user_id']){
         username.textContent = `${messageObject['username']}`;
         username.classList.add('message-author');
         messageElem.append(username);
         messageElem.classList.add("author-people");
+        for (let count = 0; count < messageObject["all_avatars"].length; count ++){
+            let ProfileAvatar = messageObject["all_avatars"][count]
+            let profileId = messageObject["profile_id"]
+            if (ProfileAvatar.fields.profile == profileId){
+                avatar.classList.add("avatar-people");
+                avatar.src = "/media/" + ProfileAvatar.fields.image
+                messageWithAvatar.append(avatar)
+                messageWithAvatar.classList.add('message-with-avatar')
+                messageWithAvatar.classList.add('author-people-message')
+            }
+    }
     }
     else{ 
         messageElem.classList.add("author-me")
     }
+
     const message = document.createElement('p')
     message.textContent = `${messageObject['message']}`
     messageAndTime.append(message)
@@ -50,8 +65,8 @@ socket.addEventListener('message', function(event){
 
     message.classList.add("message-content")
     messageElem.append(messageAndTime)
-    messages.append(messageElem)
-
+    messageWithAvatar.append(messageElem)   
+    messages.append(messageWithAvatar)
     scrollMessagesToBottom()
 })
 

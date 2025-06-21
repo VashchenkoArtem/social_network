@@ -47,3 +47,10 @@ inputImage.addEventListener('change', function() {
     });
     reader.readAsDataURL(image);
 });
+
+let editPasswordButton = document.querySelector("#editPasswordButton")
+let modalWindowPassword = document.querySelector("#modalWindowPassword")
+
+editPasswordButton.addEventListener('click', ()=>{
+    modalWindowPassword.classList.toggle("hidden-modal")
+})

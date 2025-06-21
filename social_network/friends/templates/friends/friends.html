@@ -122,12 +122,12 @@
                                 
                                 <div class = "profile-card">
                                     {% for avatar in all_avatars %}
-                                        {% if avatar.active %}
-                                            {% if avatar.profile == friend.profile1 or avatar.profile == friend.profile2 and avatar.profile != current_user %}
-                                                <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                            
+                                        {% if avatar.image %}
+                                            {% if avatar.profile == friend.profile1 %}
+                                                <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
                                             {% endif  %}
                                         {% else %}
-                                            <img class = "avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                                            <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
                                         {% endif%}
                                     {% endfor %}
                                 </div>
@@ -144,9 +144,15 @@
                                 
                             
                                 <div class = "card-buttons">
-                                    <a class = "button button-confirm">
-                                        Повідомлення
-                                    </a>
+                                    {% if friend.profile1 != current_user %}
+                                        <a class = "button button-confirm" href = "{% url 'create_chat' friend.profile1.pk %}">
+                                            Повідомлення
+                                        </a>
+                                    {% elif friend.profile2 != current_user %}
+                                        <a class = "button button-confirm" href = "{% url 'create_chat' friend.profile2.pk %}">
+                                            Повідомлення
+                                        </a>
+                                    {% endif  %}
                                     <a class = "button button-delete-friend" id = "{% url 'delete_friend' friend.profile1.user.pk%}">
                                         Видалити
                                     </a>

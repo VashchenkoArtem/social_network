@@ -38,6 +38,7 @@ class ChatsView(TemplateView):
                 avatar=group_avatar,
                 admin_id=self.request.user.id
             )
+
             my_profile = Profile.objects.get(user_id = self.request.user.pk)
             group.members.set(members)
             group.members.add(my_profile)
@@ -105,7 +106,6 @@ class ChatView(FormView):
             group = ChatGroup.objects.get(id = chat_pk)
             group.members.set(members_id)
             group.members.add(my_profile)
-            print("asdasda")
             response.set_cookie("get_friends", "1234")
             return response
     def get_success_url(self):

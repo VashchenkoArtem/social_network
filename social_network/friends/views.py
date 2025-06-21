@@ -37,7 +37,9 @@ class AllFriendsView(TemplateView):
         return context 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
-            return redirect("registration")
+            return redirect("registration") 
+        else:   
+            return super().dispatch(request, *args, **kwargs)
         
 class RequestView(TemplateView):
     template_name = "all_requests/requests.html"
@@ -122,5 +124,6 @@ def confirm_friend(request, pk):
 def request_to_user(request, pk):
     current_user = Profile.objects.get(user_id = request.user.id)
     request_user = Profile.objects.get(user_id = pk)
-    Friendship.objects.create(profile1 = current_user, profile2 = request_user, accepted = False)
+    if not Friendship.objects.filter(profile1 = current_user, profile2 = request_user, accepted = False) or not Friendship.objects.create(profile1 = current_user, profile2 = request_user, accepted = True):
+        Friendship.objects.create(profile1 = current_user, profile2 = request_user, accepted = False)
     return redirect("main_friends")

@@ -124,13 +124,25 @@
                                 <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" id = "3" class="eye-img all">
                             </div>
                         </div>
-                        <div class="little-div-edit">
-                            <p class="edit-text">Пароль</p>
-                            <div class="input-div-edit-password">
-                                <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
-                                <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                            <div class="passwords-div">
+                                <div class="header-card">
+                                    <p class="password-text">Пароль</p>
+
+                                    <button class="edit-info-button password" id="editPasswordButton" type="button">
+                                        <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                                        Редагувати пароль
+                                    </button>
+                                </div>
+
+                                    <p class="edit-text">Пароль</p>
+                                    <div class="input-div-edit-password">
+                                        <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
+                                        <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                                    </div>
+                                
                             </div>
-                        </div>
+                            
+                        
                     </div>
                 </div>
             </form>
@@ -166,6 +178,11 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="modal-password hidden-modal" id="modalWindowPassword">
+        <p>ss</p>
+
     </div>
     
 {% endblock %}
