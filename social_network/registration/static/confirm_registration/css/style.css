@@ -15,7 +15,7 @@
     align-items: center;
     text-align: center;
     margin-top: calc(4.9vh + 3.4vw);
-    margin-right: calc(19.6vh + 13.8vw);
+    margin-right: calc(16vw + 17.1vh);
     gap: calc(1.7vh + 1.2vw);
     position: relative;
     z-index: 2;
@@ -76,18 +76,17 @@ a{
 .background-image{
     position: absolute;
     width: calc(23.5vw + 33.2vh);
-    height: calc(25.8vh + 18.2vw);
-    padding-left: calc(14.7vh + 10.4vw);
+    height: calc(18.2vw + 25.8vh);
+    margin-left: calc(19vw + 27vh);
     z-index: 1;
 }
 
 .body-page{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    height: fit-content;
-    padding-top: 4.5%;
+    height: 88%;
 }
 li{
     color: red;

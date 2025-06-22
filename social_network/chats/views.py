@@ -87,9 +87,39 @@ class ChatView(FormView):
         context["members_group"] = group.members.all()
         return context
     def post(self, request, *args, **kwargs):
-        if not request.POST.getlist('friends'):
-            new_group_name = request.POST.get("group_name")
-            new_group_avatar = request.FILES.get("add-image-avatar")
+        # ChatsView
+
+        if request.POST.getlist('friends'):  
+            selected_ids = request.POST.getlist('friends')
+            ids_str = " ".join(selected_ids)
+            response = redirect('all_chats') 
+            response.set_cookie('group_members', ids_str)
+            return response
+        elif request.POST.getlist("group_name"):
+            group_name = request.POST.get("group_name")
+            group_avatar = request.FILES.get("add-image-avatar")
+
+            ids_str = request.COOKIES.get("group_members", "")
+            member_ids = ids_str.strip().split()
+            members = Profile.objects.filter(id__in=member_ids)
+
+            group = ChatGroup.objects.create(
+                name=group_name,
+                avatar=group_avatar,
+                admin_id=self.request.user.id
+            )
+
+            my_profile = Profile.objects.get(user_id = self.request.user.pk)
+            group.members.set(members)
+            group.members.add(my_profile)
+        
+            response = redirect('all_chats')
+            response.delete_cookie('group_members')
+        # ChatView
+
+        elif not request.POST.getlist('edit_friends'):
+            new_group_name = request.POST.get("edit_group_name")
+            new_group_avatar = request.FILES.get("edit-image-avatar")
             group = ChatGroup.objects.get(id = self.kwargs['chat_pk'])
             group.name = new_group_name
             if new_group_avatar:
@@ -99,13 +129,15 @@ class ChatView(FormView):
             response.delete_cookie("get_friends")
             return response
         else:
-            members_id = request.POST.getlist('friends')
+            members_id = request.POST.getlist('edit_friends')
+            print(members_id)
             response = redirect('chat', self.kwargs['chat_pk'])
             chat_pk = self.kwargs["chat_pk"]
             my_profile = Profile.objects.get(user_id = self.request.user.id)
             group = ChatGroup.objects.get(id = chat_pk)
             group.members.set(members_id)
             group.members.add(my_profile)
+            print(group.members.all())
             response.set_cookie("get_friends", "1234")
             return response
     def get_success_url(self):

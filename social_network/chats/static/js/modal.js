@@ -1,5 +1,5 @@
-const buttonCreateGroup = document.querySelector('.button-title');
-const formObject = document.querySelector(".modal-create-group");
+const buttonCreateGroup = document.querySelector('.add-chat');
+const formObject = document.querySelector(".modal-create-group-create");
 const frameCross = document.querySelector(".frame-cross");
 const fullscreen = document.querySelector(".fullscreen");
 const groupModal = document.querySelector(".modal-set-name");
@@ -12,6 +12,7 @@ const addMemberButton = document.querySelector(".add-member-button");
 const editFormMembers = document.querySelector(".modal-edit-group");
 const editGroup = document.querySelector(".confirm-create-group");
 const crossImage = document.querySelector(".close-second-modal");
+const editName = document.querySelector(".modal-edit-name")
 
 buttonCreateGroup.addEventListener("click", ()=>{
     formObject.classList.toggle("hidden");
@@ -24,8 +25,14 @@ frameCross.addEventListener("click", ()=>{
 const cookies = document.cookie.split(';')
 for (let cookieField of cookies){
     if (cookieField.includes("group_members")){
-        fullscreen.classList.toggle("hidden");
-        groupModal.classList.toggle("hidden");
+        if (editName){
+            fullscreen.classList.toggle("hidden");
+            editName.classList.toggle("hidden");
+        }
+        else{   
+            fullscreen.classList.toggle("hidden");
+            groupModal.classList.toggle("hidden");
+        }
     }
 }
 inputImage.addEventListener('change', function(){
@@ -38,7 +45,7 @@ inputImage.addEventListener('change', function(){
 })
 if (dots){
     dots.addEventListener('click', function(){
-        editFormName.classList.toggle("hidden");
+        editName.classList.toggle("hidden");
         fullscreen.classList.toggle("hidden");
     })
 

@@ -11,11 +11,8 @@
 
 {% block content %}
 <div class = "body-page">
-    <div class = "background-image">
-        <img class = "image" src="{% static 'images/background/back.png'%}" alt="">
-    </div>
     <form method = "post" class="registration-confirm-form">
-            <h1 class = "title">Підтвердження пошти</h1>
+        <h1 class = "title">Підтвердження пошти</h1>
             <h2 class = "description-title">Ми надіслали 6-значний код на вашу пошту<br> (you@example.com). Введіть його нижче, щоб<br> підтвердити акаунт</h2>
             
             <div class = "form">
@@ -27,6 +24,9 @@
                 <a href = "{% url 'registration' %}">Назад</a>
             </div>
         </form>
+        <div class = "background-image">
+            <img class = "image" src="{% static 'images/background/back.png'%}" alt="">
+        </div>
     </div>
 {% endblock %}
 

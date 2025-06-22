@@ -224,8 +224,8 @@
         </div>
         </div>
         <div class = "fullscreen hidden"></div>
-
-        <div class = "modal-edit-group modal-edit-group hidden">
+        <!-- Редагування групи - додавання учасників -->
+        <div class = "modal-create-group modal-edit-group hidden">
             <div class = "frame-cross">
                 <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
             </div>
@@ -255,9 +255,9 @@
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
                                     {% if friend.profile2 in chat_group.members.all %}
-                                        <input type="checkbox" name = "friends" checked value = "{{friend.profile2.pk}}">
+                                        <input type="checkbox" name = "edit_friends" checked value = "{{friend.profile2.pk}}">
                                     {% else %}
-                                        <input type="checkbox" name = "friends" value = "{{friend.profile2.pk}}">
+                                        <input type="checkbox" name = "edit_friends" value = "{{friend.profile2.pk}}">
                                     {% endif %}
                                 </div>
                             </div>
@@ -275,9 +275,9 @@
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
                                     {% if friend.profile1 in chat_group.members.all %}
-                                        <input type="checkbox" name = "friends" checked value = "{{friend.profile1.pk}}">
+                                        <input type="checkbox" name = "edit_friends" checked value = "{{friend.profile1.pk}}">
                                     {% else %}
-                                        <input type="checkbox" name = "friends" value = "{{friend.profile1.pk}}">
+                                        <input type="checkbox" name = "edit_friends" value = "{{friend.profile1.pk}}">
                                     {% endif %}
                                 </div>
                             </div>
@@ -293,8 +293,9 @@
                 </div>
             </form>
         </div>
+        <!-- Редагування групи - редагування -->
         <div class = "">
-            <form method = "post" class = "form-set-name modal-set-name edit-form-name hidden" enctype="multipart/form-data">
+            <form method = "post" class = "form-set-name modal-edit-name edit-form-name hidden" enctype="multipart/form-data">
                 
                 {% csrf_token %}
                 <div class = "frame-cross">
@@ -305,7 +306,7 @@
                     <label for="seacrh" class = "label-name">Назва</label>
                     <div>
                         <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
-                        <input type="text" class = "input-create-group" name = "group_name" placeholder="Введіть назву" value = {{chat_group.name}}>
+                        <input type="text" class = "input-create-group" name = "edit_group_name" placeholder="Введіть назву" value = {{chat_group.name}}>
                     </div>
                 </div>
                 <div class = "avatar-group">
@@ -317,7 +318,7 @@
                     <div class = "buttons-avatar-group">
                         <div class = "add-avatar-button">
 
-                                <input type="file" hidden name = "add-image-avatar" id="add-image-avatar"  accept="image/*">
+                                <input type="file" hidden name = "edit-image-avatar" id="add-image-avatar"  accept="image/*">
 
                             <label class = "add-avatar" for="add-image-avatar">
                                 
@@ -363,9 +364,10 @@
                     <button type = "submit" class = "button_right">Створити групу</button>
                 </div>
             </form>
-        </div>
-        
-        <div class = "modal-create-group hidden">
+        </div>  
+
+        <!-- Створення групи - учасники -->
+        <div class = "modal-create-group modal-create-group-create hidden">
             <div class = "frame-cross">
                 <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
             </div>
@@ -424,6 +426,7 @@
                 </div>
             </form>
         </div>
+        <!-- Створення групи - назва, фото -->
         <div class = "">
             <form method = "post" class = "form-set-name modal-set-name hidden" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -479,65 +482,6 @@
                 </div>
             </form>
         </div>
-        <div class = "modal-create-group hidden">
-            <div class = "frame-cross">
-                <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
-            </div>
-            <h1 class = "title-new-group">Додати учасника</h1>
-            <div class = "input-modal-create">
-                <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
-                <input type="text" class = "input-create-group" placeholder="Пошук">
-            </div>
-            <h3 class = "selected-people">
-                Вибрано: <span class = "selected-count-people"></span>
-            </h3>
-            <form method = "post" class = "form">
-                {% csrf_token%}
-                <div class = "filter-people-group">
-                    {% for friend in friends %}
-                        {% if friend.profile1 == current_user %}
-                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                         
-                                        {% endif  %}
-                                    {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
-                                <div class = "name-and-correct">
-                                    <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
-                                    <input type="checkbox" name = "friends" value = "{{friend.profile2.pk}}">
-                                </div>
-                            </div>
-                        {% elif friend.profile2 == current_user %}
-                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
-                                    {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
-                                <div class = "name-and-correct">
-                                    <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
-                                    <input type="checkbox" name = "friends" value = "{{friend.profile1.pk}}">
-                                </div>
-                            </div>
-                        {% endif%}
-                    {% endfor %}
-                </div>
-                <div class = "buttons-create-group">
-                    <a class = "cancel-create-group" href = "{% url 'all_chats' %}">Скасувати</a>
-                    
-                    <button type = "submit" class = "confirm-create-group">Далі</button>
-                    
-                </div>
-            </form>
-        </div> 
     </div>
 {% endblock %}
 {% block script %}

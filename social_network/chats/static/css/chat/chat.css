@@ -269,6 +269,22 @@ input[type="checkbox"]:checked::after {
     border-radius: calc(0.7vw + 1vh);
     gap:calc(0.8vw + 1.2vh);
 }
+.modal-edit-name{
+    width: calc(17vw + 24vh);
+    height: calc(25     vw + 31.1vh);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    align-items: center;
+    border: calc(0.03vw + 0.05vh)rgba(205, 206, 210, 1) solid;
+    transform: translate(-50%, -50%);
+    padding: calc(0.8vw + 1.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh) calc(1.5vw + 2.2vh);
+    border-radius: calc(0.7vw + 1vh);
+    gap:calc(0.8vw + 1.2vh);
+}
 .label-name{
     font-weight: 400;
     font-size: calc(0.5vw + 0.8vh);
