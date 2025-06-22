@@ -51,8 +51,14 @@ inputImage.addEventListener('change', function() {
 let editPasswordButton = document.querySelector("#editPasswordButton")
 let modalWindowPassword = document.querySelector("#modalWindowPassword")
 let darkModal = document.querySelector("#darkModal")
+let closeButton = document.querySelector("#closeButton")
 
 editPasswordButton.addEventListener('click', ()=>{
+    modalWindowPassword.classList.toggle("hidden-modal")
+    darkModal.classList.toggle("hidden-modal")
+})
+
+closeButton.addEventListener('click', ()=>{
     modalWindowPassword.classList.toggle("hidden-modal")
     darkModal.classList.toggle("hidden-modal")
 })

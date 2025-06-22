@@ -185,7 +185,45 @@
 
     <div class="dark-for-modal hidden-modal" id = "darkModal">
         <div class="modal-password hidden-modal" id="modalWindowPassword">
-            <p>ss</p>
+
+            <div class="close-window-div">
+                <img src="{% static 'user_settings/images/close.png' %}" id="closeButton" class="close-button">
+            </div>
+
+            <div class="text-password-remake">
+                <p class="text-remade-one">Підтвердження для зміни паролю</p>
+                <div class="two-text">
+                    <p class="text-remade-two">Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
+                </div>
+                
+            </div>
+
+            <div class="main-password-content">
+                <p class="text-remade-two">Код підтвердження</p>
+                <div class="div-inputs">
+                    <div class="mini-input-group">
+                        <input type="number" class="mini-input">
+                        <input type="number" class="mini-input">
+                    </div>
+
+                    <div class="mini-input-group">
+                        <input type="number" class="mini-input">
+                        <input type="number" class="mini-input">
+                    </div>
+
+                    <div class="mini-input-group">
+                        <input type="number" class="mini-input">
+                        <input type="number" class="mini-input">
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <div class="buttons">
+                <button class="cancel-button" id = "cancelButton">Скасувати</button>
+                <button class="save-button" type="submit">Підтвердити</button>
+            </div>
         </div>
     </div>
     
