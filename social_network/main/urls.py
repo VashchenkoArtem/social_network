@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', MyLogoutView.as_view(), name = "logout"),
     path('check_info/<int:post_pk>', PostDataView.as_view(), name = "check_info"),
     path('update/', UserUpdateView.as_view(), name='update_user'),
-    path("check_views/<int:pk>", check_views, name = "check_views")  
+    path("add_like/<int:post_pk>", get_likes, name  = "get_likes")
 ]
 
 if DEBUG:

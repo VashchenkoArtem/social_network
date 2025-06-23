@@ -124,6 +124,6 @@ def confirm_friend(request, pk):
 def request_to_user(request, pk):
     current_user = Profile.objects.get(user_id = request.user.id)
     request_user = Profile.objects.get(user_id = pk)
-    if not Friendship.objects.filter(profile1 = current_user, profile2 = request_user, accepted = False) or not Friendship.objects.create(profile1 = current_user, profile2 = request_user, accepted = True):
+    if len(Friendship.objects.filter(profile1 = current_user, profile2 = request_user)) == 0 and len(Friendship.objects.filter(profile1 = request_user, profile2 = current_user)) == 0:
         Friendship.objects.create(profile1 = current_user, profile2 = request_user, accepted = False)
     return redirect("main_friends")

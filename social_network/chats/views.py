@@ -50,7 +50,6 @@ class ChatsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         my_profile = Profile.objects.get(user_id=self.request.user.id)
         context["all_avatars"] = Avatar.objects.all()
         context["current_user"] = my_profile
@@ -68,10 +67,17 @@ class ChatView(FormView):
     template_name = "chat/chat.html"
     form_class = MessageForm
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
-        else:   
-            return super().dispatch(request, *args, **kwargs)
+        profile = Profile.objects.get(user_id = request.user.pk)
+        chat_pk = self.kwargs["chat_pk"]
+        chat = ChatGroup.objects.get(id = chat_pk)
+        if profile in chat.members.all():
+            if not self.request.user.is_authenticated:
+                return redirect("registration") 
+            else:   
+                return super().dispatch(request, *args, **kwargs)
+        elif profile not in chat.members.all():
+            return redirect("all_chats")
+
     def get_context_data(self, **kwargs):
         context = super(ChatView, self).get_context_data(**kwargs)
         chat_pk = self.kwargs["chat_pk"]
@@ -142,6 +148,8 @@ class ChatView(FormView):
             return response
     def get_success_url(self):
         return reverse("chat", kwargs={"chat_pk": self.kwargs["chat_pk"]})
+
+
     
 def create_chat(request, user_pk):
     connected_user = Profile.objects.get(pk = user_pk)
@@ -169,3 +177,15 @@ def delete_user_from_cookies(request, user_pk):
         ids_str = " ".join(member_ids)
     response.set_cookie('group_members', ids_str)
     return response
+
+def delete_chat(request, chat_pk):
+    chat = ChatGroup.objects.get(pk = chat_pk)
+    chat.delete()
+    return redirect("all_chats")
+
+def exit_group(request, chat_pk):
+    profile = Profile.objects.get(user_id = request.user.id)
+    chat = ChatGroup.objects.get(pk = chat_pk)
+    if profile in chat.members.all():
+        chat.members.remove(profile)
+    return redirect("all_chats")

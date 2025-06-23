@@ -7,12 +7,15 @@ const buttonCreate = document.querySelector(".confirm-create-group");
 const inputImage = document.getElementById("add-image-avatar");
 const imageAvatar = document.querySelector(".group-image");
 const editFormName = document.querySelector(".edit-form-name");
-const dots = document.querySelector(".dots");
+const dots = document.querySelectorAll(".dots");
 const addMemberButton = document.querySelector(".add-member-button");
 const editFormMembers = document.querySelector(".modal-edit-group");
 const editGroup = document.querySelector(".confirm-create-group");
 const crossImage = document.querySelector(".close-second-modal");
 const editName = document.querySelector(".modal-edit-name")
+const modalInfo = document.querySelector('.modal-info');
+const buttonEditGroup = document.querySelector('.edit-group');
+
 
 buttonCreateGroup.addEventListener("click", ()=>{
     formObject.classList.toggle("hidden");
@@ -44,10 +47,13 @@ inputImage.addEventListener('change', function(){
     reader.readAsDataURL(image);
 })
 if (dots){
-    dots.addEventListener('click', function(){
-        editName.classList.toggle("hidden");
-        fullscreen.classList.toggle("hidden");
-    })
+    for (let count = 0; count < dots.length; count ++){
+        let oneObjectDots = dots[count];
+        oneObjectDots.addEventListener('click', function(){
+            modalInfo.classList.toggle("hidden");
+        })
+    }
+
 
 }
 if (addMemberButton){
@@ -70,20 +76,8 @@ if (crossImage){
     })
 }
 
-// $(document).ready(
-//     function(){
-//         $(".delete-user-from-cookie").each(function(){
-//             let id = this.id
-//             $(this).on("click", function(){
-//                 console.log("asdas")
-//                 $.ajax({
-//                     url: id,
-//                     type: 'get',
-//                     success: function(){
-//                         console.log("success ajax")
-//                     }
-//                 })
-//             })
-//         })
-//     }
-// )
+if (buttonEditGroup){
+    buttonEditGroup.addEventListener("click", function(){
+        editName.classList.toggle('hidden')
+    })
+}

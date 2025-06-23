@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .message{
     padding-top: calc(0.6vw + 0.9vh);
-    height: calc(10vh + 8vw);
+    max-height: calc(10vh + 8vw);
 }
 .one-people:hover{
     background-color: rgba(233, 229, 238, 1);
@@ -1069,4 +1069,13 @@ div.frame.profile{
 }
 .image.photos-4.number-4{
     width: calc(30.4vw + 43.4vh);
+}
+.likes-title{
+    margin-top: calc(0.25vw + 0.1vh);
+}
+.review-margin{
+    margin-top: calc(0.25vw + 0.1vh);    
+}
+.likes-icon-click:hover{
+    cursor: pointer;
 }

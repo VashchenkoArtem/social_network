@@ -86,6 +86,42 @@
                         </div>
                     </div>
                     <img class = "dots small-image" src="{% static 'images/dots.png'%}" alt="">
+                        {% for profile in chat_group.members.all %}
+                            {% if profile == current_user %}
+                                {% if chat_group.admin == current_user %}
+                                    <div class = "admin-modal-info hidden modal-info">
+                                        <div class = "dots-container">
+                                            <img class = "dots small-image" src="{% static 'images/dots.png'%}" alt="">
+                                        </div>
+                                        <div class = "title-redact-group frame-title">
+                                            <img src = "{% static 'images/pencil.png' %}" class = "small-image" alt="">
+                                            <span class = "title-redact-h1 edit-group">Редагувати групу</span>
+                                        </div>
+                                        <div class = line></div>
+                                        <div class = "title-delete-group frame-title">
+                                            <img src = "{% static 'images/delete.png' %}" class = "small-image" alt="">
+                                            <a href = "{% url 'delete_chat' chat_group.pk %}" class = "title-redact-h1 delete-group">Видалити чат</a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class = "modal-info user-modal-info hidden">
+                                        <div class = "dots-container">
+                                            <img class = "dots small-image" src="{% static 'images/dots.png'%}" alt="">
+                                        </div>
+                                        
+                                        <div class = "title-delete-group frame-title">
+                                            <img src = "{% static 'images/exit_group.png' %}" class = "small-image" alt="">
+                                            {% if chat_group.is_personal_chat %}
+                                                <a href = "{% url 'delete_chat' chat_group.pk %}" class = "title-redact-h1">Видалити чат</a>
+                                            {% else %}
+                                                <a href = "{% url 'exit_from_group' chat_group.pk %}" class = "title-redact-h1">Покинути групу</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif%}
+                        {% endfor %}
+
                 </div>
                 <div class = "message-and-input">
                     <div class = "messages-wrapper">

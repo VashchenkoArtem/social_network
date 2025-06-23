@@ -1,6 +1,7 @@
 {% extends 'base_header_main.html' %}
-{% load static %}
+{% load custom_tags %}
 
+{% load static %}
 {% block title %}
     Головна
 {% endblock %}
@@ -14,13 +15,15 @@
         <div class = "profile-frame">
             <div class = "frame profile">
                 <div class = "avatar">
-                    {% for avatar in my_avatars %}
-                        {% if avatar.image %}      
-                            <img class = "my-avatar" src="{{ avatar.image.url }}" alt="">
-                        {% else %}
-                            <img class = "my-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                        {% endif %}
-                    {% endfor%}
+                    {% if my_avatars %}
+                        {% for avatar in my_avatars %}
+                            {% if avatar.image %}      
+                                <img class = "my-avatar" src="{{ avatar.image.url }}" alt="">
+                            {% endif %}
+                        {% endfor%}
+                    {% else %}
+                        <img class = "my-avatar" src="{% static 'images/icons/account.png'%}" alt="">
+                    {% endif %}
                 </div>
                 <div class = "nick-and-tag">
                     <h2 class = "name">{{request.user.first_name}} {{request.user.last_name}}</h2>
@@ -32,7 +35,11 @@
                         <h3 class = "info">Дописи</h3>  
                     </div>
                     <div class = "followers section">
-                        <h2 class = "number">12.1K</h2>
+                        {% if all_views %}
+                            <h2 class = "number">{{ all_views.count}}</h2>
+                        {% else %}
+                            <h2 class = "number">0</h2>
+                        {% endif %}
                         <h3 class = "info">Читачі</h3>
                     </div>
                     <div class = "all-friends section">
@@ -94,62 +101,34 @@
                     </div>  
                 </div>
                 <div class = "body-frame">
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img  class = "icon-people"src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "one-people">
-                        <div class = "people-information">
-                            <div class = icon-people>
-                                <img class = "icon-people" src="{% static 'images/icons/friend-avatar2.png'%}" alt="">
-                            </div>
-                            <div class = "people-name-and-message">
-                                <div class = "people-name-and-time">
-                                    <h3 class = "friend-name">Mona Lisa</h3>
-                                    <h3 class = "time">09:41</h3>
-                                </div>
-                                <h4 class = message-friend>Привіт! Як справи?</h4>
-                            </div>
-                        </div>
-                    </div>
+                    {% for group in all_groups %}
+                        {% if group.is_personal_chat == True %}
+                            {% for member in group.members.all %}
+                                {% if member == current_user %}
+                                    <div class = "one-people">
+                                        <div class = "people-information">
+                                            <div class = icon-people>
+                                                {% for avatar in all_avatars %}
+                                                    {% for member in group.members.all %}
+                                                        {% if avatar.profile == member and member != current_user %}
+                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
+                                                        {% endif %}
+                                                    {% endfor%}
+                                                {% endfor %}
+                                            </div>
+                                            <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
+                                                <div class = "people-name-and-time">
+                                                    <h3 class = "friend-name">{{group.name}}</h3>
+                                                    <h3 class = "time">09:41</h3>
+                                                </div>
+                                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif%}
+                            {% endfor %}
+                        {% endif%}
+                    {% endfor %}
                 </div>
             </div>
             
@@ -257,24 +236,21 @@
                                         <div class = "avatar-label">
                                             <div class = "people-logo-and-nick">
                                                 <div class = "logo-post">
-                                                    {% for avatar in all_avatars %}
-                                                        {% if avatar.image %}
-                                                            {% if avatar.profile == post.author%}
-                                                                <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                                            {% endif  %}
+                                               
+
+                                                <div class="logo-post">
+                                                    {% with author_avatar=author_avatars|get_item:post.author.id %}
+                                                        {% if author_avatar and author_avatar.image %}
+                                                            <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                                         {% else %}
-                                                            <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                                        {% endif%}
-                                                    {% endfor %}
+                                                            <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                </div>
                                                 </div>
                                                 <div class = "nick-post">
                                                     <h2 class = "nick-friend">{{post.author.user.first_name}} {{post.author.user.last_name}}</h2>
                                                 </div>
-                                            </div>
-                                            <div class = "signature">
-                                                {% if user.signature %}
-                                                    <img  class = "signature" src="{{ user.signature.url }}" alt="">
-                                                {% endif%}
                                             </div>
 
                                         </div>
@@ -308,12 +284,12 @@
                                         </div>
                                         <div class = "reviews">
                                             <div class = "review">
-                                                <div class = "icon-review">
-                                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                                </div>
-                                                <h2 class = "likes">{{post.like_count}} Вподобайок</h2>
+                                                <a class = "icon-review icon-like {{post.pk}}" id ="{% url 'get_likes' post.pk %}" >
+                                                    <img class = "likes-icon likes-icon-click" src="{% static 'images/icons/Like.png'%}" alt="">
+                                                </a>
+                                                <h2 class = "likes likes-title"><span id = "likesPost-{{post.pk}}">{{ post.likes.count }}</span> Вподобайок</h2>
                                             </div>
-                                            <div class = "review">
+                                            <div class = "review review-margin">
                                                 <div class = "icon-review">
                                                     <img class = "likes-icon" src="{% static 'images/icons/eye.png'%}" alt="">
                                                 </div>
@@ -437,4 +413,5 @@
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src = "{% static 'js/script.js' %}"></script>
+    <script src = "{% static 'js/ajax.js' %}"></script>
 {% endblock %}

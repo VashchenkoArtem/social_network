@@ -42,7 +42,7 @@ class MyPublicationsView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(MyPublicationsView, self).get_context_data(**kwargs)
         profile = Profile.objects.get(user_id = self.request.user.pk)
-        context["posts"] = Post.objects.filter(author_id = profile.id)
+        context["posts"] = Post.objects.filter(author_id = profile.id).order_by('-id')
         context["tags"] = Tag.objects.all()
         context['people'] = Profile.objects.get(user_id = self.request.user.pk)
         context["all_urls"] = Link.objects.all()
@@ -51,8 +51,15 @@ class MyPublicationsView(CreateView):
         context["my_friends"] = Friendship.objects.filter(profile2 = profile, accepted = True)
         context["all_requests"] = Friendship.objects.filter(profile2 = profile)
         context["all_users"] = Profile.objects.all()
-        context["all_avatars"] = Avatar.objects.all()
+        avatars = {}
+        author_ids = Post.objects.values_list('author_id', flat=True).distinct()
+        for author_id in author_ids:
+            avatar = Avatar.objects.filter(profile_id=author_id, shown=True, active=True).first()
+            avatars[author_id] = avatar
         context["my_avatars"] = Avatar.objects.filter(profile_id = profile.id)
+        context['all_views'] = Post.objects.none()
+        for post in Post.objects.filter(author = profile):    
+            context['all_views'] = context['all_views'] | post.views.all()
         return context 
     
  

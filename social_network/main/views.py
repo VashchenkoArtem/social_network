@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.contrib.auth.models import User
 from .forms import UserUpdateForm
+from chats.models import ChatGroup
 
 
 class MainView(CreateView):
@@ -44,7 +45,7 @@ class MainView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data(**kwargs)
-        context["posts"] = Post.objects.all()
+        context["posts"] = Post.objects.all().order_by('-id')
         context["tags"] = Tag.objects.all()
         context['people'] = Profile.objects.get(user_id = self.request.user.pk)
         context["all_urls"] = Link.objects.all()
@@ -54,8 +55,19 @@ class MainView(CreateView):
         context["my_friends"] = Friendship.objects.filter(profile2 = profile, accepted = True)
         context["all_requests"] = Friendship.objects.filter(profile2 = profile)
         context["all_users"] = Profile.objects.all()
-        context["all_avatars"] = Avatar.objects.all()
+        author_ids = Post.objects.values_list('author_id', flat=True).distinct()
+        author_avatars = {}
+        for author in Profile.objects.filter(id__in=Post.objects.values_list('author_id', flat=True)):
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+
+        context['author_avatars'] = author_avatars
         context["my_avatars"] = Avatar.objects.filter(profile_id = profile.id)
+        context['all_groups'] = ChatGroup.objects.all()
+        context["current_user"] = profile
+        context['all_views'] = Post.objects.none()
+        for post in Post.objects.filter(author = profile):    
+            context['all_views'] = context['all_views'] | post.views.all()
         return context 
     
 class MyDeleteView(DeleteView):
@@ -94,10 +106,10 @@ class UserUpdateView( UpdateView):
         response = super().form_valid(form)
         return response
 
-def check_views(request, pk):
-    post = Post.objects.get(id = pk)
-    post_views = post.views.all()
-    data = {
-        'viewsCount': len(post_views)
-    }
-    return JsonResponse(data)
+def get_likes(request,  post_pk):
+    post = Post.objects.get(id = post_pk)
+    profile = Profile.objects.get(user_id = request.user.id)
+    post.likes.add(profile)
+    post.save()
+    return redirect("/")
+    

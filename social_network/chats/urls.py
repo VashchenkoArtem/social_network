@@ -11,6 +11,8 @@ urlpatterns = [
     path("all_chats/create_chat/<int:user_pk>", create_chat, name = "create_chat"),
     path("all_chats/delete_cookie_user/<int:user_pk>", delete_user_from_cookies, name = "delete_user_cookie"),
     # path("all_chats/edit_chat/<int:pk>", EditChat.as_view(), name = "edit_chat")
+    path("all_chats/delete_chat/<int:chat_pk>", delete_chat, name = "delete_chat"),
+    path("all_chats/exit_from_chat/<int:chat_pk>", exit_group, name = "exit_from_group")
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
