@@ -263,7 +263,7 @@
         <!-- Редагування групи - додавання учасників -->
         <div class = "modal-create-group modal-edit-group hidden">
             <div class = "frame-cross">
-                <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+                <img class = "cross-image close-redact-users" src="{% static 'images/cross.png' %}" alt="">
             </div>
             <h1 class = "title-new-group">Додати учасника</h1>
             <div class = "input-modal-create">
@@ -335,7 +335,7 @@
                 
                 {% csrf_token %}
                 <div class = "frame-cross">
-                    <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+                    <img class = "cross-image close-redact-group" src="{% static 'images/cross.png' %}" alt="">
                 </div>
                 <h1 class = "title-new-group">Редагування групи</h1>
                 <div class = "input-modal-create">
@@ -405,7 +405,7 @@
         <!-- Створення групи - учасники -->
         <div class = "modal-create-group modal-create-group-create hidden">
             <div class = "frame-cross">
-                <img class = "cross-image" src="{% static 'images/cross.png' %}" alt="">
+                <img class = "cross-image close-create-group-name" src="{% static 'images/cross.png' %}" alt="">
             </div>
             <h1 class = "title-new-group">Нова група</h1>
             <div class = "input-modal-create">

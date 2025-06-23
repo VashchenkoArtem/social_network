@@ -66,15 +66,13 @@
                             <a class = "one-people" href = "{% url 'all_requests'%}">
                                 <div class = "people-information">
                                     <div class = "icon-people">
-                                        {% for avatar in all_avatars %}
-                                            {% if avatar.image %}
-                                                {% if avatar.profile == request.profile1 %}
-                                                    <img class = "icon-people" src="{{ avatar.image.url }}" alt="">                                              
-                                                {% endif  %}
+                                        {% with author_avatar=author_avatars|get_item:request.profile1.id %}
+                                            {% if author_avatar and author_avatar.image %}
+                                                <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                             {% else %}
-                                                <img class = "icon-people" src="{% static 'images/icons/account.png'%}" alt="">
-                                            {% endif%}
-                                        {% endfor %}
+                                                <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                            {% endif %}
+                                        {% endwith %}
                                     </div>
                                         <div class = "people-name-and-subscribers">
                                             <h3 class = "friend-name request-block">{{ request.profile1.user.first_name }} {{ request.profile1.user.last_name }}</h3>
@@ -104,17 +102,19 @@
                     {% for group in all_groups %}
                         {% if group.is_personal_chat == True %}
                             {% for member in group.members.all %}
-                                {% if member == current_user %}
+                                {% if member != current_user and current_user in group.members.all %}
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                {% for avatar in all_avatars %}
-                                                    {% for member in group.members.all %}
-                                                        {% if avatar.profile == member and member != current_user %}
-                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
-                                                        {% endif %}
-                                                    {% endfor%}
-                                                {% endfor %}
+                                            {% with member.id as member_id %}
+                                                {% with author_avatars|get_item:member_id as author_avatar %}
+                                                    {% if author_avatar and author_avatar.image %}
+                                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
+                                                    {% else %}
+                                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                                    {% endif %}
+                                                {% endwith %}
+                                            {% endwith %}
                                             </div>
                                             <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
                                                 <div class = "people-name-and-time">

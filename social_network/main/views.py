@@ -55,11 +55,25 @@ class MainView(CreateView):
         context["my_friends"] = Friendship.objects.filter(profile2 = profile, accepted = True)
         context["all_requests"] = Friendship.objects.filter(profile2 = profile)
         context["all_users"] = Profile.objects.all()
-        author_ids = Post.objects.values_list('author_id', flat=True).distinct()
         author_avatars = {}
         for author in Profile.objects.filter(id__in=Post.objects.values_list('author_id', flat=True)):
             avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
             author_avatars[author.id] = avatar
+        for group in ChatGroup.objects.all():
+            for member in group.members.all():
+                if member.id not in author_avatars:
+                    avatar = Avatar.objects.filter(profile=member, shown=True, active=True).first()
+                    author_avatars[member.id] = avatar
+        for friend_ship in Friendship.objects.all():
+            if friend_ship.profile1 == Profile.objects.get(user_id = self.request.user.pk):
+                if friend_ship.profile2.id not in author_avatars:
+                    avatar = Avatar.objects.filter(profile=friend_ship.profile2, shown=True, acive=True).first()
+                    author_avatars[friend_ship.profile2.id] = avatar
+            if friend_ship.profile2 == Profile.objects.get(user_id = self.request.user.pk):
+                if friend_ship.profile1.id not in author_avatars:
+                    avatar = Avatar.objects.filter(profile=friend_ship.profile1, shown=True, active=True).first()
+                    author_avatars[friend_ship.profile1.id] = avatar
+
 
         context['author_avatars'] = author_avatars
         context["my_avatars"] = Avatar.objects.filter(profile_id = profile.id)

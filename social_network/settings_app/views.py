@@ -7,7 +7,8 @@ from django.urls import reverse_lazy
 from .models import Avatar, Profile
 from .forms import CreateAlbumForm
 from publications.models import Album, Image, Tag
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 class UserSettingsView(TemplateView):
     template_name = 'user_settings/user_settings.html'
@@ -16,12 +17,12 @@ class UserSettingsView(TemplateView):
         avatar = Avatar.objects.filter(profile = profile).first()
         new_name = request.POST.get('username')
         new_avatar = request.FILES.get('avatar')
-        if new_name:        
-            profile.user.username = new_name
-            profile.user.save()
         if new_avatar:
-            avatar.image = new_avatar
-            avatar.save()
+            if avatar:
+                avatar.image = new_avatar
+                avatar.save()
+            else:
+                Avatar.objects.create(profile=profile, image=new_avatar)
         context = self.get_context_data(**kwargs)
         return redirect("user_settings")
     def get_context_data(self, **kwargs):
@@ -80,3 +81,13 @@ class RedactAlbumView(UpdateView):
     fields = ['name', 'topic']
     template_name = "albums/albums.html"
     success_url = reverse_lazy('albums')
+
+def change_password(request):
+    form = PasswordChangeForm(user = request.user, data = request.POST)
+    if form.is_valid():
+        user = form.save()
+        update_session_auth_hash(request, user)
+        return redirect("user_settings")
+    return render(request, 'user_settings/user_settings.html', {
+        'password_form': form
+    })
