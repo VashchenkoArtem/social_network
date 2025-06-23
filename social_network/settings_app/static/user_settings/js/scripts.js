@@ -1,14 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     const buttonRedact = document.querySelector(".edit-2");
-    const screenDiv = document.querySelector(".screen")
-    const buttonSave = document.querySelector(".save-info-button")
+    const screenDiv = document.querySelector(".screen");
+    const buttonSave = document.querySelector(".save-info-button");
     const eyeImages = document.querySelectorAll(".eye-img");
-    const editButton = document.querySelector('.edit-info-button');
+    const editButtons = document.querySelectorAll('.edit-info-button');
     const editProfileCard = document.querySelector(".edit-profile-card");
     const defaultCard = document.querySelector(".default-profile-card");
-    const inputImage = document.querySelector(".change-avatar")
+    const inputImage = document.querySelector(".change-avatar");
     const imageAvatar = document.getElementById('user-img');
+    const editPassword = document.querySelector(".edit-password-div");
+    const passwordsDiv = document.querySelector(".passwords-div");
+    const inputDivPassword = document.querySelector(".input-div-edit-password");
+    const editSavedPassword = document.querySelector(".edit-save-password");
 
+    
     for (let count = 0; count < eyeImages.length; count++){
         let eyeImage = eyeImages[count];
         let input = document.getElementById(eyeImage.id)
@@ -33,11 +38,17 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonRedact.classList.toggle("hidden")
         buttonSave.classList.toggle("hidden")
     })
-
-    editButton.addEventListener('click', function(){
-        defaultCard.classList.toggle("hidden")
-        editProfileCard.classList.toggle('hidden');
+    for (let count = 0; count < editButtons.length; count ++){
+        let editButton = editButtons[count];
+        editButton.addEventListener('click', function(){
+            let inputHidden = document.getElementById("hiddenInput");
+            inputHidden.value = "verification-code"
+            editPassword.classList.toggle("hidden");
+            passwordsDiv.classList.toggle("hidden");
+            inputDivPassword.classList.toggle("hidden");
     })
+    }
+
     inputImage.addEventListener('change', function() {
         const image = inputImage.files[0];
         const reader = new FileReader();
@@ -53,13 +64,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let darkModal = document.querySelector("#darkModal")
     let closeButton = document.querySelector("#closeButton")
 
-    editPasswordButton.addEventListener('click', ()=>{
+    editSavedPassword.addEventListener('click', ()=>{
         modalWindowPassword.classList.toggle("hidden-modal")
         darkModal.classList.toggle("hidden-modal")
+        
     })
 
     closeButton.addEventListener('click', ()=>{
         modalWindowPassword.classList.toggle("hidden-modal")
         darkModal.classList.toggle("hidden-modal")
     })
+    if (document.cookie.includes("add_verifictation_code")){
+        modalWindowPassword.classList.toggle("hidden-modal")
+        darkModal.classList.toggle("hidden-modal")
+        editPassword.classList.toggle("hidden");
+        passwordsDiv.classList.toggle("hidden");
+        inputDivPassword.classList.toggle("hidden");
+    }
 })

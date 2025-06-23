@@ -9,7 +9,7 @@ urlpatterns = [
     path("albums/", UserAlbums.as_view(), name = "albums"),
     path("check_info/<int:pk>", RedactDataView.as_view(), name = "check_info"),
     path("edit_album/<int:pk>", RedactAlbumView.as_view(), name = "edit_album"),
-    path('user_settings/change_password/', change_password, name='change_password')
+    path('user_settings/change_password/', ChangePasswordView.as_view(), name='change_password')
 ]
 
 if DEBUG:

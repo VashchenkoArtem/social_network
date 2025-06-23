@@ -53,6 +53,7 @@ class ConfirmRegistrationView(FormView):
         user_code = VerificationCode.objects.get(username = username).code
         
         if user_code == code_field:
+            VerificationCode.objects.get(username = username).delete()
             return super().form_valid(form)
         else:
             form.add_error(None, "Код підтвердження не підходе!")

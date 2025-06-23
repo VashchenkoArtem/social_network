@@ -124,6 +124,7 @@
                                 <img src="{% static 'user_settings/images/eye_close.png' %}" alt="" id = "3" class="eye-img all">
                             </div>
                         </div>
+                        </form>
                             <div class="passwords-div">
                                 <div class="header-card">
                                     <p class="password-text">Пароль</p>
@@ -133,20 +134,87 @@
                                         Редагувати пароль
                                     </button>
                                 </div>
-
-                                    <p class="edit-text">Пароль</p>
-                                    <div class="input-div-edit-password">
-                                        <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
-                                        <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
-                                    </div>
-                                
                             </div>
-                            
-                        
+                            <div class="input-div-edit-password">
+                                <input type="text" class="input-edit password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
+                                <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                            </div>
+                            <div class = "edit-password-div hidden">
+                                <form action="" method = "post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="" name = "hidden_input" id="hiddenInput">
+                                    <div class = "header-card">
+                                        <p class="edit-text"></p>
+                                        <button class="edit-save-password password" id="editPasswordButton" type = "submit">
+                                            <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
+                                            Змінити пароль
+                                        </button>
+                                    </div> 
+                                    <div class="edit-password">
+                                        <label class="" class="new-password-label">
+                                            <p class="new-password-text">Новий пароль</p>
+                                        </label>
+                                        <div class="input-div-edit-password">
+                                            <input type="text" class="input-edit password" name = "password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
+                                            <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                                        </div>
+                                        <label for="" class="label-confirm-password">
+                                            <p>Підтвердіть новий пароль</p>
+                                        </label>
+                                        
+                                        <div class="input-div-edit-password">
+                                            <input type="text" class="input-edit password" name = "confirm_password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕⁕⁕" id = "4">
+                                            <img src="{% static 'user_settings/images/eye_password.png' %}" alt="" id = "4" class="eye-img password">
+                                        </div>
+                                    </div>
+                                    <div class="dark-for-modal hidden-modal" id = "darkModal">
+                                        <div class="modal-password hidden-modal" id="modalWindowPassword">
+                                            <form action="" method = "post">
+                                                <div class="close-window-div">
+                                                    <img src="{% static 'user_settings/images/close.png' %}" id="closeButton" class="close-button">
+                                                </div>
+
+                                                <div class="text-password-remake">
+                                                    <p class="text-remade-one">Підтвердження для зміни паролю</p>
+                                                    <div class="two-text">
+                                                        <p class="text-remade-two">Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="main-password-content">
+                                                    <p class="text-remade-two">Код підтвердження</p>
+                                                    <div class="div-inputs">
+                                                        <div class="mini-input-group">
+                                                            <input type="number"  name = "input1"  class="mini-input">
+                                                            <input type="number"  name = "input2" class="mini-input">
+                                                        </div>
+
+                                                        <div class="mini-input-group">
+                                                            <input type="number" name = "input3" class="mini-input">
+                                                            <input type="number" name = "input4" class="mini-input">
+                                                        </div>
+
+                                                        <div class="mini-input-group">
+                                                            <input type="number" name = "input5" class="mini-input">
+                                                            <input type="number" name = "input6" class="mini-input">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="buttons">
+                                                    <button class="cancel-button" id = "cancelButton">Скасувати</button>
+                                                    <button class="save-button" type="submit">Підтвердити</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
-            </form>
-
             <div class="signature-option-card">
                 <div class="header-card">
                     <p>Варіанти підпису</p>
@@ -155,14 +223,12 @@
                         Редагувати інформацію
                     </button>
                 </div>
-
                 <div class="signature-options">
                     <div class="first-signature-one">
                         <input type="checkbox" name="" id="check1" class="checkbox" checked>
                         <p class="name-surname">Ім'я та прізвище</p>
                     </div>
                     <p style="margin-top: calc(0.4vw + 0.6vh);">Lina Li</p>
-
                     <div class="second-signature-two">
                         <input type="checkbox" name="" id="" class="checkbox" checked>
                         <p class="name-surname">Мій електронний підпис</p>
@@ -170,62 +236,15 @@
                     <div class="signature-img-div">
                         <img src="{% static 'user_settings/images/signature.png' %}" alt="" class="signature-img">
                     </div>
-                    
                 </div>
-
-
-
             </div>
-
         </div>
 
 
 
     </div>
 
-    <div class="dark-for-modal hidden-modal" id = "darkModal">
-        <div class="modal-password hidden-modal" id="modalWindowPassword">
 
-            <div class="close-window-div">
-                <img src="{% static 'user_settings/images/close.png' %}" id="closeButton" class="close-button">
-            </div>
-
-            <div class="text-password-remake">
-                <p class="text-remade-one">Підтвердження для зміни паролю</p>
-                <div class="two-text">
-                    <p class="text-remade-two">Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
-                </div>
-                
-            </div>
-
-            <div class="main-password-content">
-                <p class="text-remade-two">Код підтвердження</p>
-                <div class="div-inputs">
-                    <div class="mini-input-group">
-                        <input type="number" class="mini-input">
-                        <input type="number" class="mini-input">
-                    </div>
-
-                    <div class="mini-input-group">
-                        <input type="number" class="mini-input">
-                        <input type="number" class="mini-input">
-                    </div>
-
-                    <div class="mini-input-group">
-                        <input type="number" class="mini-input">
-                        <input type="number" class="mini-input">
-                    </div>
-                    
-                </div>
-                
-            </div>
-
-            <div class="buttons">
-                <button class="cancel-button" id = "cancelButton">Скасувати</button>
-                <button class="save-button" type="submit">Підтвердити</button>
-            </div>
-        </div>
-    </div>
     
 {% endblock %}
 {% block script %}
