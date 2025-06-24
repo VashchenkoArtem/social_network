@@ -19,8 +19,8 @@ class FriendsView(TemplateView):
         context["current_user"] = Profile.objects.get(user = self.request.user)
         return context 
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
             
@@ -36,8 +36,8 @@ class AllFriendsView(TemplateView):
         context["current_user"] = Profile.objects.get(user = self.request.user)
         return context 
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
         
@@ -51,8 +51,8 @@ class RequestView(TemplateView):
         context["all_avatars"] = Avatar.objects.all()
         return context
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
     
@@ -64,8 +64,8 @@ class RecommendedView(TemplateView):
         context["all_avatars"] = Avatar.objects.all()
         return context
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
 
@@ -84,7 +84,7 @@ class FriendProfileView(TemplateView):
         context['current_request'] = Friendship.objects.get(profile1= Profile.objects.get(user = friend_user), profile2 =Profile.objects.get(user = self.request.user))
         return context
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
+        if not Profile.objects.filter(user_id = request.user.id).exists():
             return redirect("registration") 
         else:   
             return super().dispatch(request, *args, **kwargs)

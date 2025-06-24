@@ -13,8 +13,8 @@ from django.http import JsonResponse
 class ChatsView(TemplateView):
     template_name = "all_chats/all_chats.html"
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
@@ -71,8 +71,8 @@ class ChatView(FormView):
         chat_pk = self.kwargs["chat_pk"]
         chat = ChatGroup.objects.get(id = chat_pk)
         if profile in chat.members.all():
-            if not self.request.user.is_authenticated:
-                return redirect("registration") 
+            if not Profile.objects.filter(user_id = request.user.id).exists():
+                return redirect("registration")
             else:   
                 return super().dispatch(request, *args, **kwargs)
         elif profile not in chat.members.all():
@@ -136,14 +136,12 @@ class ChatView(FormView):
             return response
         else:
             members_id = request.POST.getlist('edit_friends')
-            print(members_id)
             response = redirect('chat', self.kwargs['chat_pk'])
             chat_pk = self.kwargs["chat_pk"]
             my_profile = Profile.objects.get(user_id = self.request.user.id)
             group = ChatGroup.objects.get(id = chat_pk)
             group.members.set(members_id)
             group.members.add(my_profile)
-            print(group.members.all())
             response.set_cookie("get_friends", "1234")
             return response
     def get_success_url(self):

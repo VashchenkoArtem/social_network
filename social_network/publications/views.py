@@ -27,9 +27,8 @@ class MyPublicationsView(CreateView):
             image = Image.objects.create(filename = f"photo-{self.object}", file=file)
             self.object.images.add(image)
         return response
-
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
+        if not Profile.objects.filter(user_id = request.user.id).exists():
             return redirect("registration")
         current_user = Profile.objects.get(user_id = self.request.user.pk)
         user_posts = Post.objects.all()
@@ -61,13 +60,15 @@ class MyPublicationsView(CreateView):
         for post in Post.objects.filter(author = profile):    
             context['all_views'] = context['all_views'] | post.views.all()
         return context 
-    
- 
 
-
-
-    
 def redact_data(request, post_pk):
     if request.method == 'POST':
         post = [Post.objects.get(id = post_pk)]
         return JsonResponse(serializers.serialize("json", post), safe=False)
+    
+def create_tag(request, tag_name):
+    if not Tag.objects.filter(name = f"#{tag_name}").exists():
+        Tag.objects.create(name = f"#{tag_name}")
+    return redirect("my_pubs")
+    
+

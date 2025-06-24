@@ -33,7 +33,7 @@ class MainView(CreateView):
         return response
 
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
+        if not Profile.objects.filter(user_id = request.user.id).exists():
             return redirect("registration")
         current_user = Profile.objects.get(user_id = self.request.user.pk)
         user_posts = Post.objects.all()

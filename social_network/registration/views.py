@@ -8,13 +8,19 @@ import random
 from django.contrib.auth.models import User
 from settings_app.models import Profile, VerificationCode
 from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 
 
 class RegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = "registration/index.html"
     success_url = reverse_lazy("confirm")
-
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email')
+        if not User.objects.filter(email = email).exists():
+            return super().post(request, *args, **kwargs)
+        else:
+            return redirect("registration")
     def form_valid(self, form):
         response = super().form_valid(form)
         response.set_cookie('email', form.cleaned_data['email'], max_age=3600)

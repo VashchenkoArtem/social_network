@@ -19,7 +19,7 @@ from django.urls import path, include
 from main.views import MainView
 from .settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
-from publications.views import MyPublicationsView, redact_data
+from publications.views import MyPublicationsView, redact_data, create_tag
 
 
 
@@ -32,7 +32,8 @@ urlpatterns = [
     path("check_info_post/<int:post_pk>", redact_data, name = "check_info_post"),
     path("settings/", include('settings_app.urls')),
     path("friends/", include('friends.urls')),
-    path("chats/", include("chats.urls"))
+    path("chats/", include("chats.urls")),
+    path("my_publications/create_tag/<str:tag_name>", create_tag, name = "create_tag")
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

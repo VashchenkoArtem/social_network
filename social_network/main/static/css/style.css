@@ -868,6 +868,11 @@ option:hover{
     color:rgb(101, 84, 100);
 }
 
+.change-color{
+    background-color: rgb(194, 192, 196); 
+    color: rgb(101, 84, 100);
+}
+
 .hidden {
     display: none;
 }

@@ -80,8 +80,8 @@ class UserSettingsView(TemplateView):
         context['my_avatar'] = Avatar.objects.filter(profile = profile, shown = True, active = True).first()
         return context
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
 
@@ -108,8 +108,8 @@ class UserAlbums(CreateView):
             album.images.add(picture)
         return super().post(request, *args, **kwargs)
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
 

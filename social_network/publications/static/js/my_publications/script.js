@@ -11,6 +11,7 @@ const redactButtons = document.querySelectorAll(".redacting-title");
 const wrapperRedact = document.querySelectorAll(".redact-post")
 
 
+
 postObject.addEventListener("click", function (event) {
     event.preventDefault();
     formObject.classList.toggle("hidden");
@@ -92,3 +93,4 @@ if (input && previewDiv) {
         });
     });
 };
+

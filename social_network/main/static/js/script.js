@@ -8,6 +8,8 @@ const bodyObject = document.querySelector(".full-screen");
 const crossesRedact = document.querySelectorAll(".cross-redact");
 const formsRedact = document.querySelectorAll(".redact-post-function");
 const redactButtons = document.querySelectorAll(".redacting-title-redact");
+const addTag = document.querySelector(".button-hashtag");
+
 
 postObject.addEventListener("click", function (event) {
     event.preventDefault();
@@ -110,3 +112,28 @@ addUrl.addEventListener("click", function(){
     }
     cont.appendChild(newInput);
 });
+
+if (addTag){
+    addTag.addEventListener('click', ()=>{
+        document.querySelector(".add-tag").classList.toggle("hidden");
+        document.querySelector(".image-confirm-tag").classList.toggle("hidden");
+    })
+}
+// let tags = document.querySelectorAll(".tag-object")
+// // if (tags){
+
+//     // tags.forEach(tag => {
+//     for (let count = 0;count < tags.length; count ++){
+//         let tag = tags[count];
+//         tag.addEventListener('click', ()=>{
+//             // tag.style.backgroundColor = "rgb(194, 192, 196)"
+//             // tag.style.color = "rgb(101, 84, 100)"
+//             tag.classList.toggle("change-color") 
+//         })
+//     }
+// }
+document.querySelector('.tag-container').addEventListener('click', function(element){
+    if (element.target.classList.contains('tag-object')) {
+        element.target.classList.toggle("change-color");
+    }
+})
