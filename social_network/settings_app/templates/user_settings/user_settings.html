@@ -21,7 +21,7 @@
             <div class="profile-card default-profile-card">
                 <div class="header-card">
                     <p>Картка профілю</p>
-                    <button class="edit-info-button">
+                    <button class="edit-photo-button">
                         <img src="{% static 'user_settings/images/edit.png' %}" alt="" class="edit-img all">
                         Редагувати інформацію
                     </button>
@@ -55,12 +55,12 @@
                     <div class="main-profile">
                         <span class = "title-avatar">Оберіть або завантажте фото профілю</span>
                         {% if my_avatar %}
-                            <img src="{{ my_avatar.image.url }}" alt="" class="user-img" id = "user-img">
+                            <img src="{{ my_avatar.image.url }}" alt="" class="user-img redact-user-img" id = "user-img">
                         {% else %}
-                            <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img">
+                            <img src="{% static 'user_settings/images/account.png' %}" alt="" class="user-img redact-user-img">
                         {% endif %}
                         <div class = "buttons-redact-photo">
-                            <input id = "changeAvatar" class = "change-avatar hidden" name = "avatar" type = "file">
+                            <input id = "changeAvatar" class = "change-avatar hidden" accept = 'image/*' name = "avatar" type = "file">
                             <label for="changeAvatar" class = "label-redact">
                                 <img class = "edit-img all" src="{% static 'user_settings/images/plus.png' %}" alt="">
                                 <span class = "choose-photo">Оберіть фото</span>

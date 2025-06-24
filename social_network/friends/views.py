@@ -1,3 +1,4 @@
+import profile
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DeleteView
 from settings_app.models import Profile, Friendship, Avatar
@@ -17,6 +18,11 @@ class FriendsView(TemplateView):
         context["all_requests"] = Friendship.objects.filter(profile2 = profile, accepted = False)
         context["all_avatars"] = Avatar.objects.all()
         context["current_user"] = Profile.objects.get(user = self.request.user)
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context 
     def dispatch(self, request, *args, **kwargs):
         if not Profile.objects.filter(user_id = request.user.id).exists():
@@ -34,6 +40,11 @@ class AllFriendsView(TemplateView):
         context["all_friends"] = Friendship.objects.filter(accepted = True)
         context["all_avatars"] = Avatar.objects.all()
         context["current_user"] = Profile.objects.get(user = self.request.user)
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context 
     def dispatch(self, request, *args, **kwargs):
         if not Profile.objects.filter(user_id = request.user.id).exists():
@@ -49,6 +60,11 @@ class RequestView(TemplateView):
         profile = Profile.objects.get(user = self.request.user)
         context["all_requests"] = Friendship.objects.filter(profile2 = profile, accepted = False)
         context["all_avatars"] = Avatar.objects.all()
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context
     def dispatch(self, request, *args, **kwargs):
         if not Profile.objects.filter(user_id = request.user.id).exists():
@@ -62,6 +78,11 @@ class RecommendedView(TemplateView):
         context = super(RecommendedView, self).get_context_data(**kwargs)
         context["all_recommended"] = Profile.objects.filter().exclude(user = self.request.user)
         context["all_avatars"] = Avatar.objects.all()
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context
     def dispatch(self, request, *args, **kwargs):
         if not Profile.objects.filter(user_id = request.user.id).exists():
@@ -77,11 +98,15 @@ class FriendProfileView(TemplateView):
         friend_user = User.objects.get(id = friend_pk)
         profile_id = Profile.objects.get(user_id = friend_pk)
         context['friend'] = Profile.objects.get(user_id = friend_pk)
-        context['avatar'] = Avatar.objects.filter(profile = profile_id)
+        context['avatar'] = Avatar.objects.filter(profile = profile_id).first()
         context['all_avatars'] = Avatar.objects.all()
-        context['all_posts'] = Post.objects.filter(author_id = profile_id.pk).all()
-
-        context['current_request'] = Friendship.objects.get(profile1= Profile.objects.get(user = friend_user), profile2 =Profile.objects.get(user = self.request.user))
+        context['all_posts'] = Post.objects.filter(author_id = profile_id.pk).all().order_by('-id')
+        context["posts_count"] = Post.objects.filter(author_id = profile_id.pk).count()
+        context['current_request'] = Friendship.objects.filter(profile1= Profile.objects.get(user = friend_user), profile2 =Profile.objects.get(user = self.request.user)).union(Friendship.objects.filter(profile2= Profile.objects.get(user = friend_user), profile1 =Profile.objects.get(user = self.request.user))).first()
+        context['all_views'] = Post.objects.none()
+        for post in Post.objects.filter(author = profile_id):    
+            context['all_views'] = context['all_views'] | post.views.all()
+        context["my_friends"] = Friendship.objects.filter(profile2 = profile_id, accepted = True).union(Friendship.objects.filter(profile1 = profile_id, accepted = True))
         return context
     def dispatch(self, request, *args, **kwargs):
         if not Profile.objects.filter(user_id = request.user.id).exists():

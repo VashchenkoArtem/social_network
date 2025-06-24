@@ -7,7 +7,7 @@ const wrapperList = document.querySelectorAll(".redact-wrapper");
 const bodyObject = document.querySelector(".full-screen");
 const crossesRedact = document.querySelectorAll(".cross-redact");
 const formsRedact = document.querySelectorAll(".redact-post-function");
-const redactButtons = document.querySelectorAll(".redacting-title");
+const redactButtons = document.querySelectorAll(".redacting-title-redact");
 const wrapperRedact = document.querySelectorAll(".redact-post")
 
 
@@ -37,14 +37,15 @@ for (let count = 0; count < dotsFormList.length; count++) {
         wrapperObject.classList.toggle("hidden");
     });
 }
-redactButtons.forEach(element => {
-    let formRedact = formsRedact[element.id - 1];
-    let wrapperObject = wrapperRedact[element.id - 1];
-    console.log(wrapperObject)
+redactButtons.forEach((element, index) => {
+    let formRedact = formsRedact[index];
+    let wrapperObject = wrapperRedact[index];
+
     element.addEventListener("click", () => {
         formRedact.classList.toggle("hidden");
         bodyObject.classList.toggle("blur");
         wrapperObject.classList.toggle("hidden");
+
         $.ajax({
             url: `/check_info_post/${element.id}`,
             type: 'POST',
@@ -52,17 +53,18 @@ redactButtons.forEach(element => {
                 'pk': element.id,
                 'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
             },
-            success: function(response){
-                let post = JSON.parse(response)[0]["fields"]
-                document.querySelectorAll("#field-title")[element.id].value = post['title']
-                document.querySelectorAll("#field-topic")[element.id].value = post['topic']
-                document.querySelectorAll("#field-text")[element.id].value = post['text']
-                document.querySelectorAll("#field-url")[element.id].value = post['url']
+            success: function(response) {
+                let post = JSON.parse(response)[0]["fields"];
+                console.log(post)
+                document.querySelectorAll("#field-title")[index].value = post['title'];
+                document.querySelectorAll("#field-topic")[index].value = post['topic'];
+                document.querySelectorAll("#field-text")[index].value = post['text'];
+                document.querySelectorAll("#field-url")[index].value = post['url'];
             }
-        })
-        
+        });
     });
-})
+});
+
 
 
 

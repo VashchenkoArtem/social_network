@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, User
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-UserModel = get_user_model()
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -18,6 +17,8 @@ class Avatar(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     active = models.BooleanField(default = True)
     shown = models.BooleanField(default = True)
+    def __str__(self):
+        return f'Аватар для профілю {self.profile}'
 
 class Friendship(models.Model):
     profile1 = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="friendship_sent_request") # Той, хто надсилає запит

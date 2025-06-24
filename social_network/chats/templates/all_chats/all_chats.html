@@ -1,6 +1,6 @@
 {% extends 'base_header_main.html' %}
 {% load static %}
-
+{% load custom_tags %}
 {% block title %}
     Чати
 {% endblock %}
@@ -29,28 +29,24 @@
                     {% for friend in friends %}
                         {% if friend.profile1 == current_user %}
                             <a class = "contact" href = "{% url 'create_chat' friend.profile2.pk %}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile2.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <span class = "people-name">{{ friend.profile2.user.first_name }} {{ friend.profile2.user.last_name }}</span>
                             </a>
                         {% elif friend.profile2 == current_user %}
                             <a class = "contact" href = "{% url 'create_chat' friend.profile1.pk  %}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile1.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <span class = "people-name">{{ friend.profile1.user.first_name }} {{ friend.profile1.user.last_name }}</span>
                             </a>
                         {% endif%}
@@ -85,12 +81,16 @@
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                {% for avatar in all_avatars %}
-                                                    {% for member in group.members.all %}
-                                                        {% if avatar.profile == member and member != current_user %}
-                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
-                                                        {% endif %}
-                                                    {% endfor%}
+                                                {% for member in group.members.all %}
+                                                    {% if member != current_user %}
+                                                        {% with author_avatar=author_avatars|get_item:member.id %}
+                                                            {% if author_avatar and author_avatar.image %}
+                                                                <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
+                                                            {% else %}
+                                                                <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                             <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
@@ -170,15 +170,13 @@
                     {% for friend in friends %}
                         {% if friend.profile1 == current_user %}
                             <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                         
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile2.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
                                     <input type="checkbox" name = "friends" value = "{{friend.profile2.pk}}">
@@ -186,15 +184,13 @@
                             </div>
                         {% elif friend.profile2 == current_user %}
                             <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile1.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
                                     <input type="checkbox" name = "friends" value = "{{friend.profile1.pk}}">
@@ -242,15 +238,13 @@
                     {% for member in members_group %}
                         <div class="member">
                             <div class = "member-avatar">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == member %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:member.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                             </div>
                             <div class="name-and-delete">
                                 <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
