@@ -44,6 +44,7 @@ $(document).ready(function(){
                     console.log(userId)
                     if ($(`#card-friend-${userId}`)){
                         let card = $(`#card-friend-${userId}`);
+                        console.log(card)
                         card.toggleClass("hidden");
                     }
                 }
@@ -79,5 +80,21 @@ $(document).ready(function(){
             })
         })
     })
+    $(".icon-like").each(function(element){
+        $(this).on('click', function(){
+            let id = this.id;
+            let classObject = $(this).attr("class").split(' ')[2]
+            console.log(classObject)
+            $.ajax({
+                url: id,
+                type: "get",
+                success: function(){
+                    let likes = $(`#likesPost-${classObject}`);
+                    let updatedLikes = Number(likes.text()) + 1
+                    likes.text(updatedLikes)
+                }
+            })
+        })
+    });
 })
 

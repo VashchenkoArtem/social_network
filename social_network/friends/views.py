@@ -2,6 +2,7 @@ import profile
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DeleteView
 from settings_app.models import Profile, Friendship, Avatar
+from publications.models import Album
 from publications.models import Post
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -104,6 +105,7 @@ class FriendProfileView(TemplateView):
         context["posts_count"] = Post.objects.filter(author_id = profile_id.pk).count()
         context['current_request'] = Friendship.objects.filter(profile1= Profile.objects.get(user = friend_user), profile2 =Profile.objects.get(user = self.request.user)).union(Friendship.objects.filter(profile2= Profile.objects.get(user = friend_user), profile1 =Profile.objects.get(user = self.request.user))).first()
         context['all_views'] = Post.objects.none()
+        context['all_albums'] = Album.objects.filter(author = profile_id)
         for post in Post.objects.filter(author = profile_id):    
             context['all_views'] = context['all_views'] | post.views.all()
         context["my_friends"] = Friendship.objects.filter(profile2 = profile_id, accepted = True).union(Friendship.objects.filter(profile1 = profile_id, accepted = True))

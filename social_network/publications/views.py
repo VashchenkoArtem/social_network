@@ -70,5 +70,3 @@ def create_tag(request, tag_name):
     if not Tag.objects.filter(name = f"#{tag_name}").exists():
         Tag.objects.create(name = f"#{tag_name}")
     return redirect("my_pubs")
-    
-

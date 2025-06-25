@@ -112,7 +112,11 @@ class UserAlbums(CreateView):
             return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
-
+    def form_valid(self, form):
+        album = form.save(commit=False)
+        album.author_id = Profile.objects.get(user_id = self.request.user.id).id
+        album.save()
+        return super().form_valid(form)
 class FriendsView(TemplateView):
     template_name = "friends/friends.html"
 

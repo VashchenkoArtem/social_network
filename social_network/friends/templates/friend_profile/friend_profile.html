@@ -51,7 +51,7 @@
                 </div>
                 {% endif%}
             </div>
-            <div class = "frame request">
+            <div class = "frame request  cards-album">
                 <div class = "title-frame first">
                     <div class = "logo-frame">
                         <div class = "icon">
@@ -63,6 +63,20 @@
                         <h3>Дивитись всі</h3>
                     </div>
                 </div>  
+                <div class = "all-albums">
+                    {% for album in all_albums %}
+                        <div class="album">
+                            <span class="span-album text-album">{{ album.name }}</span>
+                            <div class="container-album">
+                                <span class="span-album text-album">{{ album.topic }}</span>
+                                <span class="span-date text-album">2025 рік</span>
+                            </div>
+                            {% if album.images.all %}
+                                <img  src="{{album.images.all.first.file.url}}" alt="" class="album-image">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>     
         </div>
         
@@ -121,10 +135,10 @@
                                         </div>
                                         <div class = "reviews">
                                             <div class = "review">
-                                                <div class = "icon-review">
-                                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                                </div>
-                                                <h2 class = "likes">{{post.like_count}} Вподобайок</h2>
+                                                <a class = "icon-review icon-like {{post.pk}}" id ="{% url 'get_likes' post.pk %}" >
+                                                    <img class = "likes-icon likes-icon-click" src="{% static 'images/icons/Like.png'%}" alt="">
+                                                </a>
+                                                 <h2 class = "likes likes-title"><span id = "likesPost-{{post.pk}}">{{ post.likes.count }}</span> Вподобайок</h2>
                                             </div>
                                             <div class = "review">
                                                 <div class = "icon-review">

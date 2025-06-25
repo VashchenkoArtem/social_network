@@ -9,12 +9,16 @@ const crossesRedact = document.querySelectorAll(".cross-redact");
 const formsRedact = document.querySelectorAll(".redact-post-function");
 const redactButtons = document.querySelectorAll(".redacting-title-redact");
 const addTag = document.querySelector(".button-hashtag");
+const inputPostMessage = document.querySelector(".post-message");
+const fieldTitle = document.querySelectorAll("#field-title")
 
 
 postObject.addEventListener("click", function (event) {
     event.preventDefault();
     formObject.classList.toggle("hidden");
     bodyObject.classList.toggle("blur");
+    console.log(fieldTitle)
+    fieldTitle[fieldTitle.length - 1].value = inputPostMessage.value
 });
 crossObject.addEventListener("click", function (event) {
     formObject.classList.toggle("hidden");
