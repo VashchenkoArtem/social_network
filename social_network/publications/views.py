@@ -38,7 +38,6 @@ class MyPublicationsView(CreateView):
                 post_view.views.add(current_user)
                 post_view.save()
         return super().dispatch(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super(MyPublicationsView, self).get_context_data(**kwargs)
         profile = Profile.objects.get(user_id = self.request.user.pk)
@@ -64,23 +63,36 @@ class MyPublicationsView(CreateView):
 
 
 
+# def redact_data(request, post_pk):
+#     if request.method == 'POST':
+#         post = Post.objects.get(id=post_pk)
+#         post_dict = {
+#             'id': post.id,
+#             'title': post.title,
+#             'content': post.content,
+#             'author': post.author.username,
+#             # 'images': [img.file.url for img in post.images.all()],
+#             # 'tags': [tag.name for tag in post.tags.all()],
+#             'topic': post.topic, 
+#         }
+
+#         return JsonResponse(post_dict)
+#     else:
+#         return HttpResponseNotAllowed(['POST'])
 def redact_data(request, post_pk):
-    if request.method == 'POST':
-        post = Post.objects.get(id=post_pk)
-        post_dict = {
-            'id': post.id,
-            'title': post.title,
-            'content': post.content,
-            'author': post.author.username,
-            # 'images': [img.file.url for img in post.images.all()],
-            # 'tags': [tag.name for tag in post.tags.all()],
-            'topic': post.topic, 
-        }
-
-        return JsonResponse(post_dict)
-    else:
-        return HttpResponseNotAllowed(['POST'])
-
+    if request.method == "POST":
+        try:
+            post = Post.objects.get(pk=post_pk)
+            link = Link.objects.filter(post=post).first() 
+            return JsonResponse({
+                "title": post.title,
+                "topic": post.topic,
+                "content": post.content,
+                "link": link.url if link else "",
+            })
+        except Post.DoesNotExist:
+            return JsonResponse({"error": "Not found"}, status=404)
+    return JsonResponse({"error": "Invalid method"}, status=400)
 def create_tag(request, tag_name):
     if not Tag.objects.filter(name = f"#{tag_name}").exists():
         Tag.objects.create(name = f"#{tag_name}")

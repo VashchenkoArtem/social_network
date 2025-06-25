@@ -91,6 +91,7 @@
                                         <h1 class="title-form">Створення публікації</h1>
                                         <form method="post" class = "input-form"enctype="multipart/form-data">
                                             {% csrf_token %}
+                                            <input type="hidden" value = "{{post.pk}}" name = "post_id">
                                             {% for field in form %}  
                                                 
                                                 {% if field.name == "tags" %}
