@@ -106,6 +106,19 @@ p{
     justify-content:space-evenly;
     color: #543C52;
 }
+.edit-photo-button{
+    width: calc(7vw + 10vh);
+    height: calc(1.3vw + 1.9vh);
+    background-color: #FFFFFF;
+    border: calc(0.03vw + 0.05vh) #543C52 solid;
+    border-radius: calc(6.5vw + 9.3vh);
+    font-size: calc(0.5vw + 0.7vh);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    color: #543C52;
+}
 .edit-save-password{
     width: calc(7vw + 10vh);
     height: calc(1.3vw + 1.9vh);

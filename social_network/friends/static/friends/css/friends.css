@@ -270,3 +270,13 @@ max-height: calc(29.3vw + 28.7vh);
     background-color: #81818d54;
     z-index: 1;
 }
+.post-friend-avatar{
+    border-radius: 1234px;
+    width: calc(3.3vw + 4.7vh);
+    height: calc(3.3vw + 4.7vh);
+}
+.post-friend-avatar-mini{
+    border-radius: 1234px;
+    width: calc(1.6vw + 2.3vh);
+    height: calc(1.6vw + 2.3vh);
+}

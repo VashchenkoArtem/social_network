@@ -48,9 +48,15 @@ socket.addEventListener('message', function(event){
                 avatar.classList.add("avatar-people");
                 avatar.src = "/media/" + ProfileAvatar.fields.image
                 messageWithAvatar.append(avatar)
-                messageWithAvatar.classList.add('message-with-avatar')
-                messageWithAvatar.classList.add('author-people-message')
+
             }
+                else{
+                    avatar.classList.add("avatar-people");
+                    avatar.src = "/static/images/account.png"
+                    messageWithAvatar.append(avatar)
+                }
+        messageWithAvatar.classList.add('message-with-avatar')
+        messageWithAvatar.classList.add('author-people-message')
     }
     }
     else{ 

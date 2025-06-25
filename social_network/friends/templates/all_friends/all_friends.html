@@ -1,6 +1,6 @@
 {% extends "base_header_main.html" %}
 {% load static %}
-
+{% load custom_tags %}
 {% block title %}
     Друзі
 {% endblock %}
@@ -30,15 +30,23 @@
                             <div class = "card" id = "card-friend-{{friend.user.pk}}">
                                 
                                 <div class = "profile-card">
-                                    {% for avatar in all_avatars %}
-                                        {% if avatar.image %}
-                                            {% if avatar.profile == friend.profile1 %}
-                                                <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                            {% endif  %}
-                                        {% else %}
-                                            <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                        {% endif%}
-                                    {% endfor %}
+                                    {% if friend.profile1 != current_user %}
+                                        {% with author_avatar=author_avatars|get_item:friend.profile1.user.id%}
+                                            {% if author_avatar and author_avatar.image %}
+                                                <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
+                                            {% else %}
+                                                <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% elif friend.profile2 != current_user%}
+                                        {% with author_avatar=author_avatars|get_item:friend.profile2.user.id%}
+                                            {% if author_avatar and author_avatar.image %}
+                                                <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
+                                            {% else %}
+                                                <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endif%}
                                 </div>
                                 
                                     <div class = "card-info">

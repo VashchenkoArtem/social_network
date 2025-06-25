@@ -32,11 +32,11 @@ class ChatsView(TemplateView):
             ids_str = request.COOKIES.get("group_members", "")
             member_ids = ids_str.strip().split()
             members = Profile.objects.filter(id__in=member_ids)
-
+            admin = Profile.objects.get(user_id = self.request.user.id)
             group = ChatGroup.objects.create(
                 name=group_name,
                 avatar=group_avatar,
-                admin_id=self.request.user.id
+                admin = admin
             )
 
             my_profile = Profile.objects.get(user_id = self.request.user.pk)
@@ -56,7 +56,11 @@ class ChatsView(TemplateView):
         context["friends"] = Friendship.objects.filter(accepted=True)
         context["all_groups"] = ChatGroup.objects.all()
         context["members_group"] = Profile.objects.none()
-
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         ids_str = self.request.COOKIES.get('group_members')
         if ids_str:
             member_ids = ids_str.strip().split()
@@ -91,6 +95,11 @@ class ChatView(FormView):
         context['all_groups'] = ChatGroup.objects.all()
         context['messages'] = all_messages
         context["members_group"] = group.members.all()
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context
     def post(self, request, *args, **kwargs):
         # ChatsView
