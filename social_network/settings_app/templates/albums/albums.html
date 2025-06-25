@@ -47,6 +47,7 @@
                     <div class="hidden center-window" id="centerRedactAlbum">
                         <form method = "post" action="{% url 'edit_album' album.pk %}">
                             {% csrf_token %}
+
                             <div class="hidden window" id="windowRedactAlbum">
                                 <div class="cross-div">
                                     <img src="{% static 'albums/images/close.png' %}" alt="" id="crossButtonRedact" class="cross">
@@ -105,6 +106,7 @@
 
                     <div class = "album">
                         <div class = "name-and-dots">
+                            
                             <span class = "name">{{ album.name }}</span>
                             <div class = "eye-and-dots">
                                 <img class = "eye" src="{% static 'albums/images/eye_album.png' %}" alt="">
@@ -116,9 +118,10 @@
                             <span class = "created_at">{{album.created_at}}</span>
                         </div>
                         <div class = "line"></div>
-                        <form method = "post" id = "photo-form" enctype="multipart/form-data">
+                        <form method = "post" id = "photo-form-{{ album.pk }}" enctype="multipart/form-data">
                             <div class = "album-photos">
                                 {% csrf_token %}
+                                <input type="hidden" value="{{album.pk}}" name = "album_pk">
                                 <span class = "title">Фотографії</span>
                                 <div class = "photos-container">
                                     {% for image in album.images.all %}
@@ -126,8 +129,8 @@
                                             <img class = "image-album" src="{{ image.file.url }}" alt="">
                                         </div>
                                     {% endfor %}
-                                    <input type="file" multiple name = "photos" class = "photos" id = "photos" hidden onchange="document.getElementById('photo-form').submit()">
-                                    <label for="photos">
+                                    <input type="file" multiple name="photos" class="photos hidden" id="photos-{{ album.pk }}" onchange="document.getElementById('photo-form-{{ album.pk }}').submit()">
+                                    <label for="photos-{{ album.pk }}">
                                         <img src="{% static 'albums/images/add_photo.png'%}" alt="">
                                     </label>
                                 </div>

@@ -176,7 +176,7 @@ div.url.settings{
 
 .hidden{
     visibility: hidden;
-    /* display: none; */
+    display: none;
 }
 
 .window{

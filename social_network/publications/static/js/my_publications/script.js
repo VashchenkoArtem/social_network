@@ -54,12 +54,12 @@ redactButtons.forEach((element, index) => {
                 'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
             },
             success: function(response) {
-                let post = JSON.parse(response)[0]["fields"];
-                console.log(post)
-                document.querySelectorAll("#field-title")[index].value = post['title'];
-                document.querySelectorAll("#field-topic")[index].value = post['topic'];
-                document.querySelectorAll("#field-text")[index].value = post['text'];
-                document.querySelectorAll("#field-url")[index].value = post['url'];
+                document.querySelectorAll("#field-title")[index].value = response.title;
+                document.querySelectorAll("#field-topic")[index].value = response.topic;
+                document.querySelectorAll("#field-text")[index].value = response.content;
+                document.querySelectorAll("#field-url")[index].value = response.link;
+
+
             }
         });
     });

@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from settings_app.models import Profile, Friendship, Avatar
 from publications.models import Post,Image, Tag, Link
 from django.shortcuts import redirect
+from django.http import JsonResponse, HttpResponseNotAllowed
 
 
 class MyPublicationsView(CreateView):
@@ -61,11 +62,25 @@ class MyPublicationsView(CreateView):
             context['all_views'] = context['all_views'] | post.views.all()
         return context 
 
+
+
 def redact_data(request, post_pk):
     if request.method == 'POST':
-        post = [Post.objects.get(id = post_pk)]
-        return JsonResponse(serializers.serialize("json", post), safe=False)
-    
+        post = Post.objects.get(id=post_pk)
+        post_dict = {
+            'id': post.id,
+            'title': post.title,
+            'content': post.content,
+            'author': post.author.username,
+            # 'images': [img.file.url for img in post.images.all()],
+            # 'tags': [tag.name for tag in post.tags.all()],
+            'topic': post.topic, 
+        }
+
+        return JsonResponse(post_dict)
+    else:
+        return HttpResponseNotAllowed(['POST'])
+
 def create_tag(request, tag_name):
     if not Tag.objects.filter(name = f"#{tag_name}").exists():
         Tag.objects.create(name = f"#{tag_name}")
