@@ -2,6 +2,7 @@ from django.db import models
 from settings_app.models import Profile
 # Create your models here.
 
+#
 class Post(models.Model):
     title = models.CharField(max_length = 255)
     content = models.TextField(max_length = 4096)
@@ -14,7 +15,8 @@ class Post(models.Model):
 
     def __str__(self):
          return self.title
-    
+
+# 
 class Image(models.Model):
     filename = models.CharField(max_length = 150)
     file = models.ImageField(upload_to = "images/posts")
@@ -23,6 +25,7 @@ class Image(models.Model):
     def __str__(self):
         return self.filename
 
+#
 class Album(models.Model):
     name = models.CharField(max_length = 255)
     created_at = models.DateTimeField(auto_now_add = True)
@@ -34,12 +37,14 @@ class Album(models.Model):
 
     def __str__(self):
             return self.name
-
+        
+#
 class Tag(models.Model):
     name = models.CharField(max_length = 50, unique = True)   
     def __str__(self):
         return self.name
 
+#
 class Link(models.Model):
     url = models.URLField(max_length = 200)
     post = models.ForeignKey(Post, on_delete = models.CASCADE) 
