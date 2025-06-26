@@ -32,6 +32,9 @@ class VerificationCode(models.Model):
     username = models.CharField(max_length=150)
     code = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+    
 # class RequestModel(models.Model):
 #     sent_user = models.ForeignKey(User,related_name = "sent_request", on_delete=models.CASCADE, null = True)
 #     received_user = models.ForeignKey(User,related_name = "received_request", on_delete=models.CASCADE, null = True)

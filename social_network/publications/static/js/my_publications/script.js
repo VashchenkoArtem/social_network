@@ -67,31 +67,36 @@ redactButtons.forEach((element, index) => {
 
 
 
-
+// Перебираємо усіх хрестиків для закриття модальних вікон
 for (let count = 0; count < crossesRedact.length; count++) {
-    let crossRedact = crossesRedact[count];
-    let formRedact = formsRedact[count];
+    let crossRedact = crossesRedact[count]; // Знаходимо один об'єкт хрестика по індексу count
+    let formRedact = formsRedact[count]; //  Знаходимо об'єкт форми по індексу
+    // Створюємо прослуховувач для кожного хрестика по кліку
     crossRedact.addEventListener("click", () => {
-        formRedact.classList.toggle("hidden");
-        bodyObject.classList.toggle("blur");
+        formRedact.classList.toggle("hidden"); // Змінюємо клас hidden: якщо клас hidden заданий - видаляємо. Якщо класа немає - задаємо
+        bodyObject.classList.toggle("blur"); // Змінюємо клас blur: якщо клас blur заданий - видаляємо. Якщо класа немає - задаємо
     });
 }
-const input = document.querySelector("#image-to-post-form");
-const previewDiv = document.querySelector("#image-preview-container");
+const input = document.querySelector("#image-to-post-form"); // Знаходимо input по його айді
+const previewDiv = document.querySelector("#image-preview-container"); // Знаходимо preview для картинок
+// Якщо input з preview існує
 if (input && previewDiv) {
-    input.addEventListener("change", function () {
-        previewDiv.innerHTML = "";
-        const files = Array.from(input.files);
-        files.forEach(file => {
+    input.addEventListener("change", function () { // Створюємо прослуховувач по заданню картинок input
+        previewDiv.innerHTML = ""; // Обнуляємо усі минулі картинки в input
+        const files = Array.from(input.files); 
+        // Перебираємо усі файли картинок в input. Кожен файл зберігається у змінній file
+        files.forEach(file => { 
+            // Перевіряємо, якщо тип файлу не починається на 'image/' - умова хибна
             if (!file.type.startsWith("image/")) return;
-            const reader = new FileReader();
+            const reader = new FileReader(); // Створюємо об'єкт для читання картинок
+            // Загружаємо читача
             reader.onload = function (event) {
-                const img = document.createElement("img");
-                img.src = event.target.result;
-                img.classList.add("post-images-form")
-                previewDiv.appendChild(img);
+                const img = document.createElement("img"); // Створюємо елемент зображення
+                img.src = event.target.result; // Отримуємо з читача результат та записуємо його до src зображення
+                img.classList.add("post-images-form") // Задаємо клас зображенню для дизайну
+                previewDiv.appendChild(img); // Записуємо елемент зображення до div-у
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); // Записуємо результат читача як посилання
         });
     });
 };
