@@ -153,7 +153,7 @@
                                     <img class = "image-icon" src="{% static 'images/icons/icon-emoji.png'%}">
                                 </label>
                             </div>
-                            <button class = "button-upload"type = "submit">
+                            <button class = "button-upload" type = "submit">
                                 <h4 class = "upload-title">Перейти до оформлення</h4>
                             </button>
                         </div>
@@ -260,6 +260,7 @@
                                     
                                     <div class = "body-post">
                                         <h2 class = "title-post">{{post.title}}</h2>
+                                        <h2 class = "title-post">{{post.topic}}</h2>
                                         <h3 class = "description-post">{{post.content}}</h3>
                                         {% if post.tags.all %}
                                         <div class = "hashtags">
@@ -316,21 +317,22 @@
                 <h1 class="title-form">Створення публікації</h1>
                 <form method="post" class = "input-form"enctype="multipart/form-data">
                     {% csrf_token %}
-
                     {% for field in form %}  
                         
                         {% if field.name == "tags" %}
                             <div class = "all_tags">    
                                 <div class = "tag-container">
                                     {% for tag in tags %}
-                                        <label class="tag-object" data-id="{{ tag.id }}">
+                                        <label type = "button" class="tag-object" data-id="{{ tag.id }}">
                                             {{ tag.name }}
                                             <input type="checkbox" name="tags" value="{{ tag.id }}">
                                         </label>
                                     {% endfor %}
-                                    <button class = "button-hashtag">
+                                    <button class = "button-hashtag" type = "button">
                                         <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
                                     </button>
+                                    <input type="text" class = "add-tag hidden" value="#">
+                                    <img class = "image-hashtag image-confirm-tag hidden" src="{% static 'images/icons/correct.png'%}" alt="">
                                 </div>
                             </div>
                         {% elif field.name != "images" and field.name != "url" %}

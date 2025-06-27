@@ -89,30 +89,28 @@
                                         </div>
 
                                         <h1 class="title-form">Створення публікації</h1>
-                                        <form method="post" action = "{% url 'edit' post.pk %}" class = "input-form"enctype="multipart/form-data">
+                                        <form method="post" class = "input-form"enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            {% for field in form %}
-                                                {% if field.name == 'images' %}
-                                                    <div class="label-tag">
-                                                        {{ field.label_tag }}
-                                                        <div class="inputs-photo-emoji-form">
-                                                            <div class="emojy-and-photo">
-                                                                {{ field }}
-                                                                
-                                                                <label for="image-to-post-form" class = "image-icon-form-label">
-                                                                    <img class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="">
+                                            <input type="hidden" value = "{{post.pk}}" name = "post_id">
+                                            {% for field in form %}  
+                                                
+                                                {% if field.name == "tags" %}
+                                                    <div class = "all_tags">    
+                                                        <div class = "tag-container">
+                                                            {% for tag in tags %}
+                                                                <label type = "button" class="tag-object" data-id="{{ tag.id }}">
+                                                                    {{ tag.name }}
+                                                                    <input type="checkbox" name="tags" value="{{ tag.id }}">
                                                                 </label>
-
-                                                                <img src="{% static 'images/icons/emoji.png' %}" alt="">
-                                                                <button  class="button-upload-form">
-                                                                    <h4 class="upload-title">Публікація</h4>
-                                                                    <img src="{% static 'images/icons/PlaneR.png' %}" alt="">
-                                                                </button>
-                                                            </div>
+                                                            {% endfor %}
+                                                            <button class = "button-hashtag" type = "button">
+                                                                <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
+                                                            </button>
+                                                            <input type="text" class = "add-tag hidden" value="#">
+                                                            <img class = "image-hashtag image-confirm-tag hidden" src="{% static 'images/icons/correct.png'%}" alt="">
                                                         </div>
                                                     </div>
-                                                    <div class="field-error">{{ field.errors }}</div>
-                                                {% else %}
+                                                {% elif field.name != "images" and field.name != "url" %}
                                                     <div class="inputs-form">
                                                         <div class="label-tag">{{ field.label_tag }}</div>
                                                         <div class="field">{{ field }}</div>
@@ -120,6 +118,33 @@
                                                     </div>
                                                 {% endif %}
                                             {% endfor %}
+                                            <div class = "url-inputs">
+                                                {% for field in form %}
+                                                    {% if field.name == "url" %}
+                                                        <div class = "input-url">
+                                                            <div class="inputs-form">
+                                                                <div class="label-tag">{{ field.label_tag }}</div>
+                                                                <div class="field">{{ field }}</div>
+                                                                <div class="field-error">{{ field.errors }}</div>
+                                                            </div>
+                                                            <img  class = "image-tag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            <div class="label-tag">
+                                                <div id="image-preview-container"></div>
+                                                <div class="inputs-photo-emoji-form">
+                                                    <div class="emojy-and-photo">
+                                                        <img id="custom-upload-button" class="image-icon-form" src="{% static 'images/icons/icon-image.png' %}" alt="Upload">
+                                                        <input type="file" id="image-to-post-form" name="images" multiple hidden>
+                                                        <button class="button-upload-form" type="submit">
+                                                            <h4 class="upload-title">Публікація</h4>
+                                                            <img class="image-planer" src="{% static 'images/icons/PlaneR.png' %}" alt="">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -170,11 +195,13 @@
 
                                         </div>
                                         <div class = "dots dots-post">
+                                            <img class = "dot" src="{% static 'images/icons/Dots.png'%}" alt="">
                                         </div>         
                                     </div>
                                     
                                     <div class = "body-post">
                                         <h2 class = "title-post">{{post.title}}</h2>
+                                        <h2 class = "title-post">{{post.topic}}</h2>
                                         <h3 class = "description-post">{{post.content}}</h3>
                                         {% if post.tags.all %}
                                         <div class = "hashtags">
@@ -231,21 +258,22 @@
                 <h1 class="title-form">Створення публікації</h1>
                 <form method="post" class = "input-form"enctype="multipart/form-data">
                     {% csrf_token %}
-
                     {% for field in form %}  
                         
                         {% if field.name == "tags" %}
                             <div class = "all_tags">    
                                 <div class = "tag-container">
                                     {% for tag in tags %}
-                                        <label class="tag-object" data-id="{{ tag.id }}">
+                                        <label type = "button" class="tag-object" data-id="{{ tag.id }}">
                                             {{ tag.name }}
                                             <input type="checkbox" name="tags" value="{{ tag.id }}">
                                         </label>
                                     {% endfor %}
-                                    <button class = "button-hashtag">
+                                    <button class = "button-hashtag" type = "button">
                                         <img  class = "image-hashtag" src="{% static 'images/icons/add_hashtag.png' %}" alt="">
                                     </button>
+                                    <input type="text" class = "add-tag hidden" value="#">
+                                    <img class = "image-hashtag image-confirm-tag hidden" src="{% static 'images/icons/correct.png'%}" alt="">
                                 </div>
                             </div>
                         {% elif field.name != "images" and field.name != "url" %}
@@ -285,48 +313,11 @@
                     </div>
                 </form>
 
-                </form>
             </div>    
         </div>
-
-    {% if request.user.first_name == "" %}
-        <div class="form-overlay" >
-            <form  method = "post" action="{% url 'update_user' %}">
-                {% csrf_token %}
-                <div class = "entrance">
-                    
-                    <div class = "text">
-                        <p>Додай деталі про себе</p>
-                    </div>
-                    <div class = "information">
-
-                        <div class = "names">
-                            <p>Ім’я</p>
-                            <input type="text"  name="first_name" class = "input-name" placeholder = "Введіть Ваше ім’я" value="{{ user.first_name }}">
-                        </div>
-                        <div class = "surname">
-                            <p>Прізвище</p>
-                            <input type="text"  name="last_name"  class = "input-name" placeholder = "Введіть Ваше прізвище" value="{{ user.last_name }}">
-                        </div>
-                        <div class = "name-user">
-                            <p>Ім’я користувача</p>
-                            <input type="text"  name="username" class = "input-name" placeholder = "@" value="{{ user.username }}">
-                            <p class="options">
-                                <span class="select-text">Або оберіть:</span>
-                                <span class="suggestion">Запропоновані варіанти відповідно до Ім’я та Прізвища</span>
-                            </p>
-                        </div>    
-                    </div>
-                    <div class = "button">
-                        <button type = "submit" class = "button-options">Продовжити</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    {% endif %}
 {% endblock %}
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src = "{% static 'js/script.js' %}"></script>
+    <script src = "{% static 'js/my_publications/script.js' %}"></script>
     <script src = "{% static 'js/ajax.js' %}"></script>
 {% endblock %}

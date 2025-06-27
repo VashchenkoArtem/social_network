@@ -80,8 +80,8 @@ class UserSettingsView(TemplateView):
         context['my_avatar'] = Avatar.objects.filter(profile = profile, shown = True, active = True).first()
         return context
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
 
@@ -92,7 +92,7 @@ class UserAlbums(CreateView):
     def get_context_data(self, **kwargs):
         context = super(UserAlbums, self).get_context_data(**kwargs)
         profile = Profile.objects.get(user_id = self.request.user.id)
-        context['all_albums'] =  Album.objects.all()
+        context['all_albums'] =  Album.objects.filter(author = profile)
         context['my_avatars'] = Avatar.objects.filter(profile = profile, shown = True, active = True)
         context['all_tags'] = Tag.objects.all()
         try:
@@ -101,18 +101,24 @@ class UserAlbums(CreateView):
             print("error")
         return context
     def post(self, request, *args, **kwargs):
-        albums_photos = request.FILES.getlist('photos')
-        album = Album.objects.all().first()
-        for photo in albums_photos:
-            picture = Image.objects.create(filename = photo.name, file = photo)
-            album.images.add(picture)
+        if request.POST.get('album_pk'):
+            albums_photos = request.FILES.getlist('photos')
+            album_pk = request.POST.get('album_pk')
+            album = Album.objects.get(id = album_pk)
+            for photo in albums_photos:
+                picture = Image.objects.create(filename = photo.name, file = photo)
+                album.images.add(picture)
         return super().post(request, *args, **kwargs)
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
-
+    def form_valid(self, form):
+        album = form.save(commit=False)
+        album.author_id = Profile.objects.get(user_id = self.request.user.id).id
+        album.save()
+        return super().form_valid(form)
 class FriendsView(TemplateView):
     template_name = "friends/friends.html"
 

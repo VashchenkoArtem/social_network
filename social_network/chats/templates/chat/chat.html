@@ -4,7 +4,7 @@
 {% block title %}
     Чати
 {% endblock %}
-
+{% load custom_tags %}
 {% block link %}
     <link rel="stylesheet" href="{% static 'css/all_chats/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat/chat.css' %}">
@@ -31,28 +31,24 @@
                     {% for friend in friends %}
                         {% if friend.profile1 == current_user %}
                             <a class = "contact" href = "{% url 'create_chat' friend.profile2.pk %}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile2.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <span class = "people-name">{{ friend.profile2.user.first_name }} {{ friend.profile2.user.last_name }}</span>
                             </a>
                         {% elif friend.profile2 == current_user %}
                             <a class = "contact" href = "{% url 'create_chat' friend.profile1.pk  %}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile1.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <span class = "people-name">{{ friend.profile1.user.first_name }} {{ friend.profile1.user.last_name }}</span>
                             </a>
                         {% endif%}
@@ -139,11 +135,13 @@
                                     </div>
                                 {% elif message.author != current_user %}
                                 <div class = "message-with-avatar author-people-message" >
-                                    {% for avatar in all_avatars %}
-                                        {% if avatar.profile == message.author %}
-                                            <img class = "avatar-people" src="{{ avatar.image.url }}" alt="">
-                                        {% endif%}
-                                    {% endfor%}
+                                    {% with author_avatar=author_avatars|get_item:message.author.id %}
+                                        {% if author_avatar and author_avatar.image %}
+                                            <img class="avatar-people" src="{{ author_avatar.image.url }}" alt="">
+                                        {% else %}
+                                            <img class="avatar-people" src="{% static 'images/icons/account.png' %}" alt="">
+                                        {% endif %}
+                                    {% endwith %}
                                     <div class = "one-message author-people">
                                         <p class = "message-author ">{{ message.author }}</p>
                                         <div class = "message-and-time">
@@ -171,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class = "frames">
+                <div class = "frames">
             <div class = "frame message">
                 <div class = "title-frame">
                     <div class = "logo-frame">
@@ -192,12 +190,16 @@
                                     <div class = "one-people">
                                         <div class = "people-information">
                                             <div class = icon-people>
-                                                {% for avatar in all_avatars %}
-                                                    {% for member in group.members.all %}
-                                                        {% if avatar.profile == member and member != current_user %}
-                                                            <img class = "icon-people"src="{{ avatar.image.url }}" alt="">
-                                                        {% endif %}
-                                                    {% endfor%}
+                                                {% for member in group.members.all %}
+                                                    {% if member != current_user %}
+                                                        {% with author_avatar=author_avatars|get_item:member.id %}
+                                                            {% if author_avatar and author_avatar.image %}
+                                                                <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
+                                                            {% else %}
+                                                                <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                             <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
@@ -205,7 +207,7 @@
                                                     <h3 class = "friend-name">{{group.name}}</h3>
                                                     <h3 class = "time">09:41</h3>
                                                 </div>
-                                                <h4 class = message-friend>Привіт! Як справи?</h4>
+                                                <h4 class = message-friend>Повідомлення</h4>
                                             </a>
                                         </div>
                                     </div>
@@ -242,13 +244,13 @@
                                                     <img class = "icon-people" src="{% static 'images/group_avatar.png' %}" alt="">
                                                 {% endif %}
                                             </div>
-                                                <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
-                                                    <div class = "people-name-and-time">
-                                                        <h3 class = "friend-name">{{group.name}}</h3>
-                                                        <h3 class = "time">Час</h3>
-                                                    </div>
-                                                    <h4 class = message-friend>Повідомлення</h4>
-                                                </a>
+                                                    <a class = "people-name-and-message" href = "{% url 'chat' group.pk %}">
+                                                        <div class = "people-name-and-time">
+                                                            <h3 class = "friend-name">{{group.name}}</h3>
+                                                            <h3 class = "time">Час</h3>
+                                                        </div>
+                                                        <h4 class = message-friend>Повідомлення</h4>
+                                                    </a>
                                         </div>
                                     </div>
                                 {% endif%}
@@ -258,151 +260,7 @@
                 </div>
             </div>
         </div>
-        </div>
         <div class = "fullscreen hidden"></div>
-        <!-- Редагування групи - додавання учасників -->
-        <div class = "modal-create-group modal-edit-group hidden">
-            <div class = "frame-cross">
-                <img class = "cross-image close-redact-users" src="{% static 'images/cross.png' %}" alt="">
-            </div>
-            <h1 class = "title-new-group">Додати учасника</h1>
-            <div class = "input-modal-create">
-                <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
-                <input type="text" class = "input-create-group" placeholder="Пошук">
-            </div>
-            <h3 class = "selected-people">
-                Вибрано: <span class = "selected-count-people"></span>
-            </h3>
-            <form method = "post" class = "form">
-                {% csrf_token%}
-                <div class = "filter-people-group">
-                    {% for friend in friends %}
-                        {% if friend.profile1 == current_user %}
-                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                         
-                                        {% endif  %}
-                                    {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
-                                <div class = "name-and-correct">
-                                    <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
-                                    {% if friend.profile2 in chat_group.members.all %}
-                                        <input type="checkbox" name = "edit_friends" checked value = "{{friend.profile2.pk}}">
-                                    {% else %}
-                                        <input type="checkbox" name = "edit_friends" value = "{{friend.profile2.pk}}">
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% elif friend.profile2 == current_user %}
-                            <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
-                                    {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
-                                <div class = "name-and-correct">
-                                    <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
-                                    {% if friend.profile1 in chat_group.members.all %}
-                                        <input type="checkbox" name = "edit_friends" checked value = "{{friend.profile1.pk}}">
-                                    {% else %}
-                                        <input type="checkbox" name = "edit_friends" value = "{{friend.profile1.pk}}">
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endif%}
-                    {% endfor %}
-                
-                </div>
-                <div class = "buttons-create-group">
-                    <a class = "cancel-create-group" href = "{% url 'all_chats' %}">Скасувати</a>
-                    
-                    <button type = "submit" class = "confirm-create-group confirm-edit-group">Далі</button>
-                    
-                </div>
-            </form>
-        </div>
-        <!-- Редагування групи - редагування -->
-        <div class = "">
-            <form method = "post" class = "form-set-name modal-edit-name edit-form-name hidden" enctype="multipart/form-data">
-                
-                {% csrf_token %}
-                <div class = "frame-cross">
-                    <img class = "cross-image close-redact-group" src="{% static 'images/cross.png' %}" alt="">
-                </div>
-                <h1 class = "title-new-group">Редагування групи</h1>
-                <div class = "input-modal-create">
-                    <label for="seacrh" class = "label-name">Назва</label>
-                    <div>
-                        <img class = "image-search" src="{% static 'images/seacrh.png'%}" alt="">
-                        <input type="text" class = "input-create-group" name = "edit_group_name" placeholder="Введіть назву" value = {{chat_group.name}}>
-                    </div>
-                </div>
-                <div class = "avatar-group">
-                    {% if chat_group.avatar %}
-                        <img src="{{ chat_group.avatar.url }}" class = "group-image" alt="">
-                    {% else %}
-                        <img src="{% static 'images/new_group.png' %}" class = "group-image" alt="">
-                    {% endif %}
-                    <div class = "buttons-avatar-group">
-                        <div class = "add-avatar-button">
-
-                                <input type="file" hidden name = "edit-image-avatar" id="add-image-avatar"  accept="image/*">
-
-                            <label class = "add-avatar" for="add-image-avatar">
-                                
-                                <img class = "image-choose image-20px" src="{% static 'images/plus_peorple.png' %}" alt="">
-                                <p class = "title-choose">Додайте фото</p>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class = "members-group">
-                    <div class = "members-setting">
-                        <label for="seacrh" class = "label-name">Учасники</label>
-                        <div class = "add-member">
-                            <img class = "image-choose image-20px" src="{% static 'images/plus_peorple.png' %}" alt="">
-                            <span class = 'add-member-button'>Додати учасника</span>
-                        </div>
-                    </div>
-                    <div class = "members-div">
-                        {% for member in members_group %}
-                            <div class="member">
-                                <div class = "member-avatar">
-                                    {% for avatar in all_avatars %}
-                                        {% if avatar.image %}
-                                            {% if avatar.profile == member %}
-                                                <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                            {% endif  %}
-                                        {% else %}
-                                            <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                        {% endif%}
-                                    {% endfor %}
-                                </div>
-                                <div class="name-and-delete">
-                                    <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
-                                    <img class = "image-20px" src="{% static 'images/delete.png' %}" alt="">
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                
-                <div class = "button_style">
-                    <button class = "button_down">Назад</button>
-                    <button type = "submit" class = "button_right">Створити групу</button>
-                </div>
-            </form>
-        </div>  
-
-        <!-- Створення групи - учасники -->
         <div class = "modal-create-group modal-create-group-create hidden">
             <div class = "frame-cross">
                 <img class = "cross-image close-create-group-name" src="{% static 'images/cross.png' %}" alt="">
@@ -421,15 +279,13 @@
                     {% for friend in friends %}
                         {% if friend.profile1 == current_user %}
                             <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile2 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                         
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile2.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile2.user.first_name}} {{friend.profile2.user.last_name}}</span>
                                     <input type="checkbox" name = "friends" value = "{{friend.profile2.pk}}">
@@ -437,15 +293,13 @@
                             </div>
                         {% elif friend.profile2 == current_user %}
                             <div class = "profile-card" id = "{{ friend.profile2.pk }}">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == friend.profile1 %}
-                                            <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:friend.profile1.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                                 <div class = "name-and-correct">
                                     <span class = "people-name">{{friend.profile1.user.first_name}} {{friend.profile1.user.last_name}}</span>
                                     <input type="checkbox" name = "friends" value = "{{friend.profile1.pk}}">
@@ -462,7 +316,6 @@
                 </div>
             </form>
         </div>
-        <!-- Створення групи - назва, фото -->
         <div class = "">
             <form method = "post" class = "form-set-name modal-set-name hidden" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -494,15 +347,13 @@
                     {% for member in members_group %}
                         <div class="member">
                             <div class = "member-avatar">
-                                {% for avatar in all_avatars %}
-                                    {% if avatar.image %}
-                                        {% if avatar.profile == member %}
-                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                        {% endif  %}
+                                {% with author_avatar=author_avatars|get_item:member.id %}
+                                    {% if author_avatar and author_avatar.image %}
+                                        <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                     {% else %}
-                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                    {% endif%}
-                                {% endfor %}
+                                        <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                    {% endif %}
+                                {% endwith %}
                             </div>
                             <div class="name-and-delete">
                                 <span class="people-name">{{ member.user.first_name }} {{ member.user.last_name }}</span>
@@ -513,10 +364,12 @@
                 </div>
                 
                 <div class = "button_style">
-                    <button type = "submit" class = "button_down">Назад</button>
+                    <a type = "submit" class = "button_down close-second-modal">Назад</a>
                     <button type = "submit" class = "button_right">Створити групу</button>
                 </div>
             </form>
+        </div>
+        
         </div>
     </div>
 {% endblock %}

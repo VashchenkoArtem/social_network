@@ -16,13 +16,11 @@
 
             <div class = "frame profile">
                 <div class = "avatar">
-                    {% for avatar_image in avatar %}
-                        {% if avatar_image.image %}      
-                            <img class = "my-avatar" src="{{ avatar_image.image.url }}" alt="">
-                        {% else %}
-                            <img class = "my-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                        {% endif %}
-                    {% endfor%}
+                    {% if avatar %}
+                        <img class = "my-avatar" src="{{ avatar.image.url }}" alt="">
+                    {% else %}
+                        <img class = "my-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                    {% endif %}
                 </div>
 
                 <div class = "nick-and-tag">
@@ -32,19 +30,19 @@
 
                 <div class = "subscribers" >
                     <div class = "all-posts section">
-                        <h2 class = "number">566</h2>
+                        <h2 class = "number">{{ posts_count }}</h2>
                         <h3 class = "info">Дописи</h3>  
                     </div>
                     <div class = "followers section">
-                        <h2 class = "number">12.1K</h2>
+                        <h2 class = "number">{{ all_views.count}}</h2>
                         <h3 class = "info">Читачі</h3>
                     </div>
                     <div class = "all-friends section">
-                        <h2 class = "number">222</h2>
+                        <h2 class = "number">{{ my_friends.count }}</h2>
                         <h3 class = "info">Друзі</h3>
                     </div>
-                </div>
-                {% if not current_request.is_friend %}
+                </div>                
+                {% if not current_request.accepted %}
                 <div class="confirm-delete-div">
                     <a class="add-button button" id = "{% url 'confirm_friend' friend.user.pk %}">Підтвердити</a>
                     <a class = "button button-delete" id = "{% url 'delete_request' friend.user.pk %}" href = "{% url 'main_friends'%}">
@@ -53,7 +51,7 @@
                 </div>
                 {% endif%}
             </div>
-            <div class = "frame request">
+            <div class = "frame request  cards-album">
                 <div class = "title-frame first">
                     <div class = "logo-frame">
                         <div class = "icon">
@@ -65,6 +63,20 @@
                         <h3>Дивитись всі</h3>
                     </div>
                 </div>  
+                <div class = "all-albums">
+                    {% for album in all_albums %}
+                        <div class="album">
+                            <span class="span-album text-album">{{ album.name }}</span>
+                            <div class="container-album">
+                                <span class="span-album text-album">{{ album.topic }}</span>
+                                <span class="span-date text-album">2025 рік</span>
+                            </div>
+                            {% if album.images.all %}
+                                <img  src="{{album.images.all.first.file.url}}" alt="" class="album-image">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>     
         </div>
         
@@ -77,15 +89,11 @@
                                     <div class = "avatar-label">
                                         <div class = "people-logo-and-nick">
                                             <div class = "logo-post">
-                                                {% for avatar in all_avatars %}
-                                                    {% if avatar.image %}
-                                                        {% if avatar.profile == post.author%}
-                                                            <img class = "post-friend-avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                                        {% endif  %}
-                                                    {% else %}
-                                                        <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                                    {% endif%}
-                                                {% endfor %}
+                                                {% if avatar %}
+                                                    <img class = "post-friend-avatar-mini" src="{{ avatar.image.url }}" alt="">
+                                                {% else %}
+                                                    <img class = "post-friend-avatar-mini" src="{% static 'images/icons/account.png' %}" alt="">
+                                                {% endif %}
                                             </div>
                                             <div class = "nick-post">
                                                 <h2 class = "nick-friend">{{post.author}}</h2>
@@ -127,10 +135,10 @@
                                         </div>
                                         <div class = "reviews">
                                             <div class = "review">
-                                                <div class = "icon-review">
-                                                    <img class = "likes-icon" src="{% static 'images/icons/Like.png'%}" alt="">
-                                                </div>
-                                                <h2 class = "likes">{{post.like_count}} Вподобайок</h2>
+                                                <a class = "icon-review icon-like {{post.pk}}" id ="{% url 'get_likes' post.pk %}" >
+                                                    <img class = "likes-icon likes-icon-click" src="{% static 'images/icons/Like.png'%}" alt="">
+                                                </a>
+                                                 <h2 class = "likes likes-title"><span id = "likesPost-{{post.pk}}">{{ post.likes.count }}</span> Вподобайок</h2>
                                             </div>
                                             <div class = "review">
                                                 <div class = "icon-review">

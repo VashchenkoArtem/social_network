@@ -1,6 +1,6 @@
 {% extends "base_header_main.html" %}
 {% load static %}
-
+{% load custom_tags%}
 {% block title %}
     Друзі
 {% endblock %}
@@ -45,15 +45,13 @@
                             <div class = "card" id = "card-request-{{request.profile1.user.pk}}">
                                     <div class = "profile-card">
                                         <a href="{% url 'friend_profile' request.profile1.user.pk %}" class = "avatar">
-                                            {% for avatar in all_avatars %}
-                                                {% if avatar.image %}
-                                                    {% if avatar.profile == request.profile1 %}
-                                                        <img class = "post-friend-avatar avatar" src="{{ avatar.image.url }}" alt="">                                              
-                                                    {% endif  %}
+                                            {% with author_avatar=author_avatars|get_item:request.profile1.user.id%}
+                                                {% if author_avatar and author_avatar.image %}
+                                                    <img class="post-friend-avatar" src="{{ author_avatar.image.url }}" alt="">
                                                 {% else %}
-                                                    <img class = "post-friend-avatar" src="{% static 'images/icons/account.png'%}" alt="">
-                                                {% endif%}
-                                            {% endfor %}
+                                                    <img class="post-friend-avatar" src="{% static 'images/icons/account.png' %}" alt="">
+                                                {% endif %}
+                                            {% endwith %}
                                         </a>
                                     </div>
                                     <div class = "card-info">

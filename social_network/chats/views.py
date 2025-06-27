@@ -13,8 +13,8 @@ from django.http import JsonResponse
 class ChatsView(TemplateView):
     template_name = "all_chats/all_chats.html"
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return redirect("registration") 
+        if not Profile.objects.filter(user_id = request.user.id).exists():
+            return redirect("registration")
         else:   
             return super().dispatch(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
@@ -32,11 +32,11 @@ class ChatsView(TemplateView):
             ids_str = request.COOKIES.get("group_members", "")
             member_ids = ids_str.strip().split()
             members = Profile.objects.filter(id__in=member_ids)
-
+            admin = Profile.objects.get(user_id = self.request.user.id)
             group = ChatGroup.objects.create(
                 name=group_name,
                 avatar=group_avatar,
-                admin_id=self.request.user.id
+                admin = admin
             )
 
             my_profile = Profile.objects.get(user_id = self.request.user.pk)
@@ -56,7 +56,11 @@ class ChatsView(TemplateView):
         context["friends"] = Friendship.objects.filter(accepted=True)
         context["all_groups"] = ChatGroup.objects.all()
         context["members_group"] = Profile.objects.none()
-
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         ids_str = self.request.COOKIES.get('group_members')
         if ids_str:
             member_ids = ids_str.strip().split()
@@ -71,8 +75,8 @@ class ChatView(FormView):
         chat_pk = self.kwargs["chat_pk"]
         chat = ChatGroup.objects.get(id = chat_pk)
         if profile in chat.members.all():
-            if not self.request.user.is_authenticated:
-                return redirect("registration") 
+            if not Profile.objects.filter(user_id = request.user.id).exists():
+                return redirect("registration")
             else:   
                 return super().dispatch(request, *args, **kwargs)
         elif profile not in chat.members.all():
@@ -91,6 +95,11 @@ class ChatView(FormView):
         context['all_groups'] = ChatGroup.objects.all()
         context['messages'] = all_messages
         context["members_group"] = group.members.all()
+        author_avatars = {}
+        for author in Profile.objects.all():
+            avatar = Avatar.objects.filter(profile=author, shown=True, active=True).first()
+            author_avatars[author.id] = avatar
+        context["author_avatars"] = author_avatars
         return context
     def post(self, request, *args, **kwargs):
         # ChatsView
@@ -136,14 +145,12 @@ class ChatView(FormView):
             return response
         else:
             members_id = request.POST.getlist('edit_friends')
-            print(members_id)
             response = redirect('chat', self.kwargs['chat_pk'])
             chat_pk = self.kwargs["chat_pk"]
             my_profile = Profile.objects.get(user_id = self.request.user.id)
             group = ChatGroup.objects.get(id = chat_pk)
             group.members.set(members_id)
             group.members.add(my_profile)
-            print(group.members.all())
             response.set_cookie("get_friends", "1234")
             return response
     def get_success_url(self):

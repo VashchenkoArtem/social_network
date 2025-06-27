@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const editProfileCard = document.querySelector(".edit-profile-card");
     const defaultCard = document.querySelector(".default-profile-card");
     const inputImage = document.querySelector(".change-avatar");
-    const imageAvatar = document.getElementById('user-img');
+    const imageAvatar = document.querySelector('.redact-user-img');
     const editPassword = document.querySelector(".edit-password-div");
     const passwordsDiv = document.querySelector(".passwords-div");
     const inputDivPassword = document.querySelector(".input-div-edit-password");
     const editSavedPassword = document.querySelector(".edit-save-password");
+    const buttonPhoto = document.querySelector(".edit-photo-button");
 
     
     for (let count = 0; count < eyeImages.length; count++){
@@ -48,7 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
             inputDivPassword.classList.toggle("hidden");
     })
     }
-
+    buttonPhoto.addEventListener("click", ()=>{
+        editProfileCard.classList.toggle("hidden");
+        defaultCard.classList.toggle("hidden");
+    })
     inputImage.addEventListener('change', function() {
         const image = inputImage.files[0];
         const reader = new FileReader();

@@ -1,26 +1,31 @@
-const chatGroup = document.getElementById("chatGroupId").value
+const chatGroup = document.getElementById("chatGroupId").value // Отримуємо value прихованого input з id групи.
 
-const socketUrl = `ws://${window.location.host}/chats/all_chats/${chatGroup}`;
+const socketUrl = `ws://${window.location.host}/chats/all_chats/${chatGroup}`; //  Формуємо URL адресу для WS-з'єднання за поточним хостом
 
-const socket = new WebSocket(socketUrl);
+const socket = new WebSocket(socketUrl); // Ініціалізуємо WebSocket (Створюємо WS-з'єднання)
 
-const messages = document.getElementById("messages");
-const form = document.getElementById("form");
-const dateTime = document.querySelectorAll(".message-time");
+const messages = document.getElementById("messages"); // Отримуємо div з усіма повідомленнями.
+const form = document.getElementById("form"); // Отримуємо об'єкт форми повідомлення.
+const dateTime = document.querySelectorAll(".message-time"); // Отримуємо усі об'єкти дати та часу.
+// Перебираємо усі об'єкти дати та часу.
 for (let time of dateTime){
-    let dateAndTime = new Date(time.textContent);
-    let dateAndTimeLocal = dateAndTime.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
-    time.textContent = dateAndTimeLocal
-}
+    let dateAndTime = new Date(time.textContent); // Створюємо об'єкт дати та часу, передаючи контент(дату та час) конкретного повідомлення.
+    let dateAndTimeLocal = dateAndTime.toLocaleString([], { hour: '2-digit', minute: '2-digit' }); // Локалізуємо дату та час до годин | хвилин.
+    time.textContent = dateAndTimeLocal // Передаємо контент зміненного повідомлення.
+} 
+// Перевіряємо відправку повідомлення.
 form.addEventListener("submit", (event) => {
-    // 
+    // Відміняємо стандартну поведінку форми(відправки даних)
     event.preventDefault()
-    // 
+    // Отримуємо value повідомлення користувача.
     let message = document.getElementById("id_message").value
+    // Створюємо JSONString та перетворюємо його в string | Відправляємо JSONString на сервер | Відправляємо на клієнт.
     socket.send(JSON.stringify({"message": message}))
-    // 
+    // Очищуємо messageForm без оновлення сторінки
     form.reset()
 })
+
+
 socket.addEventListener('message', function(event){ 
     const messageWithAvatar = document.createElement('div');
     
@@ -43,9 +48,15 @@ socket.addEventListener('message', function(event){
                 avatar.classList.add("avatar-people");
                 avatar.src = "/media/" + ProfileAvatar.fields.image
                 messageWithAvatar.append(avatar)
-                messageWithAvatar.classList.add('message-with-avatar')
-                messageWithAvatar.classList.add('author-people-message')
+
             }
+                else{
+                    avatar.classList.add("avatar-people");
+                    avatar.src = "/static/images/account.png"
+                    messageWithAvatar.append(avatar)
+                }
+        messageWithAvatar.classList.add('message-with-avatar')
+        messageWithAvatar.classList.add('author-people-message')
     }
     }
     else{ 
